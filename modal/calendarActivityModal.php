@@ -1,4 +1,3 @@
-<?php require_once('../connectDb.php') ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendar Activity - ICS PDO Portal</title>
-    <link rel="stylesheet" href="../css/calendarActivityModal.css">
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' rel='stylesheet' />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
+    <style>
+        /* Optional: Set a height for the calendar */
+        #calendar {
+            max-width: 900px;
+            margin: 40px auto;
+        }
+    </style>
 </head>
 
 <body>
@@ -29,27 +38,25 @@
                                     <h5 class="card-title">Schedule Form</h5>
                                 </div>
                                 <div class="card-body">
-                                    <div class="container-fluid">
-                                        <form action="../function/saveSchedule.php" method="post" id="schedule-form">
-                                            <input type="hidden" name="id" value="">
-                                            <div class="form-group mb-2">
-                                                <label for="title" class="control-label">Title</label>
-                                                <input type="text" class="form-control form-control-sm rounded-0" name="title" id="title" required>
-                                            </div>
-                                            <div class="form-group mb-2">
-                                                <label for="description" class="control-label">Description</label>
-                                                <textarea rows="3" class="form-control form-control-sm rounded-0" name="description" id="description" required></textarea>
-                                            </div>
-                                            <div class="form-group mb-2">
-                                                <label for="start_datetime" class="control-label">Start</label>
-                                                <input type="datetime-local" class="form-control form-control-sm rounded-0" name="start_datetime" id="start_datetime" required>
-                                            </div>
-                                            <div class="form-group mb-2">
-                                                <label for="end_datetime" class="control-label">End</label>
-                                                <input type="datetime-local" class="form-control form-control-sm rounded-0" name="end_datetime" id="end_datetime" required>
-                                            </div>
-                                        </form>
-                                    </div>
+                                    <form action="../function/saveSchedule.php" method="post" id="schedule-form">
+                                        <input type="hidden" name="id" value="">
+                                        <div class="form-group mb-2">
+                                            <label for="title" class="control-label">Title</label>
+                                            <input type="text" class="form-control form-control-sm rounded-0" name="title" id="title" required>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="description" class="control-label">Description</label>
+                                            <textarea rows="3" class="form-control form-control-sm rounded-0" name="description" id="description" required></textarea>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="start_datetime" class="control-label">Start</label>
+                                            <input type="datetime-local" class="form-control form-control-sm rounded-0" name="start_datetime" id="start_datetime" required>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="end_datetime" class="control-label">End</label>
+                                            <input type="datetime-local" class="form-control form-control-sm rounded-0" name="end_datetime" id="end_datetime" required>
+                                        </div>
+                                    </form>
                                 </div>
                                 <div class="card-footer">
                                     <div class="text-center">
@@ -65,55 +72,59 @@
         </div>
     </div>
 
-    <div class="modal fade" tabindex="-1" data-bs-backdrop="static" id="event-details-modal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content rounded-0">
-                <div class="modal-header rounded-0">
-                    <h5 class="modal-title">Schedule Details</h5>
-                    <button type="button" the "btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body rounded-0">
-                    <div class="container-fluid">
-                        <dl>
-                            <dt class="text-muted">Title</dt>
-                            <dd id="title" class="fw-bold fs-4"></dd>
-                            <dt class="text-muted">Description</dt>
-                            <dd id="description" class=""></dd>
-                            <dt class="text-muted">Start</dt>
-                            <dd id="start" class=""></dd>
-                            <dt class="text-muted">End</dt>
-                            <dd id="end" class=""></dd>
-                        </dl>
-                    </div>
-                </div>
-                <div class="modal-footer rounded-0">
-                    <div class="text-end">
-                        <button type="button" class="btn btn-primary btn-sm rounded-0" id="edit" data-id="">Edit</button>
-                        <button type="button" the "btn btn-danger btn-sm rounded-0" id="delete" data-id="">Delete</button>
-                        <button type="button" the "btn btn-secondary btn-sm rounded-0" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Event Details Modal -->
-    <?php
-    $schedules = $conn->query("SELECT * FROM `schedule_list`");
-    $sched_res = [];
-    foreach ($schedules->fetch_all(MYSQLI_ASSOC) as $row) {
-        $row['sdate'] = date("F d, Y h:i A", strtotime($row['start_datetime']));
-        $row['edate'] = date("F d, Y h:i A", strtotime($row['end_datetime']));
-        $sched_res[$row['id']] = $row;
-    }
-    ?>
-    <?php
-    if (isset($conn)) $conn->close();
-    ?>
-</body>
+    <script>
+        $(document).ready(function() {
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                events: [
+                    <?php
+                    // Database connection
+                    $host     = 'localhost'; // Change as necessary
+                    $username = 'root';      // Change as necessary
+                    $password = '';          // Change as necessary
+                    $dbname   = 'ics_db';    // Change as necessary
 
-<script>
-    var scheds = $.parseJSON('<?= json_encode($sched_res) ?>')
-</script>
-<script src="../js/schedule.js"></script>
+                    // Create connection
+                    $conn = new mysqli($host, $username, $password, $dbname);
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+
+                    // Fetch events from the database
+                    $sql = "SELECT title, description, start_datetime AS start, end_datetime AS end FROM schedule_list";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        // Output data for each event
+                        while ($row = $result->fetch_assoc()) {
+                            echo json_encode([
+                                'title' => $row['title'],
+                                'start' => $row['start'],
+                                'end'   => $row['end'],
+                                'description' => $row['description']
+                            ]) . ",";
+                        }
+                    } else {
+                        echo "[]"; // No events found
+                    }
+
+                    // Close the database connection
+                    $conn->close();
+                    ?>
+                ],
+                eventRender: function(event, element) {
+                    element.find('.fc-title').append("<br/>" + event.description); // Append the description to the title
+                },
+                editable: false // Set to true if you want to allow editing of events
+            });
+        });
+    </script>
+
+    <script src="../js/schedule.js"></script>
+</body>
 
 </html>

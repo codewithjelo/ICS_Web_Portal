@@ -10,7 +10,19 @@
 </head>
 
 <body>
-    <!-- Modal -->
+    <?php if (isset($_SESSION['success_message'])): ?>
+        <script>
+            $(document).ready(function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: '<?php echo $_SESSION['success_message']; ?>',
+                    confirmButtonText: 'OK'
+                });
+            });
+        </script>
+        <?php unset($_SESSION['success_message']); ?>
+    <?php endif; ?>
     <div class="modal fade modal-lg" id="inputGradesModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -20,29 +32,22 @@
                 </div>
                 <div class="modal-body">
                     <form action="../function/inputGrades.php" method="POST" enctype="multipart/form-data">
-                        <!-- Grade Dropdown -->
                         <div class="mb-3">
                             <label for="gradeSelect" class="form-label">Grade Level</label>
                             <select class="form-select" id="gradeSelect" name="grade_select">
-                                <option value="Grade 1">Grade Level</option>
+                                <option selected>Grade Level</option>
                             </select>
                         </div>
-
-                        <!-- Hope Dropdown -->
                         <div class="mb-3">
-                            <label for="hopeSelect" class="form-label">Section</label>
+                            <label for="sectionSelect" class="form-label">Section</label>
                             <select class="form-select" id="sectionSelect" name="section_select">
-                                <option value="Hope">Section</option>
+                                <option selected>Section</option>
                             </select>
                         </div>
-
-                        <!-- File Upload -->
                         <div class="mb-3">
-                            <label for="formFile" class="form-label">Upload File</label>
-                            <input class="form-control" type="file" id="formFile" accept=".xlsx, .xls" name="upload_grade">
+                            <label a="formFile" class="form-label">Upload CSV File</label>
+                            <input class="form-control" type="file" id="formFile" accept=".csv" name="upload_grade">
                         </div>
-
-                        <!-- Submit Button -->
                         <button type="submit" class="btn btn-primary w-100">Post</button>
                     </form>
                 </div>

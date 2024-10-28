@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3308
--- Generation Time: Oct 27, 2024 at 03:25 PM
+-- Host: 127.0.0.1
+-- Generation Time: Oct 28, 2024 at 10:46 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -239,6 +239,15 @@ CREATE TABLE `grade` (
   `third_quarter` decimal(5,2) DEFAULT NULL,
   `fourth_quarter` decimal(5,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `grade`
+--
+
+INSERT INTO `grade` (`grade_id`, `student_id`, `subject_id`, `teacher_id`, `academic_year`, `first_quarter`, `second_quarter`, `third_quarter`, `fourth_quarter`) VALUES
+(1, 1001, 6, 3006, '2024', 95.00, 85.00, 80.00, 83.00),
+(2, 1002, 6, 3006, '2024', 98.00, 85.00, 96.00, 88.00),
+(3, 1003, 6, 3006, '2024', 88.00, 97.00, 89.00, 97.00);
 
 -- --------------------------------------------------------
 
@@ -503,7 +512,8 @@ CREATE TABLE `schedule_list` (
 INSERT INTO `schedule_list` (`id`, `title`, `description`, `start_datetime`, `end_datetime`) VALUES
 (7, 'dasdada', 'dadadacadaa', '2024-09-27 21:50:00', '2024-09-29 23:51:00'),
 (8, 'dasdadadada', 'dadadacadaadasdad', '2024-09-27 21:50:00', '2024-09-29 23:51:00'),
-(9, 'dasda', 'dasfasfxacac', '2024-09-23 22:15:00', '2024-09-23 12:15:00');
+(9, 'dasda', 'dasfasfxacac', '2024-09-23 22:15:00', '2024-09-23 12:15:00'),
+(10, 'midterm_exam', 'bagsakan na', '2024-10-28 15:47:00', '2024-10-30 15:47:00');
 
 -- --------------------------------------------------------
 
@@ -727,32 +737,33 @@ CREATE TABLE `teacher` (
   `section_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
-  `rank_id` int(11) NOT NULL
+  `rank_id` int(11) NOT NULL,
+  `account_id` int(11) NOT NULL 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `teacher`
 --
 
-INSERT INTO `teacher` (`teacher_id`, `first_name`, `middle_name`, `last_name`, `email`, `section_id`, `subject_id`, `role_id`, `rank_id`) VALUES
-(3001, 'Jann', 'Angelo', 'Dimano', 'jannangelodimaano@gmail.com', 1, 1, 3, 10),
-(3002, 'Emily', 'Santos', 'Reyes', 'emily.reyes@example.com', 2, 2, 3, 1),
-(3003, 'Michael', 'Lopez', 'Flores', 'michael.flores@example.com', 3, 3, 3, 3),
-(3004, 'Sarah', 'Dela Cruz', 'Mendoza', 'sarah.mendoza@example.com', 4, 4, 3, 9),
-(3005, 'David', 'Mercado', 'Gonzalez', 'david.gonzalez@example.com', 5, 5, 3, 11),
-(3006, 'Jessica', 'Luna', 'Torres', 'jessica.torres@example.com', 6, 6, 3, 3),
-(3007, 'Robert', 'Salvador', 'Bautista', 'robert.bautista@example.com', 7, 7, 3, 5),
-(3008, 'Laura', 'Buenaventura', 'Aquino', 'laura.aquino@example.com', 8, 8, 3, 3),
-(3009, 'James', 'Cabrera', 'Ramos', 'james.ramos@example.com', 9, 9, 3, 13),
-(3010, 'Linda', 'Garcia', 'Villanueva', 'linda.villanueva@example.com', 10, 10, 3, 3),
-(3011, 'Mark', 'Diaz', 'Delos Santos', 'mark.delossantos@example.com', 11, 11, 3, 13),
-(3012, 'Anna', 'Pascual', 'Gomez', 'anna.gomez@example.com', 12, 12, 3, 4),
-(3013, 'Brian', 'Manalang', 'Padilla', 'brian.padilla@example.com', 13, 13, 3, 6),
-(3014, 'Elizabeth', 'Soriano', 'Castro', 'elizabeth.castro@example.com', 14, 14, 3, 5),
-(3015, 'Steven', 'Navarro', 'Rivera', 'steven.rivera@example.com', 15, 15, 3, 7),
-(3016, 'Amy', 'Fernandez', 'Ortega', 'amy.ortega@example.com', 16, 16, 3, 7),
-(3017, 'Joshua', 'Marasigan', 'Lazaro', 'joshua.lazaro@example.com', 17, 17, 3, 1),
-(3018, 'Sophia', 'Ramos', 'Santiago', 'sophia.santiago@example.com', 18, 18, 3, 7);
+INSERT INTO `teacher` (`teacher_id`, `first_name`, `middle_name`, `last_name`, `email`, `section_id`, `subject_id`, `role_id`, `rank_id`, `account_id`) VALUES
+(3001, 'Jann', 'Naruto', 'Uzumaki', 'naruto@gmail.com', 1, 1, 3, 10, 1),
+(3002, 'Emily', 'Santos', 'Reyes', 'emily.reyes@example.com', 2, 2, 3, 1, 2),
+(3003, 'Michael', 'Lopez', 'Flores', 'michael.flores@example.com', 3, 3, 3, 3, 3),
+(3004, 'Sarah', 'Dela Cruz', 'Mendoza', 'sarah.mendoza@example.com', 4, 4, 3, 9, 4),
+(3005, 'David', 'Mercado', 'Gonzalez', 'david.gonzalez@example.com', 5, 5, 3, 11, 5),
+(3006, 'Jessica', 'Luna', 'Torres', 'jessica.torres@example.com', 6, 6, 3, 3, 6),
+(3007, 'Robert', 'Salvador', 'Bautista', 'robert.bautista@example.com', 7, 7, 3, 5, 7),
+(3008, 'Laura', 'Buenaventura', 'Aquino', 'laura.aquino@example.com', 8, 8, 3, 3, 8),
+(3009, 'James', 'Cabrera', 'Ramos', 'james.ramos@example.com', 9, 9, 3, 13, 9),
+(3010, 'Linda', 'Garcia', 'Villanueva', 'linda.villanueva@example.com', 10, 10, 3, 3, 10),
+(3011, 'Mark', 'Diaz', 'Delos Santos', 'mark.delossantos@example.com', 11, 11, 3, 13, 11),
+(3012, 'Anna', 'Pascual', 'Gomez', 'anna.gomez@example.com', 12, 12, 3, 4, 12),
+(3013, 'Brian', 'Manalang', 'Padilla', 'brian.padilla@example.com', 13, 13, 3, 6, 13),
+(3014, 'Elizabeth', 'Soriano', 'Castro', 'elizabeth.castro@example.com', 14, 14, 3, 5, 14),
+(3015, 'Steven', 'Navarro', 'Rivera', 'steven.rivera@example.com', 15, 15, 3, 7, 15),
+(3016, 'Amy', 'Fernandez', 'Ortega', 'amy.ortega@example.com', 16, 16, 3, 7, 16),
+(3017, 'Joshua', 'Marasigan', 'Lazaro', 'joshua.lazaro@example.com', 17, 17, 3, 1, 17),
+(3018, 'Sophia', 'Ramos', 'Santiago', 'sophia.santiago@example.com', 18, 18, 3, 7, 18);
 
 -- --------------------------------------------------------
 
@@ -981,7 +992,8 @@ ALTER TABLE `subject`
 ALTER TABLE `teacher`
   ADD PRIMARY KEY (`teacher_id`),
   ADD KEY `role_id` (`role_id`),
-  ADD KEY `subject_id` (`section_id`);
+  ADD KEY `subject_id` (`section_id`),
+  ADD KEY `fk_teacher_account` (`account_id`);
 
 --
 -- Indexes for table `teacher_section`
@@ -1027,7 +1039,7 @@ ALTER TABLE `e_cert`
 -- AUTO_INCREMENT for table `grade`
 --
 ALTER TABLE `grade`
-  MODIFY `grade_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `grade_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `grade_level`
@@ -1075,7 +1087,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `schedule_list`
 --
 ALTER TABLE `schedule_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `school_materials`

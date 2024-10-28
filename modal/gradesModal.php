@@ -1,3 +1,55 @@
+<?php
+include '../connectDb.php'; // Modify this with your database connection file
+
+// Function to fetch grades based on student ID
+function fetchGrades($conn, $studentId)
+{
+    $query = "
+        SELECT g.first_quarter, g.second_quarter, g.third_quarter, g.fourth_quarter, 
+               s.subject_name, 
+               CONCAT(t.first_name, ' ', t.last_name) AS teacher_name
+        FROM grade g
+        JOIN subject s ON g.subject_id = s.subject_id
+        JOIN teacher t ON g.teacher_id = t.teacher_id
+        WHERE g.student_id = ?
+    ";
+
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $studentId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        return $result;
+    } else {
+        return false;
+    }
+}
+
+$studentId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+$grades = [];
+if ($studentId) {
+    $query = "
+        SELECT student_id
+        FROM student
+        WHERE student.lrn = ?
+    ";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $studentId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $studentRecord = $row['student_id'];
+    } else
+        return false;
+
+    $grades = fetchGrades($conn, $studentRecord);
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,54 +83,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th>English</th>
-                                <td>90</td>
-                                <td>90</td>
-                                <td>90</td>
-                                <td>90</td>
-                                <td>Mr. Juan Dela Cruz</td>
-                            </tr>
-                            <tr>
-                                <th>Math</th>
-                                <td>90</td>
-                                <td>90</td>
-                                <td>90</td>
-                                <td>90</td>
-                                <td>Mr. Juan Dela Cruz</td>
-                            </tr>
-                            <tr>
-                                <th>Hekasi</th>
-                                <td>90</td>
-                                <td>90</td>
-                                <td>90</td>
-                                <td>90</td>
-                                <td>Mr. Juan Dela Cruz</td>
-                            </tr>
-                            <tr>
-                                <th>Filipino</th>
-                                <td>90</td>
-                                <td>90</td>
-                                <td>90</td>
-                                <td>90</td>
-                                <td>Mr. Juan Dela Cruz</td>
-                            </tr>
-                            <tr>
-                                <th>PE</th>
-                                <td>90</td>
-                                <td>90</td>
-                                <td>90</td>
-                                <td>90</td>
-                                <td>Mr. Juan Dela Cruz</td>
-                            </tr>
-                            <tr>
-                                <th>Science</th>
-                                <td>90</td>
-                                <td>90</td>
-                                <td>90</td>
-                                <td>90</td>
-                                <td>Mr. Juan Dela Cruz</td>
-                            </tr>
+                            <?php if ($grades): ?>
+                                <?php while ($row = $grades->fetch_assoc()): ?>
+                                    <tr>
+                                        <th><?php echo htmlspecialchars($row['subject_name']); ?></th>
+                                        <td><?php echo htmlspecialchars($row['first_quarter']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['second_quarter']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['third_quarter']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['fourth_quarter']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['teacher_name']); ?></td>
+                                    </tr>
+                                <?php endwhile; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="6">No grades available.</td>
+                                </tr>
+                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
