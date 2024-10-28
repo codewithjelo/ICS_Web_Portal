@@ -27,19 +27,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Redirect based on role_id
             switch ($row['role_id']) {
                 case 1:
-                    header("Location: ../pages/parentDashboard");
+                    header("Location: ../pages/parentDashboard.php");
                     break;
                 case 3:
-                    header("Location: ../pages/teacherDashboard");
+                    header("Location: ../pages/teacherDashboard.php");
                     break;
                 case 4:
-                    header("Location: ../pages/guidanceDashboard");
+                    header("Location: ../pages/guidanceDashboard.php");
                     break;
                 case 5:
-                    header("Location: ../pages/principalDashboard");
+                    header("Location: ../pages/principalDashboard.php");
                     break;
                 case 6:
-                    header("Location: ../pages/pdoDashboard");
+                    header("Location: ../pages/pdoDashboard.php");
                     break;
                 default:
                     // Redirect to a generic error page if the role is unknown
