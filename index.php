@@ -48,7 +48,7 @@
                             <i class="position-absolute top-50 end-0 translate-middle-y bi bi-eye-slash" style="color: black; padding-right: 8px;" id="togglePasswordIcon" onclick="togglePassword()"></i>
                         </div>
                         <small class="form-text text-light">* Password is case sensitive</small>
-                        <a href="signUp" class="text-light d-block mt-2">Forgot Password?</a>
+                        <a href="forgot_pass.php" class="text-light d-block mt-2">Forgot Password?</a>
                     </div>
 
                     <div class="d-flex justify-content-center">

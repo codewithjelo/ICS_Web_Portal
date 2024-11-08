@@ -24,6 +24,7 @@ if (isset($_SESSION['logged_in']) != True) {
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/body.css">
     <link rel="stylesheet" href="../css/footer.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -67,68 +68,111 @@ if (isset($_SESSION['logged_in']) != True) {
                     </div>
 
                     <div class="row">
-                        <!-- Information Section -->
-                        <div class="col-md-6">
-                            <div class="info-section d-flex flex-row position-absolute bottom-0 start-0">
-                                <img src="../img/avatar.jpg" class="avatar m-4" alt="Profile" style="width: 11%; height: 11%;">
-                                <div class="user-info d-flex flex-column justify-content-center">
-                                    <?php
-                                    include "../connectDb.php";
-                                    // Prepare the query
-                                    $query = "SELECT CONCAT(s.last_name, ', ', s.first_name, ' ', LEFT(s.middle_name, 1), '.') AS full_name, 
-                                                     s.lrn AS lrn, 
-                                                     s.current_status AS current_status, 
-                                                     gl.grade_level AS grade_level, 
-                                                     sec.section_name AS section_name, 
-                                                     sec.section_id AS section_id,
-                                                     CONCAT(p.last_name, ', ', p.first_name, ' ', LEFT(p.middle_name, 1), '.') AS parent_name 
-                                              FROM student s 
-                                              LEFT JOIN section sec ON s.section_id = sec.section_id 
-                                              LEFT JOIN grade_level gl ON s.grade_level_id = gl.grade_level_id 
-                                              LEFT JOIN parent p ON s.parent_id = p.parent_id 
-                                              WHERE s.lrn = ?";
 
-                                    // Prepare the statement to prevent SQL injection
-                                    $stmt = $conn->prepare($query);
 
-                                    // Bind the session user_id to the query
-                                    $stmt->bind_param('s', $_SESSION['user_id']);
 
-                                    // Execute the query
-                                    $stmt->execute();
-                                    $result = $stmt->get_result();
 
-                                    if ($result->num_rows > 0) {
-                                        while ($row = $result->fetch_assoc()) { ?>
-                                            <p class="info-bold text-start text-uppercase"><?php echo htmlspecialchars($row['parent_name']); ?></p>
-                                            <p class="info-text text-start"><?php echo htmlspecialchars($row['full_name']); ?></p>
-                                            <p class="info-text text-start">LRN (<?php echo htmlspecialchars($row['lrn']); ?>)</p>
-                                            <p class="info-text text-start">Grade <?php echo htmlspecialchars($row['grade_level']); ?> - <?php echo htmlspecialchars($row['section_name']); ?></p>
-                                            <p class="en-status text-start text-uppercase"><?php echo htmlspecialchars($row['current_status']); ?></p>
-                                        <?php
-                                            $_SESSION['section_id'] = $row['section_id'];
-                                        }
-                                    } else { ?>
-                                        <p class="info-bold text-start">No student found.</p>
-                                    <?php }
+<!-- Information Section -->
+<div class="col-md-6">
+    <div class="info-section d-flex flex-row position-absolute bottom-0 start-0">
+        <img src="../img/avatar.jpg" class="avatar m-4" alt="Profile" style="width: 11%; height: 11%;">
+        <div class="user-info d-flex flex-column justify-content-center">
+            <?php
+            include "../connectDb.php";
+            // Prepare the query with academic year added
+            $query = "SELECT CONCAT(s.last_name, ', ', s.first_name, ' ', LEFT(s.middle_name, 1), '.') AS full_name, 
+                             s.lrn AS lrn, 
+                             s.current_status AS current_status, 
+                             s.academic_year AS academic_year, 
+                             gl.grade_level AS grade_level, 
+                             sec.section_name AS section_name, 
+                             sec.section_id AS section_id,
+                             CONCAT(p.last_name, ', ', p.first_name, ' ', LEFT(p.middle_name, 1), '.') AS parent_name 
+                      FROM student s 
+                      LEFT JOIN section sec ON s.section_id = sec.section_id 
+                      LEFT JOIN grade_level gl ON s.grade_level_id = gl.grade_level_id 
+                      LEFT JOIN parent p ON s.parent_id = p.parent_id 
+                      WHERE s.lrn = ?";
 
-                                    // Close the statement
-                                    $stmt->close();
-                                    $conn->close();
-                                    ?>
-                                </div>
-                            </div>
-                        </div>
+            // Prepare the statement to prevent SQL injection
+            $stmt = $conn->prepare($query);
+
+            // Bind the session user_id to the query
+            $stmt->bind_param('s', $_SESSION['user_id']);
+
+            // Execute the query
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) { ?>
+                    <p class="info-bold text-start text-uppercase"><?php echo htmlspecialchars($row['parent_name']); ?></p>
+                    <p class="info-text text-start"><?php echo htmlspecialchars($row['full_name']); ?></p>
+                    <p class="info-text text-start">LRN (<?php echo htmlspecialchars($row['lrn']); ?>)</p>
+                    <p class="info-text text-start">Grade <?php echo htmlspecialchars($row['grade_level']); ?> - <?php echo htmlspecialchars($row['section_name']); ?></p>
+                    <p class="en-status text-start text-uppercase">
+                        <?php echo htmlspecialchars($row['current_status']); ?> (AY <?php echo htmlspecialchars($row['academic_year']); ?>)
+                    </p>
+                <?php
+                    $_SESSION['section_id'] = $row['section_id'];
+                }
+            } else { ?>
+                <p class="info-bold text-start">No student found.</p>
+            <?php }
+
+            // Close the statement
+            $stmt->close();
+            $conn->close();
+            ?>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <!-- Sign Out -->
                         <div class="col-md-6">
-                            <div class="so-section position-absolute bottom-0 end-0">
-                                <form action="../function/logoutAccount.php" method="POST">
-                                    <button type="submit" class="btn so-btn btn-primary rounded-5">
-                                        <i class="bi bi-box-arrow-in-right"></i> Sign Out
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
+        <div class="so-section position-absolute bottom-0 end-0">
+            <form id="logoutForm" action="../function/logoutAccount.php" method="POST">
+                <button type="button" onclick="confirmLogout()" class="btn so-btn btn-primary rounded-5">
+                    <i class="bi bi-box-arrow-in-right"></i> Sign Out
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function confirmLogout() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you really want to logout?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, logout'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Submit the form if confirmed
+                    document.getElementById('logoutForm').submit();
+                }
+            });
+        }
+    </script>
 
                     </div>
                 </header>

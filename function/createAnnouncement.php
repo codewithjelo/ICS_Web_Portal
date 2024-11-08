@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $announcement_title = $conn->real_escape_string($_POST['announcement_title']);
     $announcement_text = $conn->real_escape_string($_POST['announcement_text']);
 
-    $upload_dir = '../announcement/'; // Ensure this directory exists and is writable
+    $upload_dir = './announcement/'; // Ensure this directory exists and is writable
     $announcement_file = $upload_dir . basename($_FILES['announcement_file']['name']);
 
     // Begin transaction to ensure data integrity
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ];
     }
 
-    header("Location: ../pages/guidanceDashboard");
+    header("Location: ../pages/guidanceDashboard.php");
 } 
 
 

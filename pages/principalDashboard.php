@@ -106,16 +106,35 @@ if (isset($_SESSION['logged_in']) != True) {
                                 </div>
                             </div>
                         </div>
-                        <!-- Sign Out -->
-                        <div class="col-md-6">
-                            <div class="so-section position-absolute bottom-0 end-0">
-                                <form action="../function/logoutAccount.php" method="POST">
-                                    <button type="submit" class="btn so-btn btn-primary rounded-5">
-                                        <i class="bi bi-box-arrow-in-right"></i> Sign Out
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
+                                               <!-- Sign Out -->
+                                               <div class="col-md-6">
+        <div class="so-section position-absolute bottom-0 end-0">
+            <form id="logoutForm" action="../function/logoutAccount.php" method="POST">
+                <button type="button" onclick="confirmLogout()" class="btn so-btn btn-primary rounded-5">
+                    <i class="bi bi-box-arrow-in-right"></i> Sign Out
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function confirmLogout() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you really want to logout?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, logout'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Submit the form if confirmed
+                    document.getElementById('logoutForm').submit();
+                }
+            });
+        }
+    </script>
 
                     </div>
                 </header>

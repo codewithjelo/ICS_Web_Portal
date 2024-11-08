@@ -1,3 +1,8 @@
+
+<?php
+session_start();
+?>
+
 <link rel="stylesheet" href="../css/modal.css">
 
 <!-- Modal -->
@@ -15,6 +20,7 @@
                             <img class="img-fluid" src="../img/avatar.jpg" alt="profilePicture" style="width: 100px;">
                         </div>
                         <div>
+                            
                             <?php
                             $full_name = $_SESSION['full_name'];
                             $rank_name = $_SESSION['rank_name'];

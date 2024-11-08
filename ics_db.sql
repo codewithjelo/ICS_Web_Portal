@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 28, 2024 at 10:46 AM
+-- Generation Time: Nov 07, 2024 at 03:32 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -293,7 +293,7 @@ CREATE TABLE `guidance` (
 --
 
 INSERT INTO `guidance` (`guidance_id`, `first_name`, `middle_name`, `last_name`, `email`, `role_id`, `rank_id`) VALUES
-(4001, 'John Joshua', 'Cabusay', 'Bartolome', 'jjbarako@gmail.com', 4, 18);
+(4001, 'ken', 'mercado', 'mercado', 'ken@gmail.com', 4, 18);
 
 -- --------------------------------------------------------
 
@@ -407,7 +407,7 @@ CREATE TABLE `pdo` (
 --
 
 INSERT INTO `pdo` (`pdo_id`, `first_name`, `middle_name`, `last_name`, `email`, `role_id`, `rank_id`) VALUES
-(6001, 'Alvin Jan Josef', 'Zara', 'Espino', 'alvinespino@gmail.com', 6, 19);
+(6001, 'john', 'Zara', 'juan', 'juan@gmail.com', 6, 19);
 
 -- --------------------------------------------------------
 
@@ -430,7 +430,7 @@ CREATE TABLE `principal` (
 --
 
 INSERT INTO `principal` (`principal_id`, `first_name`, `middle_name`, `last_name`, `email`, `role_id`, `rank_id`) VALUES
-(5001, 'Bien', 'Quintano', 'Maranan', 'bienqm@gmail.com', 5, 17);
+(5001, 'drake', 'Quintano', 'dimagiba', 'dimagiba@gmail.com', 5, 17);
 
 -- --------------------------------------------------------
 
@@ -738,7 +738,7 @@ CREATE TABLE `teacher` (
   `subject_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
   `rank_id` int(11) NOT NULL,
-  `account_id` int(11) NOT NULL 
+  `account_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

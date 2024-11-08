@@ -6,6 +6,7 @@ if (isset($_SESSION['logged_in']) != True) {
     exit;
 }
 ?>
+    
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +20,11 @@ if (isset($_SESSION['logged_in']) != True) {
     <?php include "../modal/learningMaterialsModal.php" ?>
     <?php include "../modal/viewMissionVisionModal.php" ?>
     <?php include "../modal/viewAnnouncementsModal.php" ?>
+    <?php include "../modal/turnoverModal.php" ?>
+    <?php include "../modal/EcertModal.php" ?>
+    <?php include "../modal/archivesModal.php" ?>
+
+
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/body.css">
     <link rel="stylesheet" href="../css/footer.css">
@@ -110,15 +116,35 @@ if (isset($_SESSION['logged_in']) != True) {
                             </div>
                         </div>
                         <!-- Sign Out -->
-                        <div class="col-md-6">
-                            <div class="so-section position-absolute bottom-0 end-0">
-                                <form action="../function/logoutAccount.php" method="POST">
-                                    <button type="submit" class="btn so-btn btn-primary rounded-5">
-                                        <i class="bi bi-box-arrow-in-right"></i> Sign Out
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
+                                               <!-- Sign Out -->
+            <div class="col-md-6">
+        <div class="so-section position-absolute bottom-0 end-0">
+            <form id="logoutForm" action="../function/logoutAccount.php" method="POST">
+                <button type="button" onclick="confirmLogout()" class="btn so-btn btn-primary rounded-5">
+                    <i class="bi bi-box-arrow-in-right"></i> Sign Out
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function confirmLogout() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you really want to logout?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, logout'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Submit the form if confirmed
+                    document.getElementById('logoutForm').submit();
+                }
+            });
+        }
+    </script>
 
                     </div>
                 </header>
@@ -129,16 +155,24 @@ if (isset($_SESSION['logged_in']) != True) {
         <div class="row mt-3">
             <div class="col-md-3">
                 <!-- Menu Bar -->
-                <div class="menu d-flex flex-column rounded-4 row-gap-4 p-4" style="height: 520px;">
+                <div class="menu d-flex flex-column rounded-4 row-gap-4 p-4" style="height: 650px;">
                     <a type="button" class="text-break d-flex flex-row align-items-center btn menu-btn btn-primary rounded-2" data-bs-toggle="modal" data-bs-target="#inputGradesModal"><iconify-icon class="menu-icon ph-icon" icon="material-symbols:list-alt-outline"></iconify-icon><span style="margin: 0 0 0 10px;">Input Grades</span></a>
                     <a type="button" class="text-break d-flex flex-row align-items-center btn menu-btn btn-primary rounded-2" data-bs-toggle="modal" data-bs-target="#teacherMaterialsModal"><iconify-icon class="menu-icon ph-icon" icon="ph:pen"></iconify-icon><span style="margin: 0 0 0 10px;">School Materials</span></a>
                     <a type="button" class="text-break d-flex flex-row align-items-center btn menu-btn btn-primary rounded-2" data-bs-toggle="modal" data-bs-target="#turnOverModal"><iconify-icon class="menu-icon ph-icon" icon="material-symbols:turn-right-rounded"></iconify-icon><span style="margin: 0 0 0 10px;">Turnover Record</span></a>
+                    <a type="button" class="text-break d-flex flex-row align-items-center btn menu-btn btn-primary rounded-2" data-bs-toggle="modal" data-bs-target="#EcertModal">
+                        <iconify-icon class="menu-icon ph-icon" icon="mdi:send" width="20" height="20"></iconify-icon>
+                        <span style="margin: 0 0 0 10px;">Send E-certificates</span>
+                    </a>
+                    <a type="button" class="text-break d-flex flex-row align-items-center btn menu-btn btn-primary rounded-2" data-bs-toggle="modal" data-bs-target="#archivesModal">
+                        <iconify-icon class="menu-icon ph-icon" icon="mdi:archive" width="20" height="20"></iconify-icon>
+                        <span style="margin: 0 0 0 10px;">Student Archives</span>
+                    </a>                
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="mv-scroll rounded-4 p-2" style="height: 520px">
+                <div class="mv-scroll rounded-4 p-2" style="height: 650px">
                     <!-- Mission and Vision  -->
-                    <div class="mission-vision rounded-4 p-4 overflow-auto" style="height: 440px;">
+                    <div class="mission-vision rounded-4 p-4 overflow-auto" style="height: 500px;">
                         <p class="mission-title text-center p-2">MISSION</p>
                         <div class="mission-container overflow-auto">
                             <p class="mission-text text-break lh-1 rounded-2 p-3">
@@ -152,17 +186,17 @@ if (isset($_SESSION['logged_in']) != True) {
                             </p>
                         </div>
                     </div>
-                    <div class="text-center mt-4">
+                    <!--<div class="text-center mt-4">
                         <a type="button" class="expand text-decoration-none" data-bs-toggle="modal" data-bs-target="#viewMissionVision">Expand</a>
-                    </div>
+                    </div>-->
                 </div>
             </div>
 
             <!-- Announcement  -->
             <div class="col-md-5">
-                <div class="announcement-scroll rounded-4 p-4" style="height: 520px">
+                <div class="announcement-scroll rounded-4 p-4" style="height: 650px">
                     <p class="announcement-title text-center p-2">ANNOUNCEMENT</p>
-                    <div class="announcement overflow-y-scroll" style="height: 385px;">
+                    <div class="announcement overflow-y-scroll" style="height: 500px;">
                         <?php
                         include "../connectDb.php";
 
