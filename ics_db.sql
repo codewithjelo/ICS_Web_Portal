@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2024 at 03:32 AM
+-- Generation Time: Nov 08, 2024 at 09:03 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -221,6 +221,15 @@ CREATE TABLE `e_cert` (
   `student_id` int(11) DEFAULT NULL,
   `e_cert` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `e_cert`
+--
+
+INSERT INTO `e_cert` (`e_cert_id`, `subject_id`, `student_id`, `e_cert`) VALUES
+(3, 0, 1010, 'ecert_672cdc11363ae.pdf'),
+(4, 0, 1010, 'ecert_672ceca522863.pdf'),
+(5, 0, 1018, 'ecert_672ced24e3f86.pdf');
 
 -- --------------------------------------------------------
 
@@ -655,7 +664,7 @@ INSERT INTO `student` (`student_id`, `lrn`, `first_name`, `middle_name`, `last_n
 
 CREATE TABLE `student_archives` (
   `archive_id` int(11) NOT NULL,
-  `lrn` int(12) DEFAULT NULL,
+  `lrn` bigint(12) DEFAULT NULL,
   `first_name` varchar(100) DEFAULT NULL,
   `last_name` varchar(100) DEFAULT NULL,
   `date_of_birth` date DEFAULT NULL,
@@ -663,6 +672,15 @@ CREATE TABLE `student_archives` (
   `parent_id` int(11) DEFAULT NULL,
   `section_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `student_archives`
+--
+
+INSERT INTO `student_archives` (`archive_id`, `lrn`, `first_name`, `last_name`, `date_of_birth`, `current_status`, `parent_id`, `section_id`) VALUES
+(1, 2147483647, 'Pedro', 'Delos Reyes', '2014-01-11', 'enrolled', 2010, 4),
+(9, 2147483647, 'Rico', 'Delos Reyes', '2014-03-20', 'retained', 2012, 4),
+(10, 2147483647, 'Hector', 'Delos Reyes', '2014-09-25', 'retained', 2018, 6);
 
 -- --------------------------------------------------------
 
@@ -873,7 +891,6 @@ ALTER TABLE `class_schedule_archive`
 --
 ALTER TABLE `e_cert`
   ADD PRIMARY KEY (`e_cert_id`),
-  ADD KEY `subject_id` (`subject_id`),
   ADD KEY `student_id` (`student_id`);
 
 --
@@ -1033,7 +1050,7 @@ ALTER TABLE `class_schedule_archive`
 -- AUTO_INCREMENT for table `e_cert`
 --
 ALTER TABLE `e_cert`
-  MODIFY `e_cert_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `e_cert_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `grade`
@@ -1111,7 +1128,7 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `student_archives`
 --
 ALTER TABLE `student_archives`
-  MODIFY `archive_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `archive_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `student_file`
@@ -1160,77 +1177,12 @@ ALTER TABLE `class_schedule_archive`
   ADD CONSTRAINT `class_schedule_archive_ibfk_1` FOREIGN KEY (`section_id`) REFERENCES `section` (`section_id`);
 
 --
--- Constraints for table `e_cert`
---
-ALTER TABLE `e_cert`
-  ADD CONSTRAINT `e_cert_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`),
-  ADD CONSTRAINT `e_cert_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`);
-
---
 -- Constraints for table `grade`
 --
 ALTER TABLE `grade`
   ADD CONSTRAINT `grade_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`),
   ADD CONSTRAINT `grade_ibfk_2` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`),
   ADD CONSTRAINT `grade_ibfk_3` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`);
-
---
--- Constraints for table `guidance`
---
-ALTER TABLE `guidance`
-  ADD CONSTRAINT `guidance_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`);
-
---
--- Constraints for table `ics_credential`
---
-ALTER TABLE `ics_credential`
-  ADD CONSTRAINT `ics_credential_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`);
-
---
--- Constraints for table `parent`
---
-ALTER TABLE `parent`
-  ADD CONSTRAINT `parent_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`);
-
---
--- Constraints for table `pdo`
---
-ALTER TABLE `pdo`
-  ADD CONSTRAINT `pdo_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`);
-
---
--- Constraints for table `principal`
---
-ALTER TABLE `principal`
-  ADD CONSTRAINT `principal_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`);
-
---
--- Constraints for table `student`
---
-ALTER TABLE `student`
-  ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`),
-  ADD CONSTRAINT `student_ibfk_2` FOREIGN KEY (`section_id`) REFERENCES `section` (`section_id`),
-  ADD CONSTRAINT `student_ibfk_3` FOREIGN KEY (`parent_id`) REFERENCES `parent` (`parent_id`);
-
---
--- Constraints for table `student_archives`
---
-ALTER TABLE `student_archives`
-  ADD CONSTRAINT `student_archives_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `parent` (`parent_id`),
-  ADD CONSTRAINT `student_archives_ibfk_2` FOREIGN KEY (`section_id`) REFERENCES `section` (`section_id`);
-
---
--- Constraints for table `student_file`
---
-ALTER TABLE `student_file`
-  ADD CONSTRAINT `student_file_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`);
-
---
--- Constraints for table `teacher`
---
-ALTER TABLE `teacher`
-  ADD CONSTRAINT `teacher_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`),
-  ADD CONSTRAINT `teacher_ibfk_2` FOREIGN KEY (`section_id`) REFERENCES `subject` (`subject_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
