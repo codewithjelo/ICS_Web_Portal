@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2024 at 09:03 AM
+-- Generation Time: Nov 12, 2024 at 02:05 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `account` (
   `account_id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `user_id` varchar(20) NOT NULL,
   `user_password` varchar(255) NOT NULL,
   `role_id` int(11) DEFAULT NULL
@@ -38,82 +39,82 @@ CREATE TABLE `account` (
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`account_id`, `user_id`, `user_password`, `role_id`) VALUES
-(1, 'ICS-PDO6001', '$2y$10$dl1ntaVjOuhqSfJ4K4WpFeqdVcuigCGcm5xVXO.4i8xveCGJ8Y.Vm', 6),
-(2, 'ICS-PRI5001', '$2y$10$QKNp82g47r0oFSx5oqLUve1ZOnrdFa26jhMV24kaoaO/e3Owp26rC', 5),
-(3, 'ICS-GUI4001', '$2y$10$6uIqfq6B2ERsVCcyK5Co4.yv7Wx0iB8DNrv35HHLq1pfcY1/9gKL2', 4),
-(4, 'ICS-TCH3001', '$2y$10$4sotJRcLVZg7xI1EJQzvWefgIIAjAlt7Kw2K7/7ceyAaDawZ27GHO', 3),
-(5, 'ICS-TCH3002', '$2y$10$mZG81yqcD9csKnDlhnmxIOVVg8tSDdbJRLmKq6TcjIIcN0oRHmmNm', 3),
-(6, 'ICS-TCH3003', '$2y$10$Zp6bPOTMxyNQjDft2wr7Qu3Zy86.egxp47RHetTyEi5FI7ShTgtAS', 3),
-(7, 'ICS-TCH3004', '$2y$10$QCcJdujOHF4crENg9i/dEepp2amjjm5o38ZjCxRopTlAamy9jP4xi', 3),
-(8, 'ICS-TCH3005', '$2y$10$c60lc9sm2z3xrcrmOFrjk.V/IUORvtuuWVuz.2g75PHau1G6TSjha', 3),
-(9, 'ICS-TCH3006', '$2y$10$Du6wOwYMyQ83X97W64OHtuGOAelIRE6md2KqvoPygXIWLah.Mm1ge', 3),
-(10, 'ICS-TCH3007', '$2y$10$vDgq3Nq0NAwVfAaZuT.PYexJ0Dy6EhN.InlrYJGvwhDHLh3f2SA0W', 3),
-(11, 'ICS-TCH3008', '$2y$10$6PaHkHFIs3gqqeddt.svHO1v9bRwZuM79oSnP7bZPgI5G7XUoRTOO', 3),
-(12, 'ICS-TCH3009', '$2y$10$YNfMLgovsTLjFBJe.Kad6eEPgiqCPEnNFrNwK9hjXIAnBsmlhNVQi', 3),
-(13, 'ICS-TCH3010', '$2y$10$4iU1j0WlVZtSKyWtQW2kbevJ5wPViIYJ0TjsmAgX02hXOhUwQBABa', 3),
-(14, 'ICS-TCH3011', '$2y$10$iG./1O7BUXgFJAeL5Jvrm.fvHuS2U5cajWwNsPzN/jJ5j5Lj0/1qS', 3),
-(15, 'ICS-TCH3012', '$2y$10$KX.brFXCPfQogw2LFwxmTOkDtHptAuTVCqaC6z1ob.R1/5ByrpNPS', 3),
-(16, 'ICS-TCH3013', '$2y$10$JpneWxzL2Ca1Dg4oT3TPNOWdwMmGd3WeqsBrl1uUJhRnDkI7KauKq', 3),
-(17, 'ICS-TCH3014', '$2y$10$HfaZSdLZ0i.7JTL0aRv5je7sAyiUztoAmOOfRRcYlbzIdzYYcr4dO', 3),
-(18, 'ICS-TCH3015', '$2y$10$WBI8iBq4egCBBTzcM4ye0Ol5gh.Apdg/xLeo2S3853j7mG0B.RZZW', 3),
-(19, 'ICS-TCH3016', '$2y$10$4V3fkM7SWT9iXHPpz7BAzuF7OOsBSQFYE3vU8mP1nygoDfplCPTBi', 3),
-(20, 'ICS-TCH3017', '$2y$10$yFBsfhPlwTOU0FSPzq0Pq.i/s05HD9rLl/sgXtxeU4aL1bk4o3ZCy', 3),
-(21, 'ICS-TCH3018', '$2y$10$siBq0djeirXKtMCABudr5.CcAnx4QJEGwXgv001bdwJtgnrGd0huW', 3),
-(22, '100000000001', '$2y$10$BhMG8S84gjHmebYEbZ9AQuaXDHvLZLLGyAJDz4tauSJzeeRuoq4Xe', 1),
-(23, '100000000002', '$2y$10$eQloFsQklPTfBk7IF.n1Ae3./ZBTi64BGMG5HTL21gkTYjofE7VG.', 1),
-(24, '100000000003', '$2y$10$PE7nvIMAQBVMko0frEBV.OzhuBTSB.vB6.UymkW.Kn986M25wmu22', 1),
-(25, '100000000004', '$2y$10$aQppQqkupyVgsgG0SC./I.v1LdhUCba9N1qib28VqRLw7hergbuOS', 1),
-(26, '100000000005', '$2y$10$MRcbDqKsDt2INcS71pd1veFWfABnICthbD2hPmiZvk031pP7upU96', 1),
-(27, '100000000006', '$2y$10$6FKuim6pxUAHw4I3qNP9uOMd9mMV.VvOfKNIkOo74m9lathq2t3Nu', 1),
-(28, '100000000007', '$2y$10$pjwaMjodXZomKybnuHzvCOYnfvmf3bIDO.UM4jJz2Btq4GNMh0R/2', 1),
-(29, '100000000008', '$2y$10$/o9m.2OmvJ/KXlVM6yH86e0e2CDPfnAMLukohMkMg.6odFkTLEFnO', 1),
-(30, '100000000009', '$2y$10$EEFsbsxV3Uy1Bvh2w4rxRe16nMm0lbk8P83QQ4MTSpYpqaunkNfVW', 1),
-(31, '100000000010', '$2y$10$dUlE9tklddCbBx1cuPB5qOh0LA.hb21fqDw/1/PJSmEDUZiIfP9Jm', 1),
-(32, '100000000011', '$2y$10$zPos4pYcQh5c0hFcPN5DbuDljpkuxnxmQHhpoS4t7QccromFCma9K', 1),
-(33, '100000000012', '$2y$10$YQ90Nd/0bkBM4JforGNXHu8m9CFLb27H.3SogYJ/b5nm3hNWPuzXK', 1),
-(34, '100000000013', '$2y$10$vk3lkKTwWTWR0/i1xsy3meNPNt8F2fEzzvAjNt./BhS81MG6Nt6ou', 1),
-(35, '100000000014', '$2y$10$okIqUHL2lO/4CF7wh8.YSuZNb12bxmgAVLPCyCwbQuglLENooBVf2', 1),
-(36, '100000000015', '$2y$10$dePjILm2lDxfVKjT.lwHPeisv44HflBLu4iPlHT/REj/s116PNmZe', 1),
-(37, '100000000016', '$2y$10$ABSC6Rgat7FcJg3oplasnuFrNOGVxhbJn.QCQqCWAZoAaAgyLD99.', 1),
-(38, '100000000017', '$2y$10$aqTHCo8VrzkpzEN8isbaa.YK3pB783tGtf8wivhiZscm2EqgujntS', 1),
-(39, '100000000018', '$2y$10$sgFadQ6gs36KlFfvvAWduex0hJ5bX0/Zjj1O2DbDTFnh/3U48jKoW', 1),
-(40, '100000000019', '$2y$10$uZiNHcmeR4J0Mbaby/7I2eiHISAEbtBTCwVsFaIhPC62fURyISQFG', 1),
-(41, '100000000020', '$2y$10$bu/n/gi2pXhhNEz5F7.es.d9uoMuf9dQlhwAKL.GyWtVENr8meqvi', 1),
-(42, '100000000021', '$2y$10$cvvsf5A5EPay8ICZkU.7Iuzskq9DtA9AtFlowZikk3xzG2PZiCqsm', 1),
-(43, '100000000022', '$2y$10$zKu/MOEpYcPLCbrHmNWer.uLmM6uaETkd5ncwo3HatLlSr/5gzNja', 1),
-(44, '100000000023', '$2y$10$jwV6iCE3ucGdtUR.WWVkmOJ5AP8f6u4uTrdC1.7Mn5YpFvGGyxytu', 1),
-(45, '100000000024', '$2y$10$fY.jzQ3Vs1MeGv6VymrhXOTy9GrA98FvvsPT7hdEbf505Few2a4Nq', 1),
-(46, '100000000025', '$2y$10$xX7LmRkYh9f6TyoT408dHekskSqH9XvPLXiKWL.G9vu4QD.GTiOPC', 1),
-(47, '100000000026', '$2y$10$sBHanhwxh0aeC55ea7UWuOluaQzo64uybZ0jGYnsc/IzwByuNdNhC', 1),
-(48, '100000000027', '$2y$10$pgX/HddPugKuoSpfEpiPh.WaBKtRRzTolWyZ7HGDi/tsTuFQA5ZXm', 1),
-(49, '100000000028', '$2y$10$zZUltvElh35GJF.e35PUE.YQt0rMVWgxbClGl.DiD7cgBWF7ep8gO', 1),
-(50, '100000000029', '$2y$10$8dypi4iFnHg3IPfL1QzV0OUPXA9Lc7fgc8E.pahdCu8UMw4Wiyb/O', 1),
-(51, '100000000030', '$2y$10$ZF9dMZR//UzQmy4glWsHxOASyNbDtWGaNVS8NbGviMMt/PkXp677W', 1),
-(52, '100000000031', '$2y$10$YShVS6aTyueEBQX4D6fp8OMjxc8d8EIKIf9XC/Fy5E5YJyH6bllUq', 1),
-(53, '100000000032', '$2y$10$cNkpVLIj8NVETJ/NTTX9NeUvC/B0pHqfT6e7WLchMI8BgREvwGKqW', 1),
-(54, '100000000033', '$2y$10$vkgPPKcLQIanaovkGpCxfepRFpW9roYob.pnorBNUPH0qCpxmbhLy', 1),
-(55, '100000000034', '$2y$10$w//W6l1Qo.OSAzENZWxJoOJSofoNXRMuutqIyt1hdJsid49nxjRKW', 1),
-(56, '100000000035', '$2y$10$UoHgYK9eTOG3Sx44r8gFo.c66u8SwSJXC6Zuqn1sXIjxNorVsnrwe', 1),
-(57, '100000000036', '$2y$10$FOlOYIVAbAXc2LjY6D/PReGKrfN0pTQAL.NrbWt4z7DnnZxMGCavC', 1),
-(58, '100000000037', '$2y$10$arRbVVLHwjqYYh/En16wLeOLwB7Rg2JtWohQGROOJeFdn8DSiYgqe', 1),
-(59, '100000000038', '$2y$10$2tP6W9z70JauT5qpWux.gOo.ZnWDHFmuUZ5p8xP/HhiV7YUo9LSgK', 1),
-(60, '100000000039', '$2y$10$SWFJMj.6GKYgfb4ZAbxG6eAvsUt20lN3iBcJKeyoZq93pspHPCE8m', 1),
-(61, '100000000040', '$2y$10$7dihSO0h8nNvgPzJ4Fe6HuCHyLoPLHw.Xs.WZB4WBj6B92YP6SGBm', 1),
-(62, '100000000041', '$2y$10$YVOBrFzVFMfdmIWG5gAXzubN5zZTL4EQoqJ0crUjF0pL3OAFqwFBi', 1),
-(63, '100000000042', '$2y$10$gvzAcatf4E2E8b0z06pQf.W.wsx4hknvNauTxT4WTLVUehACsUU1e', 1),
-(64, '100000000043', '$2y$10$0oAFEgqehkYfPbMw/Bm3WucvcBxmZ5ZP59so764S7zQO77GI2vi2S', 1),
-(65, '100000000044', '$2y$10$UWEm.fyw2uM7wsxPMt1/F.2sxF2WLGABQg8r.jNyyWN/WqZrJujvC', 1),
-(66, '100000000045', '$2y$10$xsjOtbZfVzvj1DntnrDea./tK.AndIdGakLtAebyWEdp9z3ndMmm2', 1),
-(67, '100000000046', '$2y$10$6EB1Xby5rhY6xmaSLX2jKuEvTypU2fn2OK9JCghbqB/lbJk9pzgoe', 1),
-(68, '100000000047', '$2y$10$E40L3s/FnG6wSj7RdJeji.zUTeGvTtbfToFqBiwnDGACafmTHKc3.', 1),
-(69, '100000000048', '$2y$10$UJwlioS8V/FIGSwuF5kpFupjxMTqevQIM7dh3xMMyYLQubHcKoDJK', 1),
-(70, '100000000049', '$2y$10$1bsAlz5wzZPxWp2hzJloGuyB79izFqVK.zdNmoKHaDJNxVPfOZd8K', 1),
-(71, '100000000050', '$2y$10$Sh5bOn17JSvxlwxjKyXzKub7DpDVaLa/UWt8RCMlI566HbCX33gdq', 1),
-(72, '100000000051', '$2y$10$/Br9tmCAg4ldUeARw.5VOOiKgXb1omx1PdlXAQx4/0lQ8g1BlhKAi', 1),
-(73, '100000000052', '$2y$10$eaIG5BuU97THViwXq7xy8elisu0oeO2zUdfXmbggRXhi8HnSPWZ/S', 1),
-(74, '100000000053', '$2y$10$gIOgEQc8nUtR3uy0UXmsB.t.sJ5uwhbVN.K7VgAeGBFvrHUkZFuOa', 1),
-(75, '100000000054', '$2y$10$BeHlvQ9V31LLAbN4VQ39cOUtts1.Kd6M2TAjS4uneqTybZupiiI8e', 1);
+INSERT INTO `account` (`account_id`, `email`, `user_id`, `user_password`, `role_id`) VALUES
+(1, 'xenonlasnotche@gmail.com', 'ICS-PDO6001', '$2y$10$7MqZFzFhjaY6yVOaRmPV9.3Dj8kvbuFqNh472hWAZ64Jb/i1BDuLS', 6),
+(2, '', 'ICS-PRI5001', '$2y$10$QKNp82g47r0oFSx5oqLUve1ZOnrdFa26jhMV24kaoaO/e3Owp26rC', 5),
+(3, '', 'ICS-GUI4001', '$2y$10$6uIqfq6B2ERsVCcyK5Co4.yv7Wx0iB8DNrv35HHLq1pfcY1/9gKL2', 4),
+(4, '', 'ICS-TCH3001', '$2y$10$4sotJRcLVZg7xI1EJQzvWefgIIAjAlt7Kw2K7/7ceyAaDawZ27GHO', 3),
+(5, '', 'ICS-TCH3002', '$2y$10$mZG81yqcD9csKnDlhnmxIOVVg8tSDdbJRLmKq6TcjIIcN0oRHmmNm', 3),
+(6, '', 'ICS-TCH3003', '$2y$10$Zp6bPOTMxyNQjDft2wr7Qu3Zy86.egxp47RHetTyEi5FI7ShTgtAS', 3),
+(7, '', 'ICS-TCH3004', '$2y$10$QCcJdujOHF4crENg9i/dEepp2amjjm5o38ZjCxRopTlAamy9jP4xi', 3),
+(8, '', 'ICS-TCH3005', '$2y$10$c60lc9sm2z3xrcrmOFrjk.V/IUORvtuuWVuz.2g75PHau1G6TSjha', 3),
+(9, '', 'ICS-TCH3006', '$2y$10$Du6wOwYMyQ83X97W64OHtuGOAelIRE6md2KqvoPygXIWLah.Mm1ge', 3),
+(10, '', 'ICS-TCH3007', '$2y$10$vDgq3Nq0NAwVfAaZuT.PYexJ0Dy6EhN.InlrYJGvwhDHLh3f2SA0W', 3),
+(11, '', 'ICS-TCH3008', '$2y$10$6PaHkHFIs3gqqeddt.svHO1v9bRwZuM79oSnP7bZPgI5G7XUoRTOO', 3),
+(12, '', 'ICS-TCH3009', '$2y$10$YNfMLgovsTLjFBJe.Kad6eEPgiqCPEnNFrNwK9hjXIAnBsmlhNVQi', 3),
+(13, '', 'ICS-TCH3010', '$2y$10$4iU1j0WlVZtSKyWtQW2kbevJ5wPViIYJ0TjsmAgX02hXOhUwQBABa', 3),
+(14, '', 'ICS-TCH3011', '$2y$10$iG./1O7BUXgFJAeL5Jvrm.fvHuS2U5cajWwNsPzN/jJ5j5Lj0/1qS', 3),
+(15, '', 'ICS-TCH3012', '$2y$10$KX.brFXCPfQogw2LFwxmTOkDtHptAuTVCqaC6z1ob.R1/5ByrpNPS', 3),
+(16, '', 'ICS-TCH3013', '$2y$10$JpneWxzL2Ca1Dg4oT3TPNOWdwMmGd3WeqsBrl1uUJhRnDkI7KauKq', 3),
+(17, '', 'ICS-TCH3014', '$2y$10$HfaZSdLZ0i.7JTL0aRv5je7sAyiUztoAmOOfRRcYlbzIdzYYcr4dO', 3),
+(18, '', 'ICS-TCH3015', '$2y$10$WBI8iBq4egCBBTzcM4ye0Ol5gh.Apdg/xLeo2S3853j7mG0B.RZZW', 3),
+(19, '', 'ICS-TCH3016', '$2y$10$4V3fkM7SWT9iXHPpz7BAzuF7OOsBSQFYE3vU8mP1nygoDfplCPTBi', 3),
+(20, '', 'ICS-TCH3017', '$2y$10$yFBsfhPlwTOU0FSPzq0Pq.i/s05HD9rLl/sgXtxeU4aL1bk4o3ZCy', 3),
+(21, '', 'ICS-TCH3018', '$2y$10$siBq0djeirXKtMCABudr5.CcAnx4QJEGwXgv001bdwJtgnrGd0huW', 3),
+(22, '', '100000000001', '$2y$10$BhMG8S84gjHmebYEbZ9AQuaXDHvLZLLGyAJDz4tauSJzeeRuoq4Xe', 1),
+(23, 'amanoginji443@gmail.com', '100000000002', '$2y$10$RplFkgdfGN9D43VHZana8OKogH1j9tOSFnF0S/aCBPg0qvcbepaOC', 1),
+(24, 'kodydespati@gmail.com', '100000000003', '$2y$10$CjzhnQkWem5Qbz/bMtsO8.mtUI37qpMKXjFwd.KXMf.Ug93uVGNMy', 1),
+(25, '', '100000000004', '$2y$10$aQppQqkupyVgsgG0SC./I.v1LdhUCba9N1qib28VqRLw7hergbuOS', 1),
+(26, '', '100000000005', '$2y$10$MRcbDqKsDt2INcS71pd1veFWfABnICthbD2hPmiZvk031pP7upU96', 1),
+(27, '', '100000000006', '$2y$10$6FKuim6pxUAHw4I3qNP9uOMd9mMV.VvOfKNIkOo74m9lathq2t3Nu', 1),
+(28, '', '100000000007', '$2y$10$pjwaMjodXZomKybnuHzvCOYnfvmf3bIDO.UM4jJz2Btq4GNMh0R/2', 1),
+(29, '', '100000000008', '$2y$10$/o9m.2OmvJ/KXlVM6yH86e0e2CDPfnAMLukohMkMg.6odFkTLEFnO', 1),
+(30, '', '100000000009', '$2y$10$EEFsbsxV3Uy1Bvh2w4rxRe16nMm0lbk8P83QQ4MTSpYpqaunkNfVW', 1),
+(31, '', '100000000010', '$2y$10$dUlE9tklddCbBx1cuPB5qOh0LA.hb21fqDw/1/PJSmEDUZiIfP9Jm', 1),
+(32, '', '100000000011', '$2y$10$zPos4pYcQh5c0hFcPN5DbuDljpkuxnxmQHhpoS4t7QccromFCma9K', 1),
+(33, '', '100000000012', '$2y$10$YQ90Nd/0bkBM4JforGNXHu8m9CFLb27H.3SogYJ/b5nm3hNWPuzXK', 1),
+(34, '', '100000000013', '$2y$10$vk3lkKTwWTWR0/i1xsy3meNPNt8F2fEzzvAjNt./BhS81MG6Nt6ou', 1),
+(35, '', '100000000014', '$2y$10$okIqUHL2lO/4CF7wh8.YSuZNb12bxmgAVLPCyCwbQuglLENooBVf2', 1),
+(36, '', '100000000015', '$2y$10$dePjILm2lDxfVKjT.lwHPeisv44HflBLu4iPlHT/REj/s116PNmZe', 1),
+(37, '', '100000000016', '$2y$10$ABSC6Rgat7FcJg3oplasnuFrNOGVxhbJn.QCQqCWAZoAaAgyLD99.', 1),
+(38, '', '100000000017', '$2y$10$aqTHCo8VrzkpzEN8isbaa.YK3pB783tGtf8wivhiZscm2EqgujntS', 1),
+(39, '', '100000000018', '$2y$10$sgFadQ6gs36KlFfvvAWduex0hJ5bX0/Zjj1O2DbDTFnh/3U48jKoW', 1),
+(40, '', '100000000019', '$2y$10$uZiNHcmeR4J0Mbaby/7I2eiHISAEbtBTCwVsFaIhPC62fURyISQFG', 1),
+(41, '', '100000000020', '$2y$10$bu/n/gi2pXhhNEz5F7.es.d9uoMuf9dQlhwAKL.GyWtVENr8meqvi', 1),
+(42, '', '100000000021', '$2y$10$cvvsf5A5EPay8ICZkU.7Iuzskq9DtA9AtFlowZikk3xzG2PZiCqsm', 1),
+(43, '', '100000000022', '$2y$10$zKu/MOEpYcPLCbrHmNWer.uLmM6uaETkd5ncwo3HatLlSr/5gzNja', 1),
+(44, '', '100000000023', '$2y$10$jwV6iCE3ucGdtUR.WWVkmOJ5AP8f6u4uTrdC1.7Mn5YpFvGGyxytu', 1),
+(45, '', '100000000024', '$2y$10$fY.jzQ3Vs1MeGv6VymrhXOTy9GrA98FvvsPT7hdEbf505Few2a4Nq', 1),
+(46, '', '100000000025', '$2y$10$xX7LmRkYh9f6TyoT408dHekskSqH9XvPLXiKWL.G9vu4QD.GTiOPC', 1),
+(47, '', '100000000026', '$2y$10$sBHanhwxh0aeC55ea7UWuOluaQzo64uybZ0jGYnsc/IzwByuNdNhC', 1),
+(48, '', '100000000027', '$2y$10$pgX/HddPugKuoSpfEpiPh.WaBKtRRzTolWyZ7HGDi/tsTuFQA5ZXm', 1),
+(49, '', '100000000028', '$2y$10$zZUltvElh35GJF.e35PUE.YQt0rMVWgxbClGl.DiD7cgBWF7ep8gO', 1),
+(50, '', '100000000029', '$2y$10$8dypi4iFnHg3IPfL1QzV0OUPXA9Lc7fgc8E.pahdCu8UMw4Wiyb/O', 1),
+(51, '', '100000000030', '$2y$10$ZF9dMZR//UzQmy4glWsHxOASyNbDtWGaNVS8NbGviMMt/PkXp677W', 1),
+(52, '', '100000000031', '$2y$10$YShVS6aTyueEBQX4D6fp8OMjxc8d8EIKIf9XC/Fy5E5YJyH6bllUq', 1),
+(53, '', '100000000032', '$2y$10$cNkpVLIj8NVETJ/NTTX9NeUvC/B0pHqfT6e7WLchMI8BgREvwGKqW', 1),
+(54, '', '100000000033', '$2y$10$vkgPPKcLQIanaovkGpCxfepRFpW9roYob.pnorBNUPH0qCpxmbhLy', 1),
+(55, '', '100000000034', '$2y$10$w//W6l1Qo.OSAzENZWxJoOJSofoNXRMuutqIyt1hdJsid49nxjRKW', 1),
+(56, '', '100000000035', '$2y$10$UoHgYK9eTOG3Sx44r8gFo.c66u8SwSJXC6Zuqn1sXIjxNorVsnrwe', 1),
+(57, '', '100000000036', '$2y$10$FOlOYIVAbAXc2LjY6D/PReGKrfN0pTQAL.NrbWt4z7DnnZxMGCavC', 1),
+(58, '', '100000000037', '$2y$10$arRbVVLHwjqYYh/En16wLeOLwB7Rg2JtWohQGROOJeFdn8DSiYgqe', 1),
+(59, '', '100000000038', '$2y$10$2tP6W9z70JauT5qpWux.gOo.ZnWDHFmuUZ5p8xP/HhiV7YUo9LSgK', 1),
+(60, '', '100000000039', '$2y$10$SWFJMj.6GKYgfb4ZAbxG6eAvsUt20lN3iBcJKeyoZq93pspHPCE8m', 1),
+(61, '', '100000000040', '$2y$10$7dihSO0h8nNvgPzJ4Fe6HuCHyLoPLHw.Xs.WZB4WBj6B92YP6SGBm', 1),
+(62, '', '100000000041', '$2y$10$YVOBrFzVFMfdmIWG5gAXzubN5zZTL4EQoqJ0crUjF0pL3OAFqwFBi', 1),
+(63, '', '100000000042', '$2y$10$gvzAcatf4E2E8b0z06pQf.W.wsx4hknvNauTxT4WTLVUehACsUU1e', 1),
+(64, '', '100000000043', '$2y$10$0oAFEgqehkYfPbMw/Bm3WucvcBxmZ5ZP59so764S7zQO77GI2vi2S', 1),
+(65, '', '100000000044', '$2y$10$UWEm.fyw2uM7wsxPMt1/F.2sxF2WLGABQg8r.jNyyWN/WqZrJujvC', 1),
+(66, '', '100000000045', '$2y$10$xsjOtbZfVzvj1DntnrDea./tK.AndIdGakLtAebyWEdp9z3ndMmm2', 1),
+(67, '', '100000000046', '$2y$10$6EB1Xby5rhY6xmaSLX2jKuEvTypU2fn2OK9JCghbqB/lbJk9pzgoe', 1),
+(68, '', '100000000047', '$2y$10$E40L3s/FnG6wSj7RdJeji.zUTeGvTtbfToFqBiwnDGACafmTHKc3.', 1),
+(69, '', '100000000048', '$2y$10$UJwlioS8V/FIGSwuF5kpFupjxMTqevQIM7dh3xMMyYLQubHcKoDJK', 1),
+(70, '', '100000000049', '$2y$10$1bsAlz5wzZPxWp2hzJloGuyB79izFqVK.zdNmoKHaDJNxVPfOZd8K', 1),
+(71, '', '100000000050', '$2y$10$Sh5bOn17JSvxlwxjKyXzKub7DpDVaLa/UWt8RCMlI566HbCX33gdq', 1),
+(72, '', '100000000051', '$2y$10$/Br9tmCAg4ldUeARw.5VOOiKgXb1omx1PdlXAQx4/0lQ8g1BlhKAi', 1),
+(73, '', '100000000052', '$2y$10$eaIG5BuU97THViwXq7xy8elisu0oeO2zUdfXmbggRXhi8HnSPWZ/S', 1),
+(74, '', '100000000053', '$2y$10$gIOgEQc8nUtR3uy0UXmsB.t.sJ5uwhbVN.K7VgAeGBFvrHUkZFuOa', 1),
+(75, '', '100000000054', '$2y$10$BeHlvQ9V31LLAbN4VQ39cOUtts1.Kd6M2TAjS4uneqTybZupiiI8e', 1);
 
 -- --------------------------------------------------------
 
@@ -143,7 +144,43 @@ INSERT INTO `announcements` (`announcement_id`, `title`, `announcement_text`, `a
 (11, 'asdada', 'dasdadasd', '../announcement/Sisig.jpg', '2024-09-29 12:25:20', '2024-10-21 14:13:25', 'Maranan, Bien Q.', 'Principal IV'),
 (12, 'sdasdasd', 'GASFAJISFNAskLF\r\n\r\nASDASDSA\r\n\r\n\r\nSDASDA', '../announcement/', '2024-09-29 12:25:41', '2024-10-21 14:13:27', 'Maranan, Bien Q.', 'Principal IV'),
 (14, 'Lamangan 1', 'Nanlalamang na naman i2ng dalawa like wtF!!..\r\n\r\n\r\n#whenULIT\r\n#FKLEZZGo', '../announcement/', '2024-10-01 14:38:56', '2024-10-21 14:13:30', 'Maranan, Bien Q.', 'Principal IV'),
-(15, 'Hello', 'This is my announcement', '../announcement/', '2024-10-21 14:33:34', '2024-10-21 14:33:34', 'Bartolome, John Joshua C.', 'Guidance Counselor');
+(15, 'Hello', 'This is my announcement', '../announcement/', '2024-10-21 14:33:34', '2024-10-21 14:33:34', 'Bartolome, John Joshua C.', 'Guidance Counselor'),
+(16, 'LFG', 'ANNOUNCEMENT EXAMPLE', './announcement/touhoushalliteachyoufear.jpg', '2024-11-10 03:50:03', '2024-11-10 03:50:03', 'mercado, ken m.', 'Guidance Counselor'),
+(17, 'sdasda', 'asdadasd', './announcement/touhoublackmoonrider.jpg', '2024-11-10 03:58:03', '2024-11-10 03:58:03', 'mercado, ken m.', 'Guidance Counselor'),
+(18, 'sdasdasd', 'asdsadad', './announcement/', '2024-11-10 03:58:41', '2024-11-10 03:58:41', 'mercado, ken m.', 'Guidance Counselor'),
+(19, 'gghjghjghj', 'sddad', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-11 11:20:20', '2024-11-11 11:20:20', 'mercado, ken m.', 'Guidance Counselor'),
+(20, 'hello world', 'sdads', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:00:40', '2024-11-12 10:00:40', 'mercado, ken m.', 'Guidance Counselor'),
+(21, 'sddads', 'sdadsad', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:02:23', '2024-11-12 10:02:23', 'mercado, ken m.', 'Guidance Counselor'),
+(24, 'sdasda', 'sdadsad', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:11:16', '2024-11-12 10:11:16', 'mercado, ken m.', 'Guidance Counselor'),
+(25, 'sdads', 'ddddddddddddddddd', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:13:50', '2024-11-12 10:13:50', 'mercado, ken m.', 'Guidance Counselor'),
+(26, 'sdadsadasdasd', 'dasdas', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:15:14', '2024-11-12 10:15:14', 'mercado, ken m.', 'Guidance Counselor'),
+(27, 'sddasd', 'sdasdda', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:17:49', '2024-11-12 10:17:49', 'mercado, ken m.', 'Guidance Counselor'),
+(28, 'lets go! ', 'dddddddddddddd', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:18:02', '2024-11-12 10:18:02', 'mercado, ken m.', 'Guidance Counselor'),
+(29, 'sssssssssssssss', 'bgbbbb', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:19:00', '2024-11-12 10:19:00', 'dimagiba, drake Q.', 'Principal IV'),
+(30, 'dddddddddddd', 'dddddddd', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:19:47', '2024-11-12 10:19:47', 'dimagiba, drake Q.', 'Principal IV'),
+(31, 'sdsdd', 'sdsdsd', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:20:11', '2024-11-12 10:20:11', 'mercado, ken m.', 'Guidance Counselor'),
+(32, 'rrrrrrrrrrrrr', 'rrrrrrrrrrrr', './announcement/touhoushalliteachyoufear.jpg', '2024-11-12 10:20:28', '2024-11-12 10:20:28', 'dimagiba, drake Q.', 'Principal IV'),
+(33, 'ssssssssssssssssssssssssssssssssss', 'sssssssssssssssssss', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:21:26', '2024-11-12 10:21:26', 'dimagiba, drake Q.', 'Principal IV'),
+(34, 'oooooooooooooooooooooooo', 'ooooooooooooooooo', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:21:53', '2024-11-12 10:21:53', 'dimagiba, drake Q.', 'Principal IV'),
+(35, 'ssssssssssssssssss', 'sssssssssssss', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:22:49', '2024-11-12 10:22:49', 'dimagiba, drake Q.', 'Principal IV'),
+(36, 'ssssssss', 'sss', '../announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:23:14', '2024-11-12 10:23:14', 'dimagiba, drake Q.', 'Principal IV'),
+(37, 'ssssssssssssssssssssss', 'ddddddddddddddddddddd', '../announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:24:12', '2024-11-12 10:24:12', 'dimagiba, drake Q.', 'Principal IV'),
+(38, 'sssssssssssssssssssssssssssssssssssssssssssdddd', 'ddddddddddddddddddddvvvvvvvvvvv', '../announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:24:38', '2024-11-12 10:24:38', 'mercado, ken m.', 'Guidance Counselor'),
+(39, 'ssssssssssssssssssssss', 'ddddddddddddddddddddd', '../announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:26:10', '2024-11-12 10:26:10', 'mercado, ken m.', 'Guidance Counselor'),
+(40, 'ddddddddddd', 'ddssdsd', '../announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:28:17', '2024-11-12 10:28:17', '', ''),
+(41, 'ssssssssssssssssssss', 'cccccccccccccccccccccccccccccccc', '../announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:28:57', '2024-11-12 10:28:57', '', ''),
+(42, 'ppppppppppppp', 'pppppppppp', '../announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:31:27', '2024-11-12 10:31:27', '', ''),
+(43, 'sssssssssssssssss', 'fggggggggggggggggg', '../announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:37:16', '2024-11-12 10:37:16', '', ''),
+(44, 'ddddddd', 'ddddsss', '../announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:38:22', '2024-11-12 10:38:22', 'mercado, ken m.', 'Guidance Counselor'),
+(45, 'ffffffffffff', 'ddddddddd', '../announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:38:50', '2024-11-12 10:38:50', 'mercado, ken m.', 'Guidance Counselor'),
+(46, 'hhhhhhhhh', 'hhhhhh', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:40:27', '2024-11-12 10:40:27', 'mercado, ken m.', 'Guidance Counselor'),
+(47, 'hhhhhhhhhhh', 'hhhhhhhhhhh', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:40:48', '2024-11-12 10:40:48', '', ''),
+(48, 'mmmmmmmmmmm', 'mmmmmmmmmmmm', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:41:07', '2024-11-12 10:41:07', 'dimagiba, drake Q.', 'Principal IV'),
+(49, 'ffffffff', 'fffssd', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:41:57', '2024-11-12 10:41:57', 'dimagiba, drake Q.', 'Principal IV'),
+(50, 'bbb', 'bbbbbbb', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:42:15', '2024-11-12 10:42:15', 'mercado, ken m.', 'Guidance Counselor'),
+(51, 'fffffffffffff', 'fffffffff', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:51:23', '2024-11-12 10:51:23', 'mercado, ken m.', 'Guidance Counselor'),
+(52, 'ggggggggggggg', 'ggggggggg', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:51:47', '2024-11-12 10:51:47', 'dimagiba, drake Q.', 'Principal IV'),
+(53, 'ffffffffffffffffffffffffffff', 'fhbbbbbbbbbbbbbbbbbbbb', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:52:55', '2024-11-12 10:52:55', 'mercado, ken m.', 'Guidance Counselor');
 
 -- --------------------------------------------------------
 
@@ -219,17 +256,17 @@ CREATE TABLE `e_cert` (
   `e_cert_id` int(11) NOT NULL,
   `subject_id` int(11) DEFAULT NULL,
   `student_id` int(11) DEFAULT NULL,
-  `e_cert` varchar(100) DEFAULT NULL
+  `lrn` bigint(12) DEFAULT NULL,
+  `e_cert` varchar(100) DEFAULT NULL,
+  `account_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `e_cert`
 --
 
-INSERT INTO `e_cert` (`e_cert_id`, `subject_id`, `student_id`, `e_cert`) VALUES
-(3, 0, 1010, 'ecert_672cdc11363ae.pdf'),
-(4, 0, 1010, 'ecert_672ceca522863.pdf'),
-(5, 0, 1018, 'ecert_672ced24e3f86.pdf');
+INSERT INTO `e_cert` (`e_cert_id`, `subject_id`, `student_id`, `lrn`, `e_cert`, `account_id`) VALUES
+(22, 0, 1010, 100000000010, 'ecert_6733018ca6c47.pdf', 4);
 
 -- --------------------------------------------------------
 
@@ -393,7 +430,33 @@ INSERT INTO `parent` (`parent_id`, `first_name`, `middle_name`, `last_name`, `em
 (2052, 'Grace', 'Gonzalez', 'Martinez', 'grace.martinez@example.com', '09123456830', 'Brgy. Pook, Batangas City', 2),
 (2053, 'Ferdinand', 'Cruz', 'Alarcon', 'ferdinand.alarcon@example.com', '09123456831', 'Brgy. Santo Niño, Batangas City', 2),
 (2054, 'Angelica', 'Bautista', 'Pineda', 'angelica.pineda@example.com', '09123456832', 'Brgy. Tinga Labac, Batangas City', 2),
-(2055, 'Burnik', '', 'Panaligan', 'jannangelodimaano@gmail.com', '9454210467', 'Wawa, Batangas City', 2);
+(2055, 'Burnik', '', 'Panaligan', 'jannangelodimaano@gmail.com', '9454210467', 'Wawa, Batangas City', 2),
+(2056, 'sdadasda', '', 'sdadasdas', 'ken@gmail.com', '9319511199', 'san jose', 2),
+(2057, 'sdadasda', '', 'asdadsdad', 'ken@gmail.com', '9319511199', 'sanjose', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `token` varchar(255) DEFAULT NULL,
+  `expires` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+INSERT INTO `password_resets` (`id`, `user_id`, `token`, `expires`) VALUES
+(18, 22, 'e57222bf31a4b525dcd0e0932b43e3dc4e73ba0d8eecc9c29aef607c9b825d73', '2024-11-12 16:19:16'),
+(19, 22, '990bca0fdda95669dc7c888c845d385133d387b5ad9d8cdab6505122b4e1a243', '2024-11-12 16:34:41'),
+(20, 22, '26016ba9d75c081e0f7f83db71c9b1ce72bc7357d7d8caa9a5dbc6777f8e4104', '2024-11-12 16:59:53'),
+(21, 22, '2bb483fb4b9810a53c2b8d31d20080421c944af9fd6008147e89cb33f36cc120', '2024-11-12 17:05:36'),
+(25, 22, '570ba9630dc3ee609ee5b670a28283b51f30ef3045075a3f9db699ae595ce09a', '2024-11-12 17:13:59');
 
 -- --------------------------------------------------------
 
@@ -654,7 +717,9 @@ INSERT INTO `student` (`student_id`, `lrn`, `first_name`, `middle_name`, `last_n
 (1052, 100000000052, 'Cathy', 'Luna', 'Luna', 'female', '2018-08-18', 'enrolled', '2024-2025', 2052, 6, 18, 1),
 (1053, 100000000053, 'Jay', 'Luna', 'Luna', 'male', '2018-09-27', 'enrolled', '2024-2025', 2053, 6, 18, 1),
 (1054, 100000000054, 'Nina', 'Luna', 'Luna', 'female', '2018-10-05', 'enrolled', '2024-2025', 2054, 6, 18, 1),
-(1055, NULL, 'Laurence', 'Mendoza', 'Panaligan', 'male', '2002-10-21', 'enrolled', '2024-2025', 2055, 6, 17, 1);
+(1055, NULL, 'Laurence', 'Mendoza', 'Panaligan', 'male', '2002-10-21', 'enrolled', '2024-2025', 2055, 6, 17, 1),
+(1056, NULL, 'ken', 'laurence', 'mercado', 'male', '2004-02-12', 'enrolled', '2024-2025', 2056, 1, 1, 1),
+(1057, NULL, 'ken laurence ', 'Mercado', 'dumara-og', 'male', '2024-11-06', 'enrolled', '2024-2025', 2057, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -702,7 +767,9 @@ CREATE TABLE `student_file` (
 --
 
 INSERT INTO `student_file` (`student_file_id`, `student_picture`, `psa_birth_certificate`, `progress_report_card`, `medical_assessment`, `student_id`) VALUES
-(1, '../uploads/casual_white.jpg', '../uploads/DIMAANO-IT-413-Laboratory-Activity-3 CVSS.pdf', '../uploads/DIMAANO-IT-413-Laboratory-Activity-3 CVSS.pdf', '../uploads/DIMAANO-IT-413-Laboratory-Activity-3 CVSS.pdf', 1055);
+(1, '../uploads/casual_white.jpg', '../uploads/DIMAANO-IT-413-Laboratory-Activity-3 CVSS.pdf', '../uploads/DIMAANO-IT-413-Laboratory-Activity-3 CVSS.pdf', '../uploads/DIMAANO-IT-413-Laboratory-Activity-3 CVSS.pdf', 1055),
+(2, '../uploads/wallpaperflare.com_wallpaper (5).jpg', '../uploads/AIAS Exercises - Questionnaire.pdf', '../uploads/AIAS Exercises - Questionnaire.pdf', '../uploads/AIAS Exercises - Questionnaire.pdf', 1056),
+(3, '../uploads/465108667_1109069934111600_7000308353688477088_n.jpg', '../uploads/AIAS Exercises - Questionnaire.pdf', '../uploads/AIAS Exercises - Questionnaire.pdf', '../uploads/AIAS Exercises - Questionnaire.pdf', 1057);
 
 -- --------------------------------------------------------
 
@@ -930,6 +997,13 @@ ALTER TABLE `parent`
   ADD KEY `role_id` (`role_id`);
 
 --
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `pdo`
 --
 ALTER TABLE `pdo`
@@ -1032,7 +1106,7 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT for table `announcements`
 --
 ALTER TABLE `announcements`
-  MODIFY `announcement_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `announcement_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `class_schedule`
@@ -1050,7 +1124,7 @@ ALTER TABLE `class_schedule_archive`
 -- AUTO_INCREMENT for table `e_cert`
 --
 ALTER TABLE `e_cert`
-  MODIFY `e_cert_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `e_cert_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `grade`
@@ -1074,7 +1148,13 @@ ALTER TABLE `guidance`
 -- AUTO_INCREMENT for table `parent`
 --
 ALTER TABLE `parent`
-  MODIFY `parent_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2056;
+  MODIFY `parent_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2058;
+
+--
+-- AUTO_INCREMENT for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `pdo`
@@ -1110,7 +1190,7 @@ ALTER TABLE `schedule_list`
 -- AUTO_INCREMENT for table `school_materials`
 --
 ALTER TABLE `school_materials`
-  MODIFY `school_materials_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `school_materials_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `section`
@@ -1122,7 +1202,7 @@ ALTER TABLE `section`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1056;
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1058;
 
 --
 -- AUTO_INCREMENT for table `student_archives`
@@ -1134,7 +1214,7 @@ ALTER TABLE `student_archives`
 -- AUTO_INCREMENT for table `student_file`
 --
 ALTER TABLE `student_file`
-  MODIFY `student_file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `student_file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `subject`
@@ -1183,6 +1263,12 @@ ALTER TABLE `grade`
   ADD CONSTRAINT `grade_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`),
   ADD CONSTRAINT `grade_ibfk_2` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`),
   ADD CONSTRAINT `grade_ibfk_3` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`);
+
+--
+-- Constraints for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

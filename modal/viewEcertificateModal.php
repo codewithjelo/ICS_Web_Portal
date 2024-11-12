@@ -26,50 +26,50 @@
     </div>
 
     <script>
-        $(document).ready(function() {
-            // Function to load and display e-certificates for the logged-in student
-            function loadEcertificates() {
-                $.ajax({
-                    url: '../modal/querys/getEcertificates.php', // Adjust the path to your PHP API
-                    type: 'GET',
-                    success: function(response) {
-                        console.log(response)
-                        if (response.success) {
-                            var certContainer = $('#certificates-container');
-                            certContainer.empty();  // Clear any previous content
+     $(document).ready(function() {
+    // Function to load and display e-certificates for the logged-in student
+    function loadEcertificates() {
+        $.ajax({
+            url: '../modal/querys/getEcerts.php', // Adjust the path to your PHP API
+            type: 'GET',
+            success: function(response) {
+                console.log(response);
+                if (response.success) {
+                    var certContainer = $('#certificates-container');
+                    certContainer.empty();  // Clear any previous content
 
-                            // Loop through the e-certificates data and append to the modal
-                            response.data.forEach(function(cert) {
-                                var certCard = `
-                                    <div class="cert-card" style="color: #000;">
-                                        <img src="../img/ecertificates/${cert.file_name}" alt="Certificate Thumbnail">
-                                        <div class="cert-card-text">
-                                            <strong style="color: #000;">File Name: ${cert.file_name}</strong>
-                                        </div>
-                                        <div class="cert-card-icon">
-                                            <a href="../img/ecertificates/${cert.file_name}" download="${cert.file_name}">
-                                                <i style="color: #000;" class="bi bi-download"></i> Download
-                                            </a>
-                                        </div>
-                                    </div>
-                                `;
-                                certContainer.append(certCard);
-                            });
-                        } else {
-                            $('#certificates-container').html('<p>No e-certificates found.</p>');
-                        }
-                    },
-                    error: function() {
-                        $('#certificates-container').html('<p>Error loading certificates. Please try again later.</p>');
-                    }
-                });
+                    // Loop through the e-certificates data and append to the modal
+                    response.data.forEach(function(cert) {
+                        var certCard = `
+                            <div class="cert-card" style="color: #000;">
+                                <img src="../img/certificates/${cert.file_name}" alt="Certificate Thumbnail">
+                                <div class="cert-card-text">
+                                    <strong style="color: #000;">File Name: ${cert.file_name}</strong>
+                                </div>
+                                <div class="cert-card-icon">
+                                    <a href="../img/certificates/${cert.file_name}" download="${cert.file_name}">
+                                        <i style="color: #000;" class="bi bi-download"></i> Download ${cert.file_name}
+                                    </a>
+                                </div>
+                            </div>
+                        `;
+                        certContainer.append(certCard);
+                    });
+                } else {
+                    $('#certificates-container').html('<p>No e-certificates found.</p>');
+                }
+            },
+            error: function() {
+                $('#certificates-container').html('<p>Error loading certificates. Please try again later.</p>');
             }
-
-            // Trigger modal open and load certificates when modal is shown
-            $('#viewEcertModal').on('shown.bs.modal', function() {
-                loadEcertificates();
-            });
         });
+    }
+
+    // Trigger modal open and load certificates when modal is shown
+    $('#viewEcertModal').on('shown.bs.modal', function() {
+        loadEcertificates();
+    });
+});
     </script>
 </body>
 

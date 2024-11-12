@@ -1,9 +1,30 @@
+<!-- Modal -->
+<?php
+include '../connectDb.php';
+
+// Fetch uploaded materials for the "Uploaded" tab
+$query = "SELECT * FROM school_materials";
+$result = $conn->query($query);
+$uploaded_files = []; // Initialize the variable as an empty array
+
+// Check if the query executed successfully and returned results
+if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $uploaded_files[] = $row; // Add each row to the uploaded_files array
+    }
+} else {
+    // If no files are found, $uploaded_files will remain empty
+    // You can set an empty array as default or handle this case differently
+    $uploaded_files = [];
+}
+?>
+
+
 <link rel="stylesheet" href="../css/modal.css">
 <script src="../js/gradeLevelMaterials.js"></script>
 <script src="..js/getUploadedMaterials.js"></script>
 
-<!-- Modal -->
-<div class="modal fade modal-xl" id="teacherMaterialsModal" dx` tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade modal-xl" id="teacherMaterialsModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header justify-content-center" style="border-bottom: none; height: 100px !important; padding: 0 !important;">
@@ -11,7 +32,7 @@
                 <button type="button" class="btn-close position-absolute top-0 end-0" style="top: 25px !important; right: 25px !important;" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
+          
                 <ul class="nav nav-tabs mx-3" id="uploadTabs" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="post-tab" data-bs-toggle="tab" data-bs-target="#post" type="button" role="tab" aria-controls="post" aria-selected="true">Post</button>
@@ -70,12 +91,13 @@
                                     </div>
                                 </div>
                                 <div class="overflow-y" id="uploadedFiles" style="max-height: 295px;">
+                                    <?php foreach ($uploaded_files as $file): ?>
                                     <div class="row column-gap-5 mt-3 mx-1 align-content-center position-relative rounded-3 border border-1" style="height: 40px;">
                                         <div class="col-md-8 ms-2">
-                                            English.docx
+                                            <?php echo basename($file['school_materials']); ?>
                                         </div>
                                         <div class="col-md-2">
-                                            <a class="btn btn-secondary position-absolute top-50 end-0 translate-middle-y border border-0 me-5" style="height: 40px; width: 50px; background-color: transparent;" download>
+                                            <a href="<?php echo $file['school_materials']; ?>" class="btn btn-secondary position-absolute top-50 end-0 translate-middle-y border border-0 me-5" style="height: 40px; width: 50px; background-color: transparent;" download>
                                                 <i class="bi bi-download" style="color: black;"></i>
                                             </a>
                                         </div>
@@ -85,6 +107,7 @@
                                             </button>
                                         </div>
                                     </div>
+                                    <?php endforeach; ?>
                                 </div>
                             </div>
                         </div>

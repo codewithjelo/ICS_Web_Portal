@@ -5,12 +5,16 @@ if (isset($_SESSION['logged_in']) != True) {
     header("Location: ../index");
     exit;
 }
+
+
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ICS - Parent Dashboard</title>
@@ -75,37 +79,42 @@ if (isset($_SESSION['logged_in']) != True) {
 <!-- Information Section -->
 <div class="col-md-6">
     <div class="info-section d-flex flex-row position-absolute bottom-0 start-0">
-        <img src="../img/avatar.jpg" class="avatar m-4" alt="Profile" style="width: 11%; height: 11%;">
-        <div class="user-info d-flex flex-column justify-content-center">
-            <?php
-            include "../connectDb.php";
-            // Prepare the query with academic year added
-            $query = "SELECT CONCAT(s.last_name, ', ', s.first_name, ' ', LEFT(s.middle_name, 1), '.') AS full_name, 
-                             s.lrn AS lrn, 
-                             s.current_status AS current_status, 
-                             s.academic_year AS academic_year, 
-                             gl.grade_level AS grade_level, 
-                             sec.section_name AS section_name, 
-                             sec.section_id AS section_id,
-                             CONCAT(p.last_name, ', ', p.first_name, ' ', LEFT(p.middle_name, 1), '.') AS parent_name 
-                      FROM student s 
-                      LEFT JOIN section sec ON s.section_id = sec.section_id 
-                      LEFT JOIN grade_level gl ON s.grade_level_id = gl.grade_level_id 
-                      LEFT JOIN parent p ON s.parent_id = p.parent_id 
-                      WHERE s.lrn = ?";
+        <?php
+        include "../connectDb.php";
+        
+        // Prepare the query to fetch the student's profile picture and other details
+        $query = "SELECT 
+                     CONCAT(s.last_name, ', ', s.first_name, ' ', LEFT(s.middle_name, 1), '.') AS full_name, 
+                     s.lrn AS lrn, 
+                     s.current_status AS current_status, 
+                     s.academic_year AS academic_year, 
+                     gl.grade_level AS grade_level, 
+                     sec.section_name AS section_name, 
+                     sec.section_id AS section_id,
+                     CONCAT(p.last_name, ', ', p.first_name, ' ', LEFT(p.middle_name, 1), '.') AS parent_name,
+                     sf.student_picture AS student_profile
+                  FROM student s 
+                  LEFT JOIN section sec ON s.section_id = sec.section_id 
+                  LEFT JOIN grade_level gl ON s.grade_level_id = gl.grade_level_id 
+                  LEFT JOIN parent p ON s.parent_id = p.parent_id 
+                  LEFT JOIN student_file sf ON s.student_id = sf.student_id
+                  WHERE s.lrn = ?";
 
-            // Prepare the statement to prevent SQL injection
-            $stmt = $conn->prepare($query);
+        // Prepare the statement to prevent SQL injection
+        $stmt = $conn->prepare($query);
 
-            // Bind the session user_id to the query
-            $stmt->bind_param('s', $_SESSION['user_id']);
+        // Bind the session user_id to the query
+        $stmt->bind_param('s', $_SESSION['user_id']);
 
-            // Execute the query
-            $stmt->execute();
-            $result = $stmt->get_result();
+        // Execute the query
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) { ?>
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) { ?>
+                <img src="<?php echo htmlspecialchars($row['student_profile']); ?>" class="avatar m-4" alt="Profile" style="width: 11%; height: 11%;">
+
+                <div class="user-info d-flex flex-column justify-content-center">
                     <p class="info-bold text-start text-uppercase"><?php echo htmlspecialchars($row['parent_name']); ?></p>
                     <p class="info-text text-start"><?php echo htmlspecialchars($row['full_name']); ?></p>
                     <p class="info-text text-start">LRN (<?php echo htmlspecialchars($row['lrn']); ?>)</p>
@@ -113,20 +122,21 @@ if (isset($_SESSION['logged_in']) != True) {
                     <p class="en-status text-start text-uppercase">
                         <?php echo htmlspecialchars($row['current_status']); ?> (AY <?php echo htmlspecialchars($row['academic_year']); ?>)
                     </p>
-                <?php
-                    $_SESSION['section_id'] = $row['section_id'];
-                }
-            } else { ?>
-                <p class="info-bold text-start">No student found.</p>
-            <?php }
+                </div>
+            <?php
+                $_SESSION['section_id'] = $row['section_id'];
+            }
+        } else { ?>
+            <p class="info-bold text-start">No student found.</p>
+        <?php }
 
-            // Close the statement
-            $stmt->close();
-            $conn->close();
-            ?>
-        </div>
+        // Close the statement and connection
+        $stmt->close();
+        $conn->close();
+        ?>
     </div>
 </div>
+
 
 
 
