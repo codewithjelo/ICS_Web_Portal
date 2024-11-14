@@ -5,7 +5,7 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 
 function uploadSchedule($file) {
     // Database connection parameters
-    $host     = 'localhost';
+    $host     = 'localhost: 3308';
     $username = 'root';
     $password = '';
     $dbname   = 'ics_db';
