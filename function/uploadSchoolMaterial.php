@@ -5,11 +5,11 @@ include '../connectDb.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Check if the file was uploaded without errors
     if (isset($_FILES['school_materials']) && $_FILES['school_materials']['error'] == 0) {
-        $teacher_id = $_SESSION['user_id'];
+        $teacher_id = $_SESSION['get_user_id'];
         $section_id = $_POST['section_name'];
 
         // Get the last 4 characters of the teacher_id
-        $query = "SELECT teacher_id FROM teacher WHERE teacher_id = RIGHT(?, 4)";
+        $query = "SELECT teacher_id FROM teacher WHERE teacher_id = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param('s', $teacher_id);
         $stmt->execute();
