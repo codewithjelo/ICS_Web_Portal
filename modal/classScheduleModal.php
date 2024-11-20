@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../css/classScheduleModal.css">
+<link rel="stylesheet" href="../css/modal.css">
 
 <!-- Modal -->
 <div class="modal fade modal-xl" id="classScheduleModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
