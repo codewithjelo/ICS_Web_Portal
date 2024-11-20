@@ -62,7 +62,7 @@ function uploadSchedule($file) {
 }
 
 // Handle the form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['upload-schedule'])) {
-    uploadSchedule($_FILES['upload-schedule']);
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['upload_schedule'])) {
+    uploadSchedule($_FILES['upload_schedule']);
 }
 ?>
