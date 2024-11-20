@@ -25,7 +25,7 @@ if (isset($_SESSION['logged_in']) != True) {
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/body.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/confirmSignOut.js"></script>
 </head>
 
 <body>
@@ -114,35 +114,15 @@ if (isset($_SESSION['logged_in']) != True) {
                             </div>
                         </div>
                         <!-- Sign Out -->
-                                               <!-- Sign Out -->
-                                               <div class="col-md-6">
-        <div class="so-section position-absolute bottom-0 end-0">
-            <form id="logoutForm" action="../function/logoutAccount.php" method="POST">
-                <button type="button" onclick="confirmLogout()" class="btn so-btn btn-primary rounded-5">
-                    <i class="bi bi-box-arrow-in-right"></i> Sign Out
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <script>
-        function confirmLogout() {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "Do you really want to logout?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, logout'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Submit the form if confirmed
-                    document.getElementById('logoutForm').submit();
-                }
-            });
-        }
-    </script>
+                        <div class="col-md-6">
+                            <div class="so-section position-absolute bottom-0 end-0">
+                                <form id="logoutForm" action="../function/logoutAccount.php" method="POST">
+                                    <button type="button" onclick="confirmSignOut()" class="btn so-btn btn-primary rounded-5">
+                                        <i class="bi bi-box-arrow-in-right"></i> Sign Out
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
 
                     </div>
                 </header>
@@ -191,67 +171,67 @@ if (isset($_SESSION['logged_in']) != True) {
                 <div class="announcement-scroll rounded-4 p-4" style="height: 520px">
                     <p class="announcement-title fs-4 fw-bold text-center p-2">ANNOUNCEMENT</p>
                     <div class="announcement overflow-y-scroll" style="height: 385px;">
-    <?php
-    include "../connectDb.php";
-
-    // Initialize query with base SQL
-    $query = "SELECT * FROM announcements ORDER BY created_at DESC LIMIT 2";
-    $result = mysqli_query($conn, $query);
-
-    if (mysqli_num_rows($result) > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
-    ?>
-            <div class="row mx-1 mb-3 rounded-3 p-3" style="background-color: var(--white);">
-                <div class="col-md-12 mt-2">
-                    <div class="row align-items-center">
-                        <div class="col-6" style="width: 100px;">
-                            <img src="../img/avatar.jpg" alt="profilePic" style="width: 70px;">
-                        </div>
-                        <div class="col-6">
-                            <!-- Displaying Full Name and Rank -->
-                            <strong class="text-uppercase"><?php echo htmlspecialchars($row['full_name']); ?></strong><br>
-                            <span><?php echo htmlspecialchars($row['rank_name']); ?></span><br>
-                            <span class="fst-italic"><?php echo htmlspecialchars($row['created_at']); ?></span>
-                        </div>
-                    </div>
-                    <div class="row px-5 pt-4">
-                        <p class="fw-bold lh-base" style="color: black;"><?php echo htmlspecialchars($row['title']); ?></p>
-                        <!-- Displaying Announcement Text with a limited height and text wrapping -->
-                        <p class="lh-base text-truncate" style="color: black; white-space: pre-wrap; height: 20px;"><?php echo nl2br(htmlspecialchars($row['announcement_text'])); ?></p>
-                    </div>
-                    <div class="row px-5 pb-4 justify-content-center">
                         <?php
-                        $file_path = htmlspecialchars($row['announcement_file']);
-                        // Check if the file path is not null and not the empty directory path
-                        if (!empty($file_path) && $file_path !== '../announcement/') {
-                            if (file_exists($file_path)) {
+                        include "../connectDb.php";
+
+                        // Initialize query with base SQL
+                        $query = "SELECT * FROM announcements ORDER BY created_at DESC LIMIT 2";
+                        $result = mysqli_query($conn, $query);
+
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
                         ?>
-                                <img class="img-thumbnail" src="<?php echo $file_path; ?>" alt="announcementFile">
-                        <?php
-                            } else {
-                        ?>
-                                <p>File not found: <?php echo $file_path; ?></p>
+                                <div class="row mx-1 mb-3 rounded-3 p-3" style="background-color: var(--white);">
+                                    <div class="col-md-12 mt-2">
+                                        <div class="row align-items-center">
+                                            <div class="col-6" style="width: 100px;">
+                                                <img src="../img/avatar.jpg" alt="profilePic" style="width: 70px;">
+                                            </div>
+                                            <div class="col-6">
+                                                <!-- Displaying Full Name and Rank -->
+                                                <strong class="text-uppercase"><?php echo htmlspecialchars($row['full_name']); ?></strong><br>
+                                                <span><?php echo htmlspecialchars($row['rank_name']); ?></span><br>
+                                                <span class="fst-italic"><?php echo htmlspecialchars($row['created_at']); ?></span>
+                                            </div>
+                                        </div>
+                                        <div class="row px-5 pt-4">
+                                            <p class="fw-bold lh-base" style="color: black;"><?php echo htmlspecialchars($row['title']); ?></p>
+                                            <!-- Displaying Announcement Text with a limited height and text wrapping -->
+                                            <p class="lh-base text-truncate" style="color: black; white-space: pre-wrap; height: 20px;"><?php echo nl2br(htmlspecialchars($row['announcement_text'])); ?></p>
+                                        </div>
+                                        <div class="row px-5 pb-4 justify-content-center">
+                                            <?php
+                                            $file_path = htmlspecialchars($row['announcement_file']);
+                                            // Check if the file path is not null and not the empty directory path
+                                            if (!empty($file_path) && $file_path !== '../announcement/') {
+                                                if (file_exists($file_path)) {
+                                            ?>
+                                                    <img class="img-thumbnail" src="<?php echo $file_path; ?>" alt="announcementFile">
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <p>File not found: <?php echo $file_path; ?></p>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
                         <?php
                             }
+                        } else {
+                            echo "<p>No announcements available.</p>";
                         }
                         ?>
                     </div>
-                </div>
-            </div>
-    <?php
-        }
-    } else {
-        echo "<p>No announcements available.</p>";
-    }
-    ?>
-</div>
 
                     <div class="text-center mt-4">
                         <a type="button" class="expand text-decoration-none" data-bs-toggle="modal" data-bs-target="#viewAnnouncementModal">View More</a>
                     </div>
                 </div>
             </div>
-            
+
             <div class="main-con col hidden">
                 <div class="row-gap-4 p-4 menu mb-4" id="BarGraph">
                     <?php
@@ -595,35 +575,35 @@ if (isset($_SESSION['logged_in']) != True) {
                     </script>
                 </div>
             </div>
+    </div>
+    <!-- Footer -->
+    <div class="row mt-3 mb-4">
+        <div class="col-md-12">
+            <footer class="shadow-lg rounded-4">
+                <div class="row">
+                    <div class="col-md-12 d-flex justify-content-center mt-5" style="column-gap: 70px;">
+                        <img src="../img/kneLogo.png" class="img-fluid footer-logo" alt="kne">
+                        <img src="../img/dobLogo.png" class="img-fluid footer-logo" alt="dob" style="height: 95%">
+                        <img src="../img/icsLogo.png" class="img-fluid footer-logo" alt="ics">
+                    </div>
+                </div>
+                <div class="row school-section">
+                    <div class="col-md-12">
+                        <ul class="d-flex flex-row justify-content-center mt-5 list-inline" style="column-gap: 15%;">
+                            <li class="d-flex flex-row align-items-center"><iconify-icon class="iconify-footer" icon="ri:facebook-circle-line"></iconify-icon><span style="margin: 0 0 0 10px;">Ibaan Central School</span></li>
+                            <li class="d-flex flex-row align-items-center"><iconify-icon class="iconify-footer" icon="iconamoon:location-pin"></iconify-icon><span style="margin: 0 0 0 10px;">R4FM+5H5, Poblacion Rd, Ibaan, Batangas</span></li>
+                            <li class="d-flex flex-row align-items-center"><iconify-icon class="iconify-footer" icon="ph:phone"></iconify-icon><span style="margin: 0 0 0 10px;">(043) 702 - 3669</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row copyright-section rounded-bottom-4" style="margin: 0;">
+                    <div class="col-md-12">
+                        <p class="text-center fw-bold mt-3">Copyright © Ibaan Central School</p>
+                    </div>
+                </div>
+            </footer>
         </div>
-        <!-- Footer -->
-        <div class="row mt-3 mb-4">
-            <div class="col-md-12">
-                <footer class="shadow-lg rounded-4">
-                    <div class="row">
-                        <div class="col-md-12 d-flex justify-content-center mt-5" style="column-gap: 70px;">
-                            <img src="../img/kneLogo.png" class="img-fluid footer-logo" alt="kne">
-                            <img src="../img/dobLogo.png" class="img-fluid footer-logo" alt="dob" style="height: 95%">
-                            <img src="../img/icsLogo.png" class="img-fluid footer-logo" alt="ics">
-                        </div>
-                    </div>
-                    <div class="row school-section">
-                        <div class="col-md-12">
-                            <ul class="d-flex flex-row justify-content-center mt-5 list-inline" style="column-gap: 15%;">
-                                <li class="d-flex flex-row align-items-center"><iconify-icon class="iconify-footer" icon="ri:facebook-circle-line"></iconify-icon><span style="margin: 0 0 0 10px;">Ibaan Central School</span></li>
-                                <li class="d-flex flex-row align-items-center"><iconify-icon class="iconify-footer" icon="iconamoon:location-pin"></iconify-icon><span style="margin: 0 0 0 10px;">R4FM+5H5, Poblacion Rd, Ibaan, Batangas</span></li>
-                                <li class="d-flex flex-row align-items-center"><iconify-icon class="iconify-footer" icon="ph:phone"></iconify-icon><span style="margin: 0 0 0 10px;">(043) 702 - 3669</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row copyright-section rounded-bottom-4" style="margin: 0;">
-                        <div class="col-md-12">
-                            <p class="text-center fw-bold mt-3">Copyright © Ibaan Central School</p>
-                        </div>
-                    </div>
-                </footer>
-            </div>
-        </div>
+    </div>
     </div>
 
     <script>
