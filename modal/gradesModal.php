@@ -29,8 +29,7 @@ function fetchGrades($conn, $studentId)
 $studentId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 $grades = [];
 if ($studentId) {
-    $query = "
-        SELECT student_id
+    $query = "SELECT student_id
         FROM student
         WHERE student.lrn = ?
     ";
@@ -57,18 +56,18 @@ if ($studentId) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grades - ICS Parent Portal</title>
-    <link rel="stylesheet" href="../css/classScheduleModal.css">
+    <link rel="stylesheet" href="../css/modal.css">
 </head>
 
 <body>
     <!-- Modal -->
-    <div class="modal fade modal-xl" id="gradesModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade modal-xl" id="gradesModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title" id="staticBackdropLabel">GRADES</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+            <div class="modal-content" style="max-height: 600px; height: 600px;">
+            <div class="modal-header justify-content-center" style="border-bottom: none; height: 100px !important; padding: 0 !important;">
+                <h1 class="modal-title" id="staticBackdropLabel">GRADES</h1>
+                <button type="button" class="btn-close position-absolute top-0 end-0" style="top: 25px !important; right: 25px !important;" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
                 <div class="modal-body">
                     <!-- Table -->
                     <table class="table table-bordered rounded">
