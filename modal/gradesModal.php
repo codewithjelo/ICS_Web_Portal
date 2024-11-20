@@ -4,8 +4,7 @@ include '../connectDb.php'; // Modify this with your database connection file
 // Function to fetch grades based on student ID
 function fetchGrades($conn, $studentId)
 {
-    $query = "
-        SELECT g.first_quarter, g.second_quarter, g.third_quarter, g.fourth_quarter, 
+    $query = "SELECT g.first_quarter, g.second_quarter, g.third_quarter, g.fourth_quarter, 
                s.subject_name, 
                CONCAT(t.first_name, ' ', t.last_name) AS teacher_name
         FROM grade g
