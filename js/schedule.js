@@ -43,8 +43,7 @@ $(function () {
     },
     editable: true,
   });
-
-  console.log("Events to be displayed:", events); // Add this line
+ // Add this line
   calendar.render();
 
   // Form reset listener
@@ -58,10 +57,6 @@ $(function () {
     var id = $(this).attr("data-id");
     if (!!scheds[id]) {
       var _form = $("#schedule-form");
-      console.log(
-        String(scheds[id].start_datetime),
-        String(scheds[id].start_datetime).replace(" ", "\\t")
-      );
       _form.find('[name="id"]').val(id);
       _form.find('[name="title"]').val(scheds[id].title);
       _form.find('[name="description"]').val(scheds[id].description);
