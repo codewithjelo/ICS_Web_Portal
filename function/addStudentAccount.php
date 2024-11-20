@@ -7,19 +7,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Sanitize input to prevent SQL injection
     $lrn = $conn->real_escape_string($_POST['student_lrn']);
     $password = $conn->real_escape_string($_POST['password']);
-    $confirmPassword = $conn->real_escape_string($_POST['confirm_password']);
-    $student_id = $conn->real_escape_string($_POST['student_id_lrn']);
+    $confirm_password = $conn->real_escape_string($_POST['confirm_password']);
+    $student_id = $conn->real_escape_string($_POST['student_id']);
 
     // Validate if the passwords match
-    if ($password !== $confirmPassword) {
+    if ($password !== $confirm_password) {
         $_SESSION['error_message'] = "Passwords do not match.";
-        header("Location: ../pages/guidanceDashboard.php");
+        header("Location: ../pages/guidanceDashboard");
     }
 
     // Validate if the LRN is exactly 12 digits
     if (!preg_match('/^\d{12}$/', $lrn)) {
         $_SESSION['error_message'] = "Invalid LRN. LRN must be exactly 12 digits.";
-        header("Location: ../pages/guidanceDashboard.php");
+        header("Location: ../pages/guidanceDashboard");
     }
 
     // Hash the password for security
@@ -48,20 +48,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Set a success message and redirect
         $_SESSION['success_message'] = "Student account successfully created!";
-        header("Location: ../pages/guidanceDashboard.php");
+        header("Location: ../pages/guidanceDashboard");
     } catch (Exception $e) {
         // If there is an error, rollback the transaction
         $conn->rollback();
 
         // Set an error message and redirect back to the form
         $_SESSION['error_message'] = $e->getMessage();
-        header("Location: ../pages/guidanceDashboard.php");
+        header("Location: ../pages/guidanceDashboard");
     }
 
 } else {
     // If accessed without POST request, redirect back
     $_SESSION['error_message'] = "Invalid request method.";
-    header("Location: ../pages/guidanceDashboard.php");
+    header("Location: ../pages/guidanceDashboard");
 }
 
 // Close the connection
