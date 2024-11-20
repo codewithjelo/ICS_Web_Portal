@@ -28,7 +28,7 @@
 
                         <div class="mb-3">
                             <label for="section" class="form-label">Schedule</label>
-                            <input class="form-control" type="file" id="uploadSchedule" name="upload-schedule" accept=".xls, .xlsx" required>
+                            <input class="form-control" type="file" id="uploadSchedule" name="upload_schedule" accept=".xls, .xlsx" required>
                         </div>
 
                         <button type="submit" class="btn btn-primary w-100">Submit</button>
