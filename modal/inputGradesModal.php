@@ -7,22 +7,10 @@
     <title>Input Grades - ICS Teacher Portal</title>
     <link rel="stylesheet" href="../css/inputGradesModal.css">
     <script src="../js/gradeLevelSelect.js"></script>
+    <script src="../js/subjectSelect.js"></script>
 </head>
 
 <body>
-    <?php if (isset($_SESSION['success_message'])): ?>
-        <script>
-            $(document).ready(function() {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success!',
-                    text: '<?php echo $_SESSION['success_message']; ?>',
-                    confirmButtonText: 'OK'
-                });
-            });
-        </script>
-        <?php unset($_SESSION['success_message']); ?>
-    <?php endif; ?>
     <div class="modal fade modal-lg" id="inputGradesModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -31,25 +19,34 @@
                     <button type="button" class="btn-close position-absolute top-0 end-0" style="top: 25px !important; right: 25px !important;" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="../function/inputGrades.php" method="POST" enctype="multipart/form-data">
+                <div class="form-container">
+                    <form id="uploadScheduleForm" action="../function/uploadGrades.php" method="POST" enctype="multipart/form-data">
+
                         <div class="mb-3">
-                            <label for="gradeSelect" class="form-label">Grade Level</label>
-                            <select class="form-select" id="gradeSelect" name="grade_select">
-                                <option selected>Grade Level</option>
+                            <?php $teacher_id = $_SESSION['get_user_id']; ?>
+                            <input type="hidden" name="teacher_id_input_grades" value="<?php echo $teacher_id ?>">
+                            <label for="sectionInputGrades" class="form-label">Section</label>
+                            <select class="form-select" id="sectionInputGrades" name="section_input_grades" required>
+                                <option selected disabled>Select</option>
                             </select>
                         </div>
+
                         <div class="mb-3">
-                            <label for="sectionSelect" class="form-label">Section</label>
-                            <select class="form-select" id="sectionSelect" name="section_select">
-                                <option selected>Section</option>
+                            <label for="subjectInputGrades" class="form-label">Subject</label>
+                            <select class="form-select" id="subjectInputGrades" name="subject_input_grades" required>
+                                <option selected disabled>Select</option>
                             </select>
                         </div>
+
                         <div class="mb-3">
-                            <label a="formFile" class="form-label">Upload CSV File</label>
-                            <input class="form-control" type="file" id="formFile" accept=".csv" name="upload_grade">
+                            <label for="section" class="form-label">Upload Grades</label>
+                            <input class="form-control" type="file" id="uploadInputGrades" name="upload_input_grades" accept=".xls, .xlsx" required>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">Post</button>
+
+                        <button type="submit" class="btn btn-primary w-100">Submit</button>
+
                     </form>
+                </div>
                 </div>
             </div>
         </div>
