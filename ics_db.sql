@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 12, 2024 at 02:05 PM
+-- Host: 127.0.0.1:3308
+-- Generation Time: Nov 20, 2024 at 01:36 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -28,8 +28,6 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `account` (
-  `account_id` int(11) NOT NULL,
-  `email` varchar(255) NOT NULL,
   `user_id` varchar(20) NOT NULL,
   `user_password` varchar(255) NOT NULL,
   `role_id` int(11) DEFAULT NULL
@@ -39,82 +37,82 @@ CREATE TABLE `account` (
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`account_id`, `email`, `user_id`, `user_password`, `role_id`) VALUES
-(1, 'xenonlasnotche@gmail.com', 'ICS-PDO6001', '$2y$10$7MqZFzFhjaY6yVOaRmPV9.3Dj8kvbuFqNh472hWAZ64Jb/i1BDuLS', 6),
-(2, '', 'ICS-PRI5001', '$2y$10$QKNp82g47r0oFSx5oqLUve1ZOnrdFa26jhMV24kaoaO/e3Owp26rC', 5),
-(3, '', 'ICS-GUI4001', '$2y$10$6uIqfq6B2ERsVCcyK5Co4.yv7Wx0iB8DNrv35HHLq1pfcY1/9gKL2', 4),
-(4, '', 'ICS-TCH3001', '$2y$10$4sotJRcLVZg7xI1EJQzvWefgIIAjAlt7Kw2K7/7ceyAaDawZ27GHO', 3),
-(5, '', 'ICS-TCH3002', '$2y$10$mZG81yqcD9csKnDlhnmxIOVVg8tSDdbJRLmKq6TcjIIcN0oRHmmNm', 3),
-(6, '', 'ICS-TCH3003', '$2y$10$Zp6bPOTMxyNQjDft2wr7Qu3Zy86.egxp47RHetTyEi5FI7ShTgtAS', 3),
-(7, '', 'ICS-TCH3004', '$2y$10$QCcJdujOHF4crENg9i/dEepp2amjjm5o38ZjCxRopTlAamy9jP4xi', 3),
-(8, '', 'ICS-TCH3005', '$2y$10$c60lc9sm2z3xrcrmOFrjk.V/IUORvtuuWVuz.2g75PHau1G6TSjha', 3),
-(9, '', 'ICS-TCH3006', '$2y$10$Du6wOwYMyQ83X97W64OHtuGOAelIRE6md2KqvoPygXIWLah.Mm1ge', 3),
-(10, '', 'ICS-TCH3007', '$2y$10$vDgq3Nq0NAwVfAaZuT.PYexJ0Dy6EhN.InlrYJGvwhDHLh3f2SA0W', 3),
-(11, '', 'ICS-TCH3008', '$2y$10$6PaHkHFIs3gqqeddt.svHO1v9bRwZuM79oSnP7bZPgI5G7XUoRTOO', 3),
-(12, '', 'ICS-TCH3009', '$2y$10$YNfMLgovsTLjFBJe.Kad6eEPgiqCPEnNFrNwK9hjXIAnBsmlhNVQi', 3),
-(13, '', 'ICS-TCH3010', '$2y$10$4iU1j0WlVZtSKyWtQW2kbevJ5wPViIYJ0TjsmAgX02hXOhUwQBABa', 3),
-(14, '', 'ICS-TCH3011', '$2y$10$iG./1O7BUXgFJAeL5Jvrm.fvHuS2U5cajWwNsPzN/jJ5j5Lj0/1qS', 3),
-(15, '', 'ICS-TCH3012', '$2y$10$KX.brFXCPfQogw2LFwxmTOkDtHptAuTVCqaC6z1ob.R1/5ByrpNPS', 3),
-(16, '', 'ICS-TCH3013', '$2y$10$JpneWxzL2Ca1Dg4oT3TPNOWdwMmGd3WeqsBrl1uUJhRnDkI7KauKq', 3),
-(17, '', 'ICS-TCH3014', '$2y$10$HfaZSdLZ0i.7JTL0aRv5je7sAyiUztoAmOOfRRcYlbzIdzYYcr4dO', 3),
-(18, '', 'ICS-TCH3015', '$2y$10$WBI8iBq4egCBBTzcM4ye0Ol5gh.Apdg/xLeo2S3853j7mG0B.RZZW', 3),
-(19, '', 'ICS-TCH3016', '$2y$10$4V3fkM7SWT9iXHPpz7BAzuF7OOsBSQFYE3vU8mP1nygoDfplCPTBi', 3),
-(20, '', 'ICS-TCH3017', '$2y$10$yFBsfhPlwTOU0FSPzq0Pq.i/s05HD9rLl/sgXtxeU4aL1bk4o3ZCy', 3),
-(21, '', 'ICS-TCH3018', '$2y$10$siBq0djeirXKtMCABudr5.CcAnx4QJEGwXgv001bdwJtgnrGd0huW', 3),
-(22, '', '100000000001', '$2y$10$BhMG8S84gjHmebYEbZ9AQuaXDHvLZLLGyAJDz4tauSJzeeRuoq4Xe', 1),
-(23, 'amanoginji443@gmail.com', '100000000002', '$2y$10$RplFkgdfGN9D43VHZana8OKogH1j9tOSFnF0S/aCBPg0qvcbepaOC', 1),
-(24, 'kodydespati@gmail.com', '100000000003', '$2y$10$CjzhnQkWem5Qbz/bMtsO8.mtUI37qpMKXjFwd.KXMf.Ug93uVGNMy', 1),
-(25, '', '100000000004', '$2y$10$aQppQqkupyVgsgG0SC./I.v1LdhUCba9N1qib28VqRLw7hergbuOS', 1),
-(26, '', '100000000005', '$2y$10$MRcbDqKsDt2INcS71pd1veFWfABnICthbD2hPmiZvk031pP7upU96', 1),
-(27, '', '100000000006', '$2y$10$6FKuim6pxUAHw4I3qNP9uOMd9mMV.VvOfKNIkOo74m9lathq2t3Nu', 1),
-(28, '', '100000000007', '$2y$10$pjwaMjodXZomKybnuHzvCOYnfvmf3bIDO.UM4jJz2Btq4GNMh0R/2', 1),
-(29, '', '100000000008', '$2y$10$/o9m.2OmvJ/KXlVM6yH86e0e2CDPfnAMLukohMkMg.6odFkTLEFnO', 1),
-(30, '', '100000000009', '$2y$10$EEFsbsxV3Uy1Bvh2w4rxRe16nMm0lbk8P83QQ4MTSpYpqaunkNfVW', 1),
-(31, '', '100000000010', '$2y$10$dUlE9tklddCbBx1cuPB5qOh0LA.hb21fqDw/1/PJSmEDUZiIfP9Jm', 1),
-(32, '', '100000000011', '$2y$10$zPos4pYcQh5c0hFcPN5DbuDljpkuxnxmQHhpoS4t7QccromFCma9K', 1),
-(33, '', '100000000012', '$2y$10$YQ90Nd/0bkBM4JforGNXHu8m9CFLb27H.3SogYJ/b5nm3hNWPuzXK', 1),
-(34, '', '100000000013', '$2y$10$vk3lkKTwWTWR0/i1xsy3meNPNt8F2fEzzvAjNt./BhS81MG6Nt6ou', 1),
-(35, '', '100000000014', '$2y$10$okIqUHL2lO/4CF7wh8.YSuZNb12bxmgAVLPCyCwbQuglLENooBVf2', 1),
-(36, '', '100000000015', '$2y$10$dePjILm2lDxfVKjT.lwHPeisv44HflBLu4iPlHT/REj/s116PNmZe', 1),
-(37, '', '100000000016', '$2y$10$ABSC6Rgat7FcJg3oplasnuFrNOGVxhbJn.QCQqCWAZoAaAgyLD99.', 1),
-(38, '', '100000000017', '$2y$10$aqTHCo8VrzkpzEN8isbaa.YK3pB783tGtf8wivhiZscm2EqgujntS', 1),
-(39, '', '100000000018', '$2y$10$sgFadQ6gs36KlFfvvAWduex0hJ5bX0/Zjj1O2DbDTFnh/3U48jKoW', 1),
-(40, '', '100000000019', '$2y$10$uZiNHcmeR4J0Mbaby/7I2eiHISAEbtBTCwVsFaIhPC62fURyISQFG', 1),
-(41, '', '100000000020', '$2y$10$bu/n/gi2pXhhNEz5F7.es.d9uoMuf9dQlhwAKL.GyWtVENr8meqvi', 1),
-(42, '', '100000000021', '$2y$10$cvvsf5A5EPay8ICZkU.7Iuzskq9DtA9AtFlowZikk3xzG2PZiCqsm', 1),
-(43, '', '100000000022', '$2y$10$zKu/MOEpYcPLCbrHmNWer.uLmM6uaETkd5ncwo3HatLlSr/5gzNja', 1),
-(44, '', '100000000023', '$2y$10$jwV6iCE3ucGdtUR.WWVkmOJ5AP8f6u4uTrdC1.7Mn5YpFvGGyxytu', 1),
-(45, '', '100000000024', '$2y$10$fY.jzQ3Vs1MeGv6VymrhXOTy9GrA98FvvsPT7hdEbf505Few2a4Nq', 1),
-(46, '', '100000000025', '$2y$10$xX7LmRkYh9f6TyoT408dHekskSqH9XvPLXiKWL.G9vu4QD.GTiOPC', 1),
-(47, '', '100000000026', '$2y$10$sBHanhwxh0aeC55ea7UWuOluaQzo64uybZ0jGYnsc/IzwByuNdNhC', 1),
-(48, '', '100000000027', '$2y$10$pgX/HddPugKuoSpfEpiPh.WaBKtRRzTolWyZ7HGDi/tsTuFQA5ZXm', 1),
-(49, '', '100000000028', '$2y$10$zZUltvElh35GJF.e35PUE.YQt0rMVWgxbClGl.DiD7cgBWF7ep8gO', 1),
-(50, '', '100000000029', '$2y$10$8dypi4iFnHg3IPfL1QzV0OUPXA9Lc7fgc8E.pahdCu8UMw4Wiyb/O', 1),
-(51, '', '100000000030', '$2y$10$ZF9dMZR//UzQmy4glWsHxOASyNbDtWGaNVS8NbGviMMt/PkXp677W', 1),
-(52, '', '100000000031', '$2y$10$YShVS6aTyueEBQX4D6fp8OMjxc8d8EIKIf9XC/Fy5E5YJyH6bllUq', 1),
-(53, '', '100000000032', '$2y$10$cNkpVLIj8NVETJ/NTTX9NeUvC/B0pHqfT6e7WLchMI8BgREvwGKqW', 1),
-(54, '', '100000000033', '$2y$10$vkgPPKcLQIanaovkGpCxfepRFpW9roYob.pnorBNUPH0qCpxmbhLy', 1),
-(55, '', '100000000034', '$2y$10$w//W6l1Qo.OSAzENZWxJoOJSofoNXRMuutqIyt1hdJsid49nxjRKW', 1),
-(56, '', '100000000035', '$2y$10$UoHgYK9eTOG3Sx44r8gFo.c66u8SwSJXC6Zuqn1sXIjxNorVsnrwe', 1),
-(57, '', '100000000036', '$2y$10$FOlOYIVAbAXc2LjY6D/PReGKrfN0pTQAL.NrbWt4z7DnnZxMGCavC', 1),
-(58, '', '100000000037', '$2y$10$arRbVVLHwjqYYh/En16wLeOLwB7Rg2JtWohQGROOJeFdn8DSiYgqe', 1),
-(59, '', '100000000038', '$2y$10$2tP6W9z70JauT5qpWux.gOo.ZnWDHFmuUZ5p8xP/HhiV7YUo9LSgK', 1),
-(60, '', '100000000039', '$2y$10$SWFJMj.6GKYgfb4ZAbxG6eAvsUt20lN3iBcJKeyoZq93pspHPCE8m', 1),
-(61, '', '100000000040', '$2y$10$7dihSO0h8nNvgPzJ4Fe6HuCHyLoPLHw.Xs.WZB4WBj6B92YP6SGBm', 1),
-(62, '', '100000000041', '$2y$10$YVOBrFzVFMfdmIWG5gAXzubN5zZTL4EQoqJ0crUjF0pL3OAFqwFBi', 1),
-(63, '', '100000000042', '$2y$10$gvzAcatf4E2E8b0z06pQf.W.wsx4hknvNauTxT4WTLVUehACsUU1e', 1),
-(64, '', '100000000043', '$2y$10$0oAFEgqehkYfPbMw/Bm3WucvcBxmZ5ZP59so764S7zQO77GI2vi2S', 1),
-(65, '', '100000000044', '$2y$10$UWEm.fyw2uM7wsxPMt1/F.2sxF2WLGABQg8r.jNyyWN/WqZrJujvC', 1),
-(66, '', '100000000045', '$2y$10$xsjOtbZfVzvj1DntnrDea./tK.AndIdGakLtAebyWEdp9z3ndMmm2', 1),
-(67, '', '100000000046', '$2y$10$6EB1Xby5rhY6xmaSLX2jKuEvTypU2fn2OK9JCghbqB/lbJk9pzgoe', 1),
-(68, '', '100000000047', '$2y$10$E40L3s/FnG6wSj7RdJeji.zUTeGvTtbfToFqBiwnDGACafmTHKc3.', 1),
-(69, '', '100000000048', '$2y$10$UJwlioS8V/FIGSwuF5kpFupjxMTqevQIM7dh3xMMyYLQubHcKoDJK', 1),
-(70, '', '100000000049', '$2y$10$1bsAlz5wzZPxWp2hzJloGuyB79izFqVK.zdNmoKHaDJNxVPfOZd8K', 1),
-(71, '', '100000000050', '$2y$10$Sh5bOn17JSvxlwxjKyXzKub7DpDVaLa/UWt8RCMlI566HbCX33gdq', 1),
-(72, '', '100000000051', '$2y$10$/Br9tmCAg4ldUeARw.5VOOiKgXb1omx1PdlXAQx4/0lQ8g1BlhKAi', 1),
-(73, '', '100000000052', '$2y$10$eaIG5BuU97THViwXq7xy8elisu0oeO2zUdfXmbggRXhi8HnSPWZ/S', 1),
-(74, '', '100000000053', '$2y$10$gIOgEQc8nUtR3uy0UXmsB.t.sJ5uwhbVN.K7VgAeGBFvrHUkZFuOa', 1),
-(75, '', '100000000054', '$2y$10$BeHlvQ9V31LLAbN4VQ39cOUtts1.Kd6M2TAjS4uneqTybZupiiI8e', 1);
+INSERT INTO `account` (`user_id`, `user_password`, `role_id`) VALUES
+('100000000001', '$2y$10$BhMG8S84gjHmebYEbZ9AQuaXDHvLZLLGyAJDz4tauSJzeeRuoq4Xe', 1),
+('100000000002', '$2y$10$RplFkgdfGN9D43VHZana8OKogH1j9tOSFnF0S/aCBPg0qvcbepaOC', 1),
+('100000000003', '$2y$10$CjzhnQkWem5Qbz/bMtsO8.mtUI37qpMKXjFwd.KXMf.Ug93uVGNMy', 1),
+('100000000004', '$2y$10$aQppQqkupyVgsgG0SC./I.v1LdhUCba9N1qib28VqRLw7hergbuOS', 1),
+('100000000005', '$2y$10$MRcbDqKsDt2INcS71pd1veFWfABnICthbD2hPmiZvk031pP7upU96', 1),
+('100000000006', '$2y$10$6FKuim6pxUAHw4I3qNP9uOMd9mMV.VvOfKNIkOo74m9lathq2t3Nu', 1),
+('100000000007', '$2y$10$pjwaMjodXZomKybnuHzvCOYnfvmf3bIDO.UM4jJz2Btq4GNMh0R/2', 1),
+('100000000008', '$2y$10$/o9m.2OmvJ/KXlVM6yH86e0e2CDPfnAMLukohMkMg.6odFkTLEFnO', 1),
+('100000000009', '$2y$10$EEFsbsxV3Uy1Bvh2w4rxRe16nMm0lbk8P83QQ4MTSpYpqaunkNfVW', 1),
+('100000000010', '$2y$10$dUlE9tklddCbBx1cuPB5qOh0LA.hb21fqDw/1/PJSmEDUZiIfP9Jm', 1),
+('100000000011', '$2y$10$zPos4pYcQh5c0hFcPN5DbuDljpkuxnxmQHhpoS4t7QccromFCma9K', 1),
+('100000000012', '$2y$10$YQ90Nd/0bkBM4JforGNXHu8m9CFLb27H.3SogYJ/b5nm3hNWPuzXK', 1),
+('100000000013', '$2y$10$vk3lkKTwWTWR0/i1xsy3meNPNt8F2fEzzvAjNt./BhS81MG6Nt6ou', 1),
+('100000000014', '$2y$10$okIqUHL2lO/4CF7wh8.YSuZNb12bxmgAVLPCyCwbQuglLENooBVf2', 1),
+('100000000015', '$2y$10$dePjILm2lDxfVKjT.lwHPeisv44HflBLu4iPlHT/REj/s116PNmZe', 1),
+('100000000016', '$2y$10$ABSC6Rgat7FcJg3oplasnuFrNOGVxhbJn.QCQqCWAZoAaAgyLD99.', 1),
+('100000000017', '$2y$10$aqTHCo8VrzkpzEN8isbaa.YK3pB783tGtf8wivhiZscm2EqgujntS', 1),
+('100000000018', '$2y$10$sgFadQ6gs36KlFfvvAWduex0hJ5bX0/Zjj1O2DbDTFnh/3U48jKoW', 1),
+('100000000019', '$2y$10$uZiNHcmeR4J0Mbaby/7I2eiHISAEbtBTCwVsFaIhPC62fURyISQFG', 1),
+('100000000020', '$2y$10$bu/n/gi2pXhhNEz5F7.es.d9uoMuf9dQlhwAKL.GyWtVENr8meqvi', 1),
+('100000000021', '$2y$10$cvvsf5A5EPay8ICZkU.7Iuzskq9DtA9AtFlowZikk3xzG2PZiCqsm', 1),
+('100000000022', '$2y$10$zKu/MOEpYcPLCbrHmNWer.uLmM6uaETkd5ncwo3HatLlSr/5gzNja', 1),
+('100000000023', '$2y$10$jwV6iCE3ucGdtUR.WWVkmOJ5AP8f6u4uTrdC1.7Mn5YpFvGGyxytu', 1),
+('100000000024', '$2y$10$fY.jzQ3Vs1MeGv6VymrhXOTy9GrA98FvvsPT7hdEbf505Few2a4Nq', 1),
+('100000000025', '$2y$10$xX7LmRkYh9f6TyoT408dHekskSqH9XvPLXiKWL.G9vu4QD.GTiOPC', 1),
+('100000000026', '$2y$10$sBHanhwxh0aeC55ea7UWuOluaQzo64uybZ0jGYnsc/IzwByuNdNhC', 1),
+('100000000027', '$2y$10$pgX/HddPugKuoSpfEpiPh.WaBKtRRzTolWyZ7HGDi/tsTuFQA5ZXm', 1),
+('100000000028', '$2y$10$zZUltvElh35GJF.e35PUE.YQt0rMVWgxbClGl.DiD7cgBWF7ep8gO', 1),
+('100000000029', '$2y$10$8dypi4iFnHg3IPfL1QzV0OUPXA9Lc7fgc8E.pahdCu8UMw4Wiyb/O', 1),
+('100000000030', '$2y$10$ZF9dMZR//UzQmy4glWsHxOASyNbDtWGaNVS8NbGviMMt/PkXp677W', 1),
+('100000000031', '$2y$10$YShVS6aTyueEBQX4D6fp8OMjxc8d8EIKIf9XC/Fy5E5YJyH6bllUq', 1),
+('100000000032', '$2y$10$cNkpVLIj8NVETJ/NTTX9NeUvC/B0pHqfT6e7WLchMI8BgREvwGKqW', 1),
+('100000000033', '$2y$10$vkgPPKcLQIanaovkGpCxfepRFpW9roYob.pnorBNUPH0qCpxmbhLy', 1),
+('100000000034', '$2y$10$w//W6l1Qo.OSAzENZWxJoOJSofoNXRMuutqIyt1hdJsid49nxjRKW', 1),
+('100000000035', '$2y$10$UoHgYK9eTOG3Sx44r8gFo.c66u8SwSJXC6Zuqn1sXIjxNorVsnrwe', 1),
+('100000000036', '$2y$10$FOlOYIVAbAXc2LjY6D/PReGKrfN0pTQAL.NrbWt4z7DnnZxMGCavC', 1),
+('100000000037', '$2y$10$arRbVVLHwjqYYh/En16wLeOLwB7Rg2JtWohQGROOJeFdn8DSiYgqe', 1),
+('100000000038', '$2y$10$2tP6W9z70JauT5qpWux.gOo.ZnWDHFmuUZ5p8xP/HhiV7YUo9LSgK', 1),
+('100000000039', '$2y$10$SWFJMj.6GKYgfb4ZAbxG6eAvsUt20lN3iBcJKeyoZq93pspHPCE8m', 1),
+('100000000040', '$2y$10$7dihSO0h8nNvgPzJ4Fe6HuCHyLoPLHw.Xs.WZB4WBj6B92YP6SGBm', 1),
+('100000000041', '$2y$10$YVOBrFzVFMfdmIWG5gAXzubN5zZTL4EQoqJ0crUjF0pL3OAFqwFBi', 1),
+('100000000042', '$2y$10$gvzAcatf4E2E8b0z06pQf.W.wsx4hknvNauTxT4WTLVUehACsUU1e', 1),
+('100000000043', '$2y$10$0oAFEgqehkYfPbMw/Bm3WucvcBxmZ5ZP59so764S7zQO77GI2vi2S', 1),
+('100000000044', '$2y$10$UWEm.fyw2uM7wsxPMt1/F.2sxF2WLGABQg8r.jNyyWN/WqZrJujvC', 1),
+('100000000045', '$2y$10$xsjOtbZfVzvj1DntnrDea./tK.AndIdGakLtAebyWEdp9z3ndMmm2', 1),
+('100000000046', '$2y$10$6EB1Xby5rhY6xmaSLX2jKuEvTypU2fn2OK9JCghbqB/lbJk9pzgoe', 1),
+('100000000047', '$2y$10$E40L3s/FnG6wSj7RdJeji.zUTeGvTtbfToFqBiwnDGACafmTHKc3.', 1),
+('100000000048', '$2y$10$UJwlioS8V/FIGSwuF5kpFupjxMTqevQIM7dh3xMMyYLQubHcKoDJK', 1),
+('100000000049', '$2y$10$1bsAlz5wzZPxWp2hzJloGuyB79izFqVK.zdNmoKHaDJNxVPfOZd8K', 1),
+('100000000050', '$2y$10$Sh5bOn17JSvxlwxjKyXzKub7DpDVaLa/UWt8RCMlI566HbCX33gdq', 1),
+('100000000051', '$2y$10$/Br9tmCAg4ldUeARw.5VOOiKgXb1omx1PdlXAQx4/0lQ8g1BlhKAi', 1),
+('100000000052', '$2y$10$eaIG5BuU97THViwXq7xy8elisu0oeO2zUdfXmbggRXhi8HnSPWZ/S', 1),
+('100000000053', '$2y$10$gIOgEQc8nUtR3uy0UXmsB.t.sJ5uwhbVN.K7VgAeGBFvrHUkZFuOa', 1),
+('100000000054', '$2y$10$BeHlvQ9V31LLAbN4VQ39cOUtts1.Kd6M2TAjS4uneqTybZupiiI8e', 1),
+('ICS-GUI4001', '$2y$10$6uIqfq6B2ERsVCcyK5Co4.yv7Wx0iB8DNrv35HHLq1pfcY1/9gKL2', 4),
+('ICS-PDO6001', '$2y$10$7MqZFzFhjaY6yVOaRmPV9.3Dj8kvbuFqNh472hWAZ64Jb/i1BDuLS', 6),
+('ICS-PRI5001', '$2y$10$QKNp82g47r0oFSx5oqLUve1ZOnrdFa26jhMV24kaoaO/e3Owp26rC', 5),
+('ICS-TCH3001', '$2y$10$4sotJRcLVZg7xI1EJQzvWefgIIAjAlt7Kw2K7/7ceyAaDawZ27GHO', 3),
+('ICS-TCH3002', '$2y$10$mZG81yqcD9csKnDlhnmxIOVVg8tSDdbJRLmKq6TcjIIcN0oRHmmNm', 3),
+('ICS-TCH3003', '$2y$10$Zp6bPOTMxyNQjDft2wr7Qu3Zy86.egxp47RHetTyEi5FI7ShTgtAS', 3),
+('ICS-TCH3004', '$2y$10$QCcJdujOHF4crENg9i/dEepp2amjjm5o38ZjCxRopTlAamy9jP4xi', 3),
+('ICS-TCH3005', '$2y$10$c60lc9sm2z3xrcrmOFrjk.V/IUORvtuuWVuz.2g75PHau1G6TSjha', 3),
+('ICS-TCH3006', '$2y$10$Du6wOwYMyQ83X97W64OHtuGOAelIRE6md2KqvoPygXIWLah.Mm1ge', 3),
+('ICS-TCH3007', '$2y$10$vDgq3Nq0NAwVfAaZuT.PYexJ0Dy6EhN.InlrYJGvwhDHLh3f2SA0W', 3),
+('ICS-TCH3008', '$2y$10$6PaHkHFIs3gqqeddt.svHO1v9bRwZuM79oSnP7bZPgI5G7XUoRTOO', 3),
+('ICS-TCH3009', '$2y$10$YNfMLgovsTLjFBJe.Kad6eEPgiqCPEnNFrNwK9hjXIAnBsmlhNVQi', 3),
+('ICS-TCH3010', '$2y$10$4iU1j0WlVZtSKyWtQW2kbevJ5wPViIYJ0TjsmAgX02hXOhUwQBABa', 3),
+('ICS-TCH3011', '$2y$10$iG./1O7BUXgFJAeL5Jvrm.fvHuS2U5cajWwNsPzN/jJ5j5Lj0/1qS', 3),
+('ICS-TCH3012', '$2y$10$KX.brFXCPfQogw2LFwxmTOkDtHptAuTVCqaC6z1ob.R1/5ByrpNPS', 3),
+('ICS-TCH3013', '$2y$10$JpneWxzL2Ca1Dg4oT3TPNOWdwMmGd3WeqsBrl1uUJhRnDkI7KauKq', 3),
+('ICS-TCH3014', '$2y$10$HfaZSdLZ0i.7JTL0aRv5je7sAyiUztoAmOOfRRcYlbzIdzYYcr4dO', 3),
+('ICS-TCH3015', '$2y$10$WBI8iBq4egCBBTzcM4ye0Ol5gh.Apdg/xLeo2S3853j7mG0B.RZZW', 3),
+('ICS-TCH3016', '$2y$10$4V3fkM7SWT9iXHPpz7BAzuF7OOsBSQFYE3vU8mP1nygoDfplCPTBi', 3),
+('ICS-TCH3017', '$2y$10$yFBsfhPlwTOU0FSPzq0Pq.i/s05HD9rLl/sgXtxeU4aL1bk4o3ZCy', 3),
+('ICS-TCH3018', '$2y$10$siBq0djeirXKtMCABudr5.CcAnx4QJEGwXgv001bdwJtgnrGd0huW', 3);
 
 -- --------------------------------------------------------
 
@@ -139,48 +137,7 @@ CREATE TABLE `announcements` (
 
 INSERT INTO `announcements` (`announcement_id`, `title`, `announcement_text`, `announcement_file`, `created_at`, `updated_at`, `full_name`, `rank_name`) VALUES
 (1, 'Test 1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', '../announcement/Sisig.jpg', '2024-09-28 09:36:30', '2024-10-21 14:13:18', 'Maranan, Bien Q.', 'Principal IV'),
-(2, 'School Year 2024 Enrollment Scheduledsada', 'We are pleased to inform you that enrollment for the School Year 2024-2025 is now open! Key Dates: October 1: Start of Early Enrollment for returning students  October 15: Regular Enrollment for new students  November 5: Classes begin Please ensure to submit all the necessary requirements before the deadline. You can access the enrollment portal via the school’s website. Jelo\\\'s Sari-sari storernrnrnjfgjfgjf', '../announcement/', '2024-09-28 10:42:19', '2024-10-21 14:13:21', 'Maranan, Bien Q.', 'Principal IV'),
-(10, 'asdsadad', 'dsadad', '../announcement/', '2024-09-29 12:25:06', '2024-10-21 14:13:23', 'Maranan, Bien Q.', 'Principal IV'),
-(11, 'asdada', 'dasdadasd', '../announcement/Sisig.jpg', '2024-09-29 12:25:20', '2024-10-21 14:13:25', 'Maranan, Bien Q.', 'Principal IV'),
-(12, 'sdasdasd', 'GASFAJISFNAskLF\r\n\r\nASDASDSA\r\n\r\n\r\nSDASDA', '../announcement/', '2024-09-29 12:25:41', '2024-10-21 14:13:27', 'Maranan, Bien Q.', 'Principal IV'),
-(14, 'Lamangan 1', 'Nanlalamang na naman i2ng dalawa like wtF!!..\r\n\r\n\r\n#whenULIT\r\n#FKLEZZGo', '../announcement/', '2024-10-01 14:38:56', '2024-10-21 14:13:30', 'Maranan, Bien Q.', 'Principal IV'),
-(15, 'Hello', 'This is my announcement', '../announcement/', '2024-10-21 14:33:34', '2024-10-21 14:33:34', 'Bartolome, John Joshua C.', 'Guidance Counselor'),
-(16, 'LFG', 'ANNOUNCEMENT EXAMPLE', './announcement/touhoushalliteachyoufear.jpg', '2024-11-10 03:50:03', '2024-11-10 03:50:03', 'mercado, ken m.', 'Guidance Counselor'),
-(17, 'sdasda', 'asdadasd', './announcement/touhoublackmoonrider.jpg', '2024-11-10 03:58:03', '2024-11-10 03:58:03', 'mercado, ken m.', 'Guidance Counselor'),
-(18, 'sdasdasd', 'asdsadad', './announcement/', '2024-11-10 03:58:41', '2024-11-10 03:58:41', 'mercado, ken m.', 'Guidance Counselor'),
-(19, 'gghjghjghj', 'sddad', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-11 11:20:20', '2024-11-11 11:20:20', 'mercado, ken m.', 'Guidance Counselor'),
-(20, 'hello world', 'sdads', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:00:40', '2024-11-12 10:00:40', 'mercado, ken m.', 'Guidance Counselor'),
-(21, 'sddads', 'sdadsad', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:02:23', '2024-11-12 10:02:23', 'mercado, ken m.', 'Guidance Counselor'),
-(24, 'sdasda', 'sdadsad', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:11:16', '2024-11-12 10:11:16', 'mercado, ken m.', 'Guidance Counselor'),
-(25, 'sdads', 'ddddddddddddddddd', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:13:50', '2024-11-12 10:13:50', 'mercado, ken m.', 'Guidance Counselor'),
-(26, 'sdadsadasdasd', 'dasdas', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:15:14', '2024-11-12 10:15:14', 'mercado, ken m.', 'Guidance Counselor'),
-(27, 'sddasd', 'sdasdda', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:17:49', '2024-11-12 10:17:49', 'mercado, ken m.', 'Guidance Counselor'),
-(28, 'lets go! ', 'dddddddddddddd', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:18:02', '2024-11-12 10:18:02', 'mercado, ken m.', 'Guidance Counselor'),
-(29, 'sssssssssssssss', 'bgbbbb', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:19:00', '2024-11-12 10:19:00', 'dimagiba, drake Q.', 'Principal IV'),
-(30, 'dddddddddddd', 'dddddddd', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:19:47', '2024-11-12 10:19:47', 'dimagiba, drake Q.', 'Principal IV'),
-(31, 'sdsdd', 'sdsdsd', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:20:11', '2024-11-12 10:20:11', 'mercado, ken m.', 'Guidance Counselor'),
-(32, 'rrrrrrrrrrrrr', 'rrrrrrrrrrrr', './announcement/touhoushalliteachyoufear.jpg', '2024-11-12 10:20:28', '2024-11-12 10:20:28', 'dimagiba, drake Q.', 'Principal IV'),
-(33, 'ssssssssssssssssssssssssssssssssss', 'sssssssssssssssssss', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:21:26', '2024-11-12 10:21:26', 'dimagiba, drake Q.', 'Principal IV'),
-(34, 'oooooooooooooooooooooooo', 'ooooooooooooooooo', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:21:53', '2024-11-12 10:21:53', 'dimagiba, drake Q.', 'Principal IV'),
-(35, 'ssssssssssssssssss', 'sssssssssssss', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:22:49', '2024-11-12 10:22:49', 'dimagiba, drake Q.', 'Principal IV'),
-(36, 'ssssssss', 'sss', '../announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:23:14', '2024-11-12 10:23:14', 'dimagiba, drake Q.', 'Principal IV'),
-(37, 'ssssssssssssssssssssss', 'ddddddddddddddddddddd', '../announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:24:12', '2024-11-12 10:24:12', 'dimagiba, drake Q.', 'Principal IV'),
-(38, 'sssssssssssssssssssssssssssssssssssssssssssdddd', 'ddddddddddddddddddddvvvvvvvvvvv', '../announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:24:38', '2024-11-12 10:24:38', 'mercado, ken m.', 'Guidance Counselor'),
-(39, 'ssssssssssssssssssssss', 'ddddddddddddddddddddd', '../announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:26:10', '2024-11-12 10:26:10', 'mercado, ken m.', 'Guidance Counselor'),
-(40, 'ddddddddddd', 'ddssdsd', '../announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:28:17', '2024-11-12 10:28:17', '', ''),
-(41, 'ssssssssssssssssssss', 'cccccccccccccccccccccccccccccccc', '../announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:28:57', '2024-11-12 10:28:57', '', ''),
-(42, 'ppppppppppppp', 'pppppppppp', '../announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:31:27', '2024-11-12 10:31:27', '', ''),
-(43, 'sssssssssssssssss', 'fggggggggggggggggg', '../announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:37:16', '2024-11-12 10:37:16', '', ''),
-(44, 'ddddddd', 'ddddsss', '../announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:38:22', '2024-11-12 10:38:22', 'mercado, ken m.', 'Guidance Counselor'),
-(45, 'ffffffffffff', 'ddddddddd', '../announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:38:50', '2024-11-12 10:38:50', 'mercado, ken m.', 'Guidance Counselor'),
-(46, 'hhhhhhhhh', 'hhhhhh', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:40:27', '2024-11-12 10:40:27', 'mercado, ken m.', 'Guidance Counselor'),
-(47, 'hhhhhhhhhhh', 'hhhhhhhhhhh', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:40:48', '2024-11-12 10:40:48', '', ''),
-(48, 'mmmmmmmmmmm', 'mmmmmmmmmmmm', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:41:07', '2024-11-12 10:41:07', 'dimagiba, drake Q.', 'Principal IV'),
-(49, 'ffffffff', 'fffssd', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:41:57', '2024-11-12 10:41:57', 'dimagiba, drake Q.', 'Principal IV'),
-(50, 'bbb', 'bbbbbbb', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:42:15', '2024-11-12 10:42:15', 'mercado, ken m.', 'Guidance Counselor'),
-(51, 'fffffffffffff', 'fffffffff', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:51:23', '2024-11-12 10:51:23', 'mercado, ken m.', 'Guidance Counselor'),
-(52, 'ggggggggggggg', 'ggggggggg', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:51:47', '2024-11-12 10:51:47', 'dimagiba, drake Q.', 'Principal IV'),
-(53, 'ffffffffffffffffffffffffffff', 'fhbbbbbbbbbbbbbbbbbbbb', './announcement/465108667_1109069934111600_7000308353688477088_n.jpg', '2024-11-12 10:52:55', '2024-11-12 10:52:55', 'mercado, ken m.', 'Guidance Counselor');
+(2, 'School Year 2024 Enrollment Scheduledsada', 'We are pleased to inform you that enrollment for the School Year 2024-2025 is now open! Key Dates: October 1: Start of Early Enrollment for returning students  October 15: Regular Enrollment for new students  November 5: Classes begin Please ensure to submit all the necessary requirements before the deadline. You can access the enrollment portal via the school’s website. Jelo\\\'s Sari-sari storernrnrnjfgjfgjf', '../announcement/', '2024-09-28 10:42:19', '2024-10-21 14:13:21', 'Maranan, Bien Q.', 'Principal IV');
 
 -- --------------------------------------------------------
 
@@ -249,24 +206,27 @@ CREATE TABLE `class_schedule_archive` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `e_cert`
+-- Table structure for table `e_certificate`
 --
 
-CREATE TABLE `e_cert` (
-  `e_cert_id` int(11) NOT NULL,
-  `subject_id` int(11) DEFAULT NULL,
-  `student_id` int(11) DEFAULT NULL,
-  `lrn` bigint(12) DEFAULT NULL,
-  `e_cert` varchar(100) DEFAULT NULL,
-  `account_id` int(11) NOT NULL
+CREATE TABLE `e_certificate` (
+  `e_certificate_id` int(11) NOT NULL,
+  `e_certificate` text NOT NULL,
+  `full_name` varchar(100) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `teacher_id` int(11) NOT NULL,
+  `section_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `e_cert`
+-- Dumping data for table `e_certificate`
 --
 
-INSERT INTO `e_cert` (`e_cert_id`, `subject_id`, `student_id`, `lrn`, `e_cert`, `account_id`) VALUES
-(22, 0, 1010, 100000000010, 'ecert_6733018ca6c47.pdf', 4);
+INSERT INTO `e_certificate` (`e_certificate_id`, `e_certificate`, `full_name`, `student_id`, `teacher_id`, `section_id`) VALUES
+(11, '../student_certificate/certyyy.jpg', 'Dela Cruz, Elena D.', 1006, 3001, 2),
+(12, '../student_certificate/certyyy.jpg', 'Dela Cruz, Andres D.', 1003, 3001, 1),
+(13, '../student_certificate/certyyy.jpg', 'Dela Cruz, Luis D.', 1001, 3001, 1),
+(14, '../student_certificate/certyyy.jpg', 'Dela Cruz, Gabriel D.', 1009, 3001, 3);
 
 -- --------------------------------------------------------
 
@@ -303,7 +263,7 @@ INSERT INTO `grade` (`grade_id`, `student_id`, `subject_id`, `teacher_id`, `acad
 
 CREATE TABLE `grade_level` (
   `grade_level_id` int(11) NOT NULL,
-  `grade_level` int(11) DEFAULT NULL
+  `grade_level` varchar(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -311,12 +271,13 @@ CREATE TABLE `grade_level` (
 --
 
 INSERT INTO `grade_level` (`grade_level_id`, `grade_level`) VALUES
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4),
-(5, 5),
-(6, 6);
+(1, 'Kinder'),
+(2, '1'),
+(3, '2'),
+(4, '3'),
+(5, '4'),
+(6, '5'),
+(7, '6');
 
 -- --------------------------------------------------------
 
@@ -340,19 +301,6 @@ CREATE TABLE `guidance` (
 
 INSERT INTO `guidance` (`guidance_id`, `first_name`, `middle_name`, `last_name`, `email`, `role_id`, `rank_id`) VALUES
 (4001, 'ken', 'mercado', 'mercado', 'ken@gmail.com', 4, 18);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `ics_credential`
---
-
-CREATE TABLE `ics_credential` (
-  `account_id` int(11) NOT NULL,
-  `user_id` varchar(20) NOT NULL,
-  `user_password` varchar(50) NOT NULL,
-  `role_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -437,6 +385,30 @@ INSERT INTO `parent` (`parent_id`, `first_name`, `middle_name`, `last_name`, `em
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `parent_archive`
+--
+
+CREATE TABLE `parent_archive` (
+  `parent_archive_id` int(11) NOT NULL,
+  `parent_id` int(11) NOT NULL,
+  `first_name` varchar(100) NOT NULL,
+  `middle_name` varchar(100) DEFAULT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `phone_number` int(15) DEFAULT NULL,
+  `address` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `parent_archive`
+--
+
+INSERT INTO `parent_archive` (`parent_archive_id`, `parent_id`, `first_name`, `middle_name`, `last_name`, `email`, `phone_number`, `address`) VALUES
+(1, 2001, 'Juan', 'Andres', 'Dela Cruz', 'juan.delacruz@example.com', 2147483647, 'Brgy. Batangas City, Batangas');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `password_resets`
 --
 
@@ -452,11 +424,7 @@ CREATE TABLE `password_resets` (
 --
 
 INSERT INTO `password_resets` (`id`, `user_id`, `token`, `expires`) VALUES
-(18, 22, 'e57222bf31a4b525dcd0e0932b43e3dc4e73ba0d8eecc9c29aef607c9b825d73', '2024-11-12 16:19:16'),
-(19, 22, '990bca0fdda95669dc7c888c845d385133d387b5ad9d8cdab6505122b4e1a243', '2024-11-12 16:34:41'),
-(20, 22, '26016ba9d75c081e0f7f83db71c9b1ce72bc7357d7d8caa9a5dbc6777f8e4104', '2024-11-12 16:59:53'),
-(21, 22, '2bb483fb4b9810a53c2b8d31d20080421c944af9fd6008147e89cb33f36cc120', '2024-11-12 17:05:36'),
-(25, 22, '570ba9630dc3ee609ee5b670a28283b51f30ef3045075a3f9db699ae595ce09a', '2024-11-12 17:13:59');
+(18, 22, 'e57222bf31a4b525dcd0e0932b43e3dc4e73ba0d8eecc9c29aef607c9b825d73', '2024-11-12 16:19:16');
 
 -- --------------------------------------------------------
 
@@ -600,6 +568,19 @@ CREATE TABLE `school_materials` (
   `school_materials` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `school_materials`
+--
+
+INSERT INTO `school_materials` (`school_materials_id`, `teacher_id`, `section_id`, `school_materials`) VALUES
+(11, 3001, 3, '../school_materials/JANN ANGELO DIMAANO - Part-2-IT-414-MIDTERM-EXAMINATION.pdf'),
+(12, 3001, 2, '../school_materials/ics_data.xlsx'),
+(14, 3005, 4, '../school_materials/ics_data.xlsx'),
+(15, 3001, 1, '../school_materials/Dimaano_Automated Testing Activity.pdf'),
+(16, 3001, 1, '../school_materials/AIAS Reviewer.pdf'),
+(17, 3001, 2, '../school_materials/Maranan-4103-AIAS-Exercises-Questionnaire.pdf'),
+(18, 3001, 2, '../school_materials/AIAS Reviewer (2).pdf');
+
 -- --------------------------------------------------------
 
 --
@@ -617,24 +598,45 @@ CREATE TABLE `section` (
 --
 
 INSERT INTO `section` (`section_id`, `section_name`, `grade_level_id`) VALUES
-(1, 'Emerald', 1),
-(2, 'Ruby', 1),
-(3, 'Sapphire', 1),
-(4, 'Diamond', 2),
-(5, 'Topaz', 2),
-(6, 'Garnet', 2),
-(7, 'Amethyst', 3),
-(8, 'Opal', 3),
-(9, 'Quartz', 3),
-(10, 'Peridot', 4),
-(11, 'Jade', 4),
-(12, 'Aquamarine', 4),
-(13, 'Onyx', 5),
-(14, 'Amber', 5),
-(15, 'Pearl', 5),
-(16, 'Coral', 6),
-(17, 'Ivory', 6),
-(18, 'Obsidian', 6);
+(1, 'Yellow', 1),
+(2, 'White', 1),
+(3, 'Violet', 1),
+(4, 'Red', 1),
+(5, 'Orange', 1),
+(6, 'Green', 1),
+(7, 'Blue', 1),
+(8, 'Farkleberry', 2),
+(9, 'Evergreen', 2),
+(10, 'Dalandan', 2),
+(11, 'Cherry', 2),
+(12, 'Blueberry', 2),
+(13, 'Apple', 2),
+(14, 'Recto', 3),
+(15, 'Malvar', 3),
+(16, 'Mabini', 3),
+(17, 'Laurel', 3),
+(18, 'Kalaw', 3),
+(19, 'Diokno', 3),
+(20, 'Patience', 4),
+(21, 'Love', 4),
+(22, 'Hope', 4),
+(23, 'Faith', 4),
+(24, 'Courage', 4),
+(25, 'Yakal', 5),
+(26, 'Narra', 5),
+(27, 'Molave', 5),
+(28, 'Mahogany', 5),
+(29, 'Iba', 5),
+(30, 'Acacia', 5),
+(31, 'Matthew', 6),
+(32, 'Luke', 6),
+(33, 'John', 6),
+(34, 'James', 6),
+(35, 'Mark', 6),
+(36, 'Rose', 7),
+(37, 'Sampaguita', 7),
+(38, 'Orchid', 7),
+(39, 'Camia', 7);
 
 -- --------------------------------------------------------
 
@@ -663,15 +665,15 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`student_id`, `lrn`, `first_name`, `middle_name`, `last_name`, `sex`, `date_of_birth`, `current_status`, `academic_year`, `parent_id`, `grade_level_id`, `section_id`, `role_id`) VALUES
-(1001, 100000000001, 'Luis', 'Dela Cruz', 'Dela Cruz', 'male', '2013-01-15', 'enrolled', '2024-2025', 2001, 1, 1, 1),
-(1002, 100000000002, 'Maria', 'Dela Cruz', 'Dela Cruz', 'female', '2013-02-20', 'enrolled', '2024-2025', 2002, 1, 1, 1),
-(1003, 100000000003, 'Andres', 'Dela Cruz', 'Dela Cruz', 'male', '2013-03-12', 'enrolled', '2024-2025', 2003, 1, 1, 1),
-(1004, 100000000004, 'Carmen', 'Dela Cruz', 'Dela Cruz', 'female', '2013-04-05', 'enrolled', '2024-2025', 2004, 1, 2, 1),
-(1005, 100000000005, 'Jose', 'Dela Cruz', 'Dela Cruz', 'male', '2013-05-10', 'enrolled', '2024-2025', 2005, 1, 2, 1),
-(1006, 100000000006, 'Elena', 'Dela Cruz', 'Dela Cruz', 'female', '2013-06-25', 'enrolled', '2024-2025', 2006, 1, 2, 1),
-(1007, 100000000007, 'Fernando', 'Dela Cruz', 'Dela Cruz', 'male', '2013-07-30', 'enrolled', '2024-2025', 2007, 1, 3, 1),
-(1008, 100000000008, 'Raquel', 'Dela Cruz', 'Dela Cruz', 'female', '2013-08-15', 'enrolled', '2024-2025', 2008, 1, 3, 1),
-(1009, 100000000009, 'Gabriel', 'Dela Cruz', 'Dela Cruz', 'male', '2013-09-05', 'enrolled', '2024-2025', 2009, 1, 3, 1),
+(1001, 100000000001, 'Luis', 'Dela Cruz', 'Dela Cruz', 'male', '2013-01-15', 'enrolled', '2022-2023', 2001, 1, 1, 1),
+(1002, 100000000002, 'Maria', 'Dela Cruz', 'Dela Cruz', 'female', '2013-02-20', 'enrolled', '2022-2023', 2002, 1, 1, 1),
+(1003, 100000000003, 'Andres', 'Dela Cruz', 'Dela Cruz', 'male', '2013-03-12', 'enrolled', '2023-2024', 2003, 2, 8, 1),
+(1004, 100000000004, 'Carmen', 'Dela Cruz', 'Dela Cruz', 'female', '2013-04-05', 'enrolled', '2023-2024', 2004, 2, 8, 1),
+(1005, 100000000005, 'Jose', 'Dela Cruz', 'Dela Cruz', 'male', '2013-05-10', 'enrolled', '2023-2024', 2005, 2, 8, 1),
+(1006, 100000000006, 'Elena', 'Dela Cruz', 'Dela Cruz', 'female', '2013-06-25', 'enrolled', '2023-2024', 2006, 2, 9, 1),
+(1007, 100000000007, 'Fernando', 'Dela Cruz', 'Dela Cruz', 'male', '2013-07-30', 'enrolled', '2023-2024', 2007, 2, 8, 1),
+(1008, 100000000008, 'Raquel', 'Dela Cruz', 'Dela Cruz', 'female', '2013-08-15', 'enrolled', '2022-2023', 2008, 1, 3, 1),
+(1009, 100000000009, 'Gabriel', 'Dela Cruz', 'Dela Cruz', 'male', '2013-09-05', 'enrolled', '2023-2024', 2009, 2, 8, 1),
 (1010, 100000000010, 'Pedro', 'Delos Reyes', 'Delos Reyes', 'male', '2014-01-11', 'enrolled', '2024-2025', 2010, 2, 4, 1),
 (1011, 100000000011, 'Sofia', 'Delos Reyes', 'Delos Reyes', 'female', '2014-02-14', 'enrolled', '2024-2025', 2011, 2, 4, 1),
 (1012, 100000000012, 'Rico', 'Delos Reyes', 'Delos Reyes', 'male', '2014-03-20', 'enrolled', '2024-2025', 2012, 2, 4, 1),
@@ -729,23 +731,35 @@ INSERT INTO `student` (`student_id`, `lrn`, `first_name`, `middle_name`, `last_n
 
 CREATE TABLE `student_archives` (
   `archive_id` int(11) NOT NULL,
-  `lrn` bigint(12) DEFAULT NULL,
+  `student_id` int(11) NOT NULL,
+  `lrn` bigint(12) NOT NULL,
   `first_name` varchar(100) DEFAULT NULL,
+  `middle_name` varchar(100) DEFAULT NULL,
   `last_name` varchar(100) DEFAULT NULL,
+  `sex` varchar(6) DEFAULT NULL,
   `date_of_birth` date DEFAULT NULL,
-  `current_status` varchar(20) DEFAULT NULL,
-  `parent_id` int(11) DEFAULT NULL,
-  `section_id` int(11) DEFAULT NULL
+  `current_status` varchar(20) NOT NULL,
+  `academic_year` varchar(50) NOT NULL,
+  `parent_id` int(11) NOT NULL,
+  `grade_level_id` int(11) NOT NULL,
+  `section_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `student_archives`
 --
 
-INSERT INTO `student_archives` (`archive_id`, `lrn`, `first_name`, `last_name`, `date_of_birth`, `current_status`, `parent_id`, `section_id`) VALUES
-(1, 2147483647, 'Pedro', 'Delos Reyes', '2014-01-11', 'enrolled', 2010, 4),
-(9, 2147483647, 'Rico', 'Delos Reyes', '2014-03-20', 'retained', 2012, 4),
-(10, 2147483647, 'Hector', 'Delos Reyes', '2014-09-25', 'retained', 2018, 6);
+INSERT INTO `student_archives` (`archive_id`, `student_id`, `lrn`, `first_name`, `middle_name`, `last_name`, `sex`, `date_of_birth`, `current_status`, `academic_year`, `parent_id`, `grade_level_id`, `section_id`) VALUES
+(13, 1003, 100000000003, 'Andres', 'Dela Cruz', 'Dela Cruz', 'male', '2013-03-12', 'Passed', '2024-2025', 2003, 1, 1),
+(14, 1004, 100000000004, 'Carmen', 'Dela Cruz', 'Dela Cruz', 'female', '2013-04-05', 'Passed', '2022-2023', 2004, 1, 2),
+(15, 1006, 100000000006, 'Elena', 'Dela Cruz', 'Dela Cruz', 'female', '2013-06-25', 'Passed', '2022-2023', 2006, 1, 2),
+(16, 1007, 100000000007, 'Fernando', 'Dela Cruz', 'Dela Cruz', 'male', '2013-07-30', 'Passed', '2022-2023', 2007, 1, 3),
+(17, 1009, 100000000009, 'Gabriel', 'Dela Cruz', 'Dela Cruz', 'male', '2013-09-05', 'Passed', '2022-2023', 2009, 1, 3),
+(18, 1005, 100000000005, 'Jose', 'Dela Cruz', 'Dela Cruz', 'male', '2013-05-10', 'Passed', '2022-2023', 2005, 1, 2),
+(19, 1001, 100000000001, 'Luis', 'Dela Cruz', 'Dela Cruz', 'male', '2013-01-15', 'Dropped', '2022-2023', 2001, 1, 1),
+(20, 1001, 100000000001, 'Luis', 'Dela Cruz', 'Dela Cruz', 'male', '2013-01-15', 'Dropped', '2022-2023', 2001, 1, 1),
+(21, 1001, 100000000001, 'Luis', 'Dela Cruz', 'Dela Cruz', 'male', '2013-01-15', 'Dropped', '2022-2023', 2001, 1, 1),
+(22, 1001, 100000000001, 'Luis', 'Dela Cruz', 'Dela Cruz', 'male', '2013-01-15', 'Dropped', '2022-2023', 2001, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -788,24 +802,73 @@ CREATE TABLE `subject` (
 --
 
 INSERT INTO `subject` (`subject_id`, `subject_name`, `grade_level_id`) VALUES
-(1, 'Basic Math', 1),
-(2, 'Introduction to Algebra', 2),
-(3, 'Geometry Fundamentals', 3),
-(4, 'Advanced Algebra', 4),
-(5, 'Pre-Calculus', 5),
-(6, 'Calculus', 6),
-(7, 'Phonics and Reading', 1),
-(8, 'Grammar and Composition', 2),
-(9, 'Literature Studies', 3),
-(10, 'Creative Writing', 4),
-(11, 'Essay Writing', 5),
-(12, 'Advanced Literature', 6),
-(13, 'Introduction to Science', 1),
-(14, 'Life Science', 2),
-(15, 'Earth Science', 3),
-(16, 'Physical Science', 4),
-(17, 'Biology', 5),
-(18, 'Chemistry', 6);
+(1, 'Mother Tounge-Based', 1),
+(2, 'Filipino', 1),
+(3, 'English', 1),
+(4, 'Mathematics', 1),
+(5, 'Science', 1),
+(6, 'Filipino', 2),
+(7, 'English', 2),
+(8, 'Mathematics', 2),
+(9, 'Science', 2),
+(10, 'Music', 2),
+(11, 'Arts', 2),
+(12, 'Physical Education', 2),
+(13, 'Health', 2),
+(14, 'Araling Panlipunan', 2),
+(15, 'ESP', 2),
+(16, 'Filipino', 3),
+(17, 'English', 3),
+(18, 'Mathematics', 3),
+(19, 'Science', 3),
+(20, 'Music', 3),
+(21, 'Arts', 3),
+(22, 'Physical Education', 3),
+(23, 'Health', 3),
+(24, 'Araling Panlipunan', 3),
+(25, 'ESP', 3),
+(26, 'Filipino', 4),
+(27, 'English', 4),
+(28, 'Mathematics', 4),
+(29, 'Science', 4),
+(30, 'Music', 4),
+(31, 'Arts', 4),
+(32, 'Physical Education', 4),
+(33, 'Health', 4),
+(34, 'Araling Panlipunan', 4),
+(35, 'ESP', 4),
+(36, 'Filipino', 5),
+(37, 'English', 5),
+(38, 'Mathematics', 5),
+(39, 'Science', 5),
+(40, 'Music', 5),
+(41, 'Arts', 5),
+(42, 'Physical Education', 5),
+(43, 'Health', 5),
+(44, 'Araling Panlipunan', 5),
+(45, 'ESP', 5),
+(46, 'Filipino', 6),
+(47, 'English', 6),
+(48, 'Mathematics', 6),
+(49, 'Science', 6),
+(50, 'Music', 6),
+(51, 'Arts', 6),
+(52, 'Physical Education', 6),
+(53, 'Health', 6),
+(54, 'Araling Panlipunan', 6),
+(55, 'ESP', 6),
+(56, 'EPP', 6),
+(57, 'Filipino', 7),
+(58, 'English', 7),
+(59, 'Mathematics', 7),
+(60, 'Science', 7),
+(61, 'Music', 7),
+(62, 'Arts', 7),
+(63, 'Physical Education', 7),
+(64, 'Health', 7),
+(65, 'Araling Panlipunan', 7),
+(66, 'ESP', 7),
+(67, 'TLE', 7);
 
 -- --------------------------------------------------------
 
@@ -820,35 +883,33 @@ CREATE TABLE `teacher` (
   `last_name` varchar(100) NOT NULL,
   `email` varchar(100) DEFAULT NULL,
   `section_id` int(11) NOT NULL,
-  `subject_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
-  `rank_id` int(11) NOT NULL,
-  `account_id` int(11) NOT NULL
+  `rank_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `teacher`
 --
 
-INSERT INTO `teacher` (`teacher_id`, `first_name`, `middle_name`, `last_name`, `email`, `section_id`, `subject_id`, `role_id`, `rank_id`, `account_id`) VALUES
-(3001, 'Jann', 'Naruto', 'Uzumaki', 'naruto@gmail.com', 1, 1, 3, 10, 1),
-(3002, 'Emily', 'Santos', 'Reyes', 'emily.reyes@example.com', 2, 2, 3, 1, 2),
-(3003, 'Michael', 'Lopez', 'Flores', 'michael.flores@example.com', 3, 3, 3, 3, 3),
-(3004, 'Sarah', 'Dela Cruz', 'Mendoza', 'sarah.mendoza@example.com', 4, 4, 3, 9, 4),
-(3005, 'David', 'Mercado', 'Gonzalez', 'david.gonzalez@example.com', 5, 5, 3, 11, 5),
-(3006, 'Jessica', 'Luna', 'Torres', 'jessica.torres@example.com', 6, 6, 3, 3, 6),
-(3007, 'Robert', 'Salvador', 'Bautista', 'robert.bautista@example.com', 7, 7, 3, 5, 7),
-(3008, 'Laura', 'Buenaventura', 'Aquino', 'laura.aquino@example.com', 8, 8, 3, 3, 8),
-(3009, 'James', 'Cabrera', 'Ramos', 'james.ramos@example.com', 9, 9, 3, 13, 9),
-(3010, 'Linda', 'Garcia', 'Villanueva', 'linda.villanueva@example.com', 10, 10, 3, 3, 10),
-(3011, 'Mark', 'Diaz', 'Delos Santos', 'mark.delossantos@example.com', 11, 11, 3, 13, 11),
-(3012, 'Anna', 'Pascual', 'Gomez', 'anna.gomez@example.com', 12, 12, 3, 4, 12),
-(3013, 'Brian', 'Manalang', 'Padilla', 'brian.padilla@example.com', 13, 13, 3, 6, 13),
-(3014, 'Elizabeth', 'Soriano', 'Castro', 'elizabeth.castro@example.com', 14, 14, 3, 5, 14),
-(3015, 'Steven', 'Navarro', 'Rivera', 'steven.rivera@example.com', 15, 15, 3, 7, 15),
-(3016, 'Amy', 'Fernandez', 'Ortega', 'amy.ortega@example.com', 16, 16, 3, 7, 16),
-(3017, 'Joshua', 'Marasigan', 'Lazaro', 'joshua.lazaro@example.com', 17, 17, 3, 1, 17),
-(3018, 'Sophia', 'Ramos', 'Santiago', 'sophia.santiago@example.com', 18, 18, 3, 7, 18);
+INSERT INTO `teacher` (`teacher_id`, `first_name`, `middle_name`, `last_name`, `email`, `section_id`, `role_id`, `rank_id`) VALUES
+(3001, 'Jann', 'Naruto', 'Uzumaki', 'naruto@gmail.com', 1, 3, 10),
+(3002, 'Emily', 'Santos', 'Reyes', 'emily.reyes@example.com', 2, 3, 1),
+(3003, 'Michael', 'Lopez', 'Flores', 'michael.flores@example.com', 3, 3, 3),
+(3004, 'Sarah', 'Dela Cruz', 'Mendoza', 'sarah.mendoza@example.com', 4, 3, 9),
+(3005, 'David', 'Mercado', 'Gonzalez', 'david.gonzalez@example.com', 5, 3, 11),
+(3006, 'Jessica', 'Luna', 'Torres', 'jessica.torres@example.com', 6, 3, 3),
+(3007, 'Robert', 'Salvador', 'Bautista', 'robert.bautista@example.com', 7, 3, 5),
+(3008, 'Laura', 'Buenaventura', 'Aquino', 'laura.aquino@example.com', 8, 3, 3),
+(3009, 'James', 'Cabrera', 'Ramos', 'james.ramos@example.com', 9, 3, 13),
+(3010, 'Linda', 'Garcia', 'Villanueva', 'linda.villanueva@example.com', 10, 3, 3),
+(3011, 'Mark', 'Diaz', 'Delos Santos', 'mark.delossantos@example.com', 11, 3, 13),
+(3012, 'Anna', 'Pascual', 'Gomez', 'anna.gomez@example.com', 12, 3, 4),
+(3013, 'Brian', 'Manalang', 'Padilla', 'brian.padilla@example.com', 13, 3, 6),
+(3014, 'Elizabeth', 'Soriano', 'Castro', 'elizabeth.castro@example.com', 14, 3, 5),
+(3015, 'Steven', 'Navarro', 'Rivera', 'steven.rivera@example.com', 15, 3, 7),
+(3016, 'Amy', 'Fernandez', 'Ortega', 'amy.ortega@example.com', 16, 3, 7),
+(3017, 'Joshua', 'Marasigan', 'Lazaro', 'joshua.lazaro@example.com', 17, 3, 1),
+(3018, 'Sophia', 'Ramos', 'Santiago', 'sophia.santiago@example.com', 18, 3, 7);
 
 -- --------------------------------------------------------
 
@@ -922,6 +983,18 @@ INSERT INTO `teacher_section` (`teacher_section_id`, `teacher_id`, `section_id`)
 (53, 3018, 17),
 (54, 3018, 18);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `teacher_subject`
+--
+
+CREATE TABLE `teacher_subject` (
+  `teacher_subject_id` int(11) NOT NULL,
+  `teacher_id` int(11) NOT NULL,
+  `subject_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -930,7 +1003,7 @@ INSERT INTO `teacher_section` (`teacher_section_id`, `teacher_id`, `section_id`)
 -- Indexes for table `account`
 --
 ALTER TABLE `account`
-  ADD PRIMARY KEY (`account_id`),
+  ADD PRIMARY KEY (`user_id`) USING BTREE,
   ADD KEY `role_id` (`role_id`);
 
 --
@@ -954,11 +1027,11 @@ ALTER TABLE `class_schedule_archive`
   ADD KEY `section_id` (`section_id`);
 
 --
--- Indexes for table `e_cert`
+-- Indexes for table `e_certificate`
 --
-ALTER TABLE `e_cert`
-  ADD PRIMARY KEY (`e_cert_id`),
-  ADD KEY `student_id` (`student_id`);
+ALTER TABLE `e_certificate`
+  ADD PRIMARY KEY (`e_certificate_id`),
+  ADD UNIQUE KEY `student_id` (`student_id`);
 
 --
 -- Indexes for table `grade`
@@ -983,18 +1056,17 @@ ALTER TABLE `guidance`
   ADD KEY `role_id` (`role_id`);
 
 --
--- Indexes for table `ics_credential`
---
-ALTER TABLE `ics_credential`
-  ADD PRIMARY KEY (`account_id`),
-  ADD KEY `role_id` (`role_id`);
-
---
 -- Indexes for table `parent`
 --
 ALTER TABLE `parent`
   ADD PRIMARY KEY (`parent_id`),
   ADD KEY `role_id` (`role_id`);
+
+--
+-- Indexes for table `parent_archive`
+--
+ALTER TABLE `parent_archive`
+  ADD PRIMARY KEY (`parent_archive_id`);
 
 --
 -- Indexes for table `password_resets`
@@ -1083,8 +1155,7 @@ ALTER TABLE `subject`
 ALTER TABLE `teacher`
   ADD PRIMARY KEY (`teacher_id`),
   ADD KEY `role_id` (`role_id`),
-  ADD KEY `subject_id` (`section_id`),
-  ADD KEY `fk_teacher_account` (`account_id`);
+  ADD KEY `subject_id` (`section_id`);
 
 --
 -- Indexes for table `teacher_section`
@@ -1093,14 +1164,16 @@ ALTER TABLE `teacher_section`
   ADD PRIMARY KEY (`teacher_section_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Indexes for table `teacher_subject`
 --
+ALTER TABLE `teacher_subject`
+  ADD PRIMARY KEY (`teacher_subject_id`),
+  ADD KEY `teacher_id` (`teacher_id`),
+  ADD KEY `subject_id` (`subject_id`);
 
 --
--- AUTO_INCREMENT for table `account`
+-- AUTO_INCREMENT for dumped tables
 --
-ALTER TABLE `account`
-  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT for table `announcements`
@@ -1121,10 +1194,10 @@ ALTER TABLE `class_schedule_archive`
   MODIFY `archive_schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT for table `e_cert`
+-- AUTO_INCREMENT for table `e_certificate`
 --
-ALTER TABLE `e_cert`
-  MODIFY `e_cert_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+ALTER TABLE `e_certificate`
+  MODIFY `e_certificate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `grade`
@@ -1136,7 +1209,7 @@ ALTER TABLE `grade`
 -- AUTO_INCREMENT for table `grade_level`
 --
 ALTER TABLE `grade_level`
-  MODIFY `grade_level_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `grade_level_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `guidance`
@@ -1149,6 +1222,12 @@ ALTER TABLE `guidance`
 --
 ALTER TABLE `parent`
   MODIFY `parent_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2058;
+
+--
+-- AUTO_INCREMENT for table `parent_archive`
+--
+ALTER TABLE `parent_archive`
+  MODIFY `parent_archive_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `password_resets`
@@ -1190,13 +1269,13 @@ ALTER TABLE `schedule_list`
 -- AUTO_INCREMENT for table `school_materials`
 --
 ALTER TABLE `school_materials`
-  MODIFY `school_materials_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `school_materials_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `section`
 --
 ALTER TABLE `section`
-  MODIFY `section_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `section_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `student`
@@ -1208,7 +1287,7 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `student_archives`
 --
 ALTER TABLE `student_archives`
-  MODIFY `archive_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `archive_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `student_file`
@@ -1220,7 +1299,7 @@ ALTER TABLE `student_file`
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `teacher`
@@ -1233,6 +1312,12 @@ ALTER TABLE `teacher`
 --
 ALTER TABLE `teacher_section`
   MODIFY `teacher_section_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+
+--
+-- AUTO_INCREMENT for table `teacher_subject`
+--
+ALTER TABLE `teacher_subject`
+  MODIFY `teacher_subject_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -1269,6 +1354,13 @@ ALTER TABLE `grade`
 --
 ALTER TABLE `password_resets`
   ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `teacher_subject`
+--
+ALTER TABLE `teacher_subject`
+  ADD CONSTRAINT `teacher_subject_ibfk_1` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`),
+  ADD CONSTRAINT `teacher_subject_ibfk_2` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
