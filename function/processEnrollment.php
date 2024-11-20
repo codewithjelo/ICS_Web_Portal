@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $first_name = $conn->real_escape_string($_POST['first_name']);
     $middle_name = $conn->real_escape_string($_POST['middle_name']);
     $last_name = $conn->real_escape_string($_POST['last_name']);
-    $sex = $conn->real_escape_string($_POST['sex']);
+    $sex = ucfirst($conn->real_escape_string($_POST['sex']));
     $date_of_birth = $conn->real_escape_string($_POST['date_of_birth']);
     $address = $conn->real_escape_string($_POST['address']);
     $parent_first_name = $conn->real_escape_string($_POST['parent_first_name']);
@@ -24,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $civil_status = $conn->real_escape_string($_POST['civil_status']);
     $grade_level = $conn->real_escape_string($_POST['grade_level']);
     $section = $conn->real_escape_string($_POST['section']);
+    
 
     // Handle file uploads
     $upload_dir = '../uploads/'; // Ensure this directory exists and is writable
@@ -38,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $parent_id = $conn->insert_id; // Get the last inserted parent ID
 
         // Insert into student table
-        $student_sql = "INSERT INTO student (first_name, middle_name, last_name, sex, date_of_birth, current_status, academic_year, parent_id, grade_level_id, section_id, role_id) VALUES ('$first_name', '$middle_name', '$last_name', '$sex', '$date_of_birth', 'enrolled', '$academic_year', $parent_id, $grade_level, $section, 1)";
+        $student_sql = "INSERT INTO student (first_name, middle_name, last_name, sex, date_of_birth, current_status, academic_year, parent_id, grade_level_id, section_id, role_id) VALUES ('$first_name', '$middle_name', '$last_name', '$sex', '$date_of_birth', 'Enrolled', '$academic_year', $parent_id, $grade_level, $section, 1)";
         if ($conn->query($student_sql) === TRUE) {
             $student_id = $conn->insert_id; // Get the last inserted student ID
 
