@@ -4,8 +4,7 @@ $(document).ready(function () {
       url: "../function/fetchGradeLevels.php", // Path to your PHP file for grade levels
       type: "GET",
       dataType: "json",
-      success: function (response) {
-        console.log("Grade levels fetched successfully:", response); // Debugging line
+      success: function (response) { // Debugging line
         $.each(response, function (index, grade) {
           $("#gradeLevelSchedule").append(
             '<option value="' +
@@ -16,8 +15,7 @@ $(document).ready(function () {
           );
         });
       },
-      error: function (xhr, status, error) {
-        console.error("Error fetching grade levels:", xhr.responseText); // Log the error
+      error: function (xhr, status, error) {// Log the error
         alert("Failed to retrieve grade levels.");
       },
     });
@@ -25,14 +23,12 @@ $(document).ready(function () {
     // Fetch sections based on selected grade level
     $("#gradeLevelSchedule").change(function () {
       var gradeLevelId = $(this).val();
-      console.log("Selected Grade Level ID:", gradeLevelId); // Debugging line
       $.ajax({
         url: "../function/fetchSections.php", // Path to your PHP file for sections
         type: "POST",
         data: { grade_level_id: gradeLevelId },
         dataType: "json",
         success: function (response) {
-          console.log("Sections fetched successfully:", response); // Debugging line
           $("#sectionSchedule").empty(); // Clear previous options
           $("#sectionSchedule").append("<option selected>Select</option>");
           $.each(response, function (index, section) {
@@ -47,7 +43,6 @@ $(document).ready(function () {
           });
         },
         error: function (xhr, status, error) {
-          console.error("Error fetching sections:", xhr.responseText); // Log the error
           alert("Failed to retrieve sections.");
         },
       });
