@@ -1,3 +1,4 @@
+<script src="../js/deleteMaterial.js"></script>
 <?php
 include '../connectDb.php';
 
@@ -15,28 +16,29 @@ $result = $stmt->get_result();
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         // Get the full path of the file
-        $filePath = $row['school_materials'];
-        
+        $file_path = $row['school_materials'];
+
         // Remove the "../school_materials/" part from the file name for display purposes
-        $fileName = str_replace('../school_materials/', '', $filePath);
-        ?>
+        $file_name = str_replace('../school_materials/', '', $file_path);
+?>
         <div class="row column-gap-5 mt-3 mx-1 align-content-center position-relative rounded-3 border border-1" style="height: 40px;">
-            <div class="col-md-8 ms-2"><?php echo htmlspecialchars($fileName); ?></div>
+            <input type="hidden" name="material_id" value="">
+            <div class="col-md-8 ms-2 fw-bold"><?php echo htmlspecialchars($file_name); ?></div>
             <div class="col-md-2">
                 <a class="btn btn-secondary position-absolute top-50 end-0 translate-middle-y border border-0 me-5" style="height: 40px; width: 50px; background-color: transparent;" href="<?php echo htmlspecialchars($row['school_materials']); ?>" download>
-                    <i class="bi bi-download" style="color: black;"></i>
+                    <iconify-icon class="pt-1" icon="tabler:download" style="font-size: 20px; color: black;"></iconify-icon>
                 </a>
             </div>
             <div class="col-md-2">
-                <button class="btn btn-secondary position-absolute top-50 end-0 translate-middle-y border border-0 delete-file" data-file-id="<?php echo htmlspecialchars($row['school_materials_id']); ?>" style="height: 40px; width: 50px; background-color: transparent;">
-                    <i class="bi bi-trash" style="color: black;"></i>
+                <button class="btn btn-secondary position-absolute top-50 end-0 translate-middle-y border border-0 delete-file" onclick="deleteMaterial(this)" data-material-id="<?php echo htmlspecialchars($row['school_materials_id']); ?>" style="height: 40px; width: 50px; background-color: transparent;">
+                    <iconify-icon class="pt-1" icon="mingcute:delete-line" style="font-size: 20px; color: black;"></iconify-icon>
                 </button>
             </div>
         </div>
-        <?php
+    <?php
     }
 } else { ?>
-    <p class="text-center pt-5" style="color: gray;">No uploaded school materials.</p>;
+    <p class="text-center pt-5" style="color: gray;">No uploaded school materials.</p>
 <?php }
 
 $stmt->close();
