@@ -83,7 +83,7 @@
                 events: [
                     <?php
                     // Database connection
-                    $host     = 'localhost'; // Change as necessary
+                    $host     = 'localhost:3308'; // Change as necessary
                     $username = 'root';      // Change as necessary
                     $password = '';          // Change as necessary
                     $dbname   = 'ics_db';    // Change as necessary
