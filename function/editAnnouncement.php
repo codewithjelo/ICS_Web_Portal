@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Execute the statement and redirect
     if ($stmt->execute()) {
-        header("Location: ../pages/guidanceDashboard.php");
+        header("Location: ../pages/guidanceDashboard");
         exit; // Always good to exit after a redirect
     } else {
         echo "Error: " . $stmt->error; // Display error for debugging
