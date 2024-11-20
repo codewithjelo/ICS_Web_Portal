@@ -19,6 +19,7 @@ if (isset($_SESSION['logged_in']) != True) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ICS - Teacher Dashboard</title>
     <?php include "../partials/head.php" ?>
+    <?php include "../modal/inputGradesModal.php" ?>
     <?php include "../modal/learningMaterialsModal.php" ?>
     <?php include "../modal/viewMissionVisionModal.php" ?>
     <?php include "../modal/viewAnnouncementsModal.php" ?>
@@ -86,11 +87,8 @@ if (isset($_SESSION['logged_in']) != True) {
                                     // Prepare the query
                                     $query = "SELECT CONCAT(t.last_name, ', ', t.first_name, ' ', LEFT(t.middle_name, 1), '.') AS full_name, 
                                             t.teacher_id AS teacher_id,
-                                            r.rank_name AS rank_name,
-                                            gl.grade_level_id AS grade_level_id
+                                            r.rank_name AS rank_name
                                         FROM teacher t
-                                        LEFT JOIN section s ON t.section_id = s.section_id
-                                        LEFT JOIN grade_level gl ON s.grade_level_id = gl.grade_level_id
                                         LEFT JOIN rank r ON t.rank_id = r.rank_id
                                         WHERE t.teacher_id = RIGHT(?, 4);";
 
@@ -110,7 +108,6 @@ if (isset($_SESSION['logged_in']) != True) {
                                             <p class="info-text text-start">ICS-TCH<?php echo htmlspecialchars($row['teacher_id']); ?></p>
                                             <p class="info-text text-start"><?php echo htmlspecialchars($row['rank_name']); ?></p>
                                         <?php $_SESSION['get_user_id'] = $row['teacher_id'];
-                                            $_SESSION['grade_level_id'] = $row['grade_level_id'];
                                         }
                                     } else { ?>
                                         <p class="info-bold text-start">No teacher found.</p>
