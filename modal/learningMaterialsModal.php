@@ -94,8 +94,8 @@ include '../connectDb.php';
 
                                 <div class="overflow-y" id="uploadedFiles" style="max-height: 295px;">
 
-                                    <!-- List of Uploaded Materials by Section -->
-                                    <p class="text-center pt-5" style="color: gray;">Select a section.</p>;
+                                    <!-- List of Certificates -->
+                                    <p class="text-center pt-5" style="color: gray;">Select a section.</p>
                                 </div>
 
                             </div>
