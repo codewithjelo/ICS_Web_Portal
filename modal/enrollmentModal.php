@@ -179,10 +179,10 @@
                                                 <td>
                                                     <button class="btn btn-primary add-lrn-btn"
                                                         data-bs-toggle="collapse"
-                                                        href="#collapseExample"
+                                                        href="#collapseAddLrn"
                                                         role="button"
                                                         aria-expanded="false"
-                                                        aria-controls="collapseExample"
+                                                        aria-controls="collapseAddLrn"
                                                         onclick="setStudentId(<?php $row['student_id_lrn'] ?>)">
                                                         Add LRN
                                                     </button>
@@ -202,7 +202,8 @@
 
                                 </tbody>
                             </table>
-                            <div class="collapse" id="collapseExample">
+
+                            <div class="collapse" id="collapseAddLrn">
                                 <div class="card card-body position-absolute top-50 start-50 translate-middle" style="width: 400px;">
                                     <form action="../function/addStudentAccount.php" method="POST" enctype="multipart/form-data">
                                         <div class="col">
