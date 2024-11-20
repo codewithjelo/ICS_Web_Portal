@@ -6,7 +6,6 @@ if (isset($_SESSION['logged_in']) != True) {
     exit;
 }
 
-
 ?>
 
 
@@ -15,20 +14,20 @@ if (isset($_SESSION['logged_in']) != True) {
 <html lang="en">
 
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ICS - Parent Dashboard</title>
-    <?php include "../partials/head.php" ?>
-    <?php include "../modal/classScheduleModal.php" ?>
-    <?php include "../modal/gradesModal.php" ?>
-    <?php include "../modal/viewEcertificateModal.php" ?>
-    <?php include "../modal/viewLearningMaterialsModal.php" ?>
-    <?php include "../modal/viewAnnouncementsModal.php" ?>
-    <?php include "../modal/viewMissionVisionModal.php" ?>
-    <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/body.css">
-    <link rel="stylesheet" href="../css/footer.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICS - Parent Dashboard</title>
+<?php include "../partials/head.php" ?>
+<?php include "../modal/classScheduleModal.php" ?>
+<?php include "../modal/gradesModal.php" ?>
+<?php include "../modal/viewCertificateModal.php" ?>
+<?php include "../modal/viewLearningMaterialsModal.php" ?>
+<?php include "../modal/viewAnnouncementsModal.php" ?>
+<?php include "../modal/viewMissionVisionModal.php" ?>
+<link rel="stylesheet" href="../css/header.css">
+<link rel="stylesheet" href="../css/body.css">
+<link rel="stylesheet" href="../css/footer.css">
+<script src="../js/confirmSignOut.js"></script>
 </head>
 
 <body>
@@ -76,19 +75,21 @@ if (isset($_SESSION['logged_in']) != True) {
 
 
 
-<!-- Information Section -->
-<div class="col-md-6">
-    <div class="info-section d-flex flex-row position-absolute bottom-0 start-0">
-        <?php
-        include "../connectDb.php";
-        
-        // Prepare the query to fetch the student's profile picture and other details
-        $query = "SELECT 
+                        <!-- Information Section -->
+                        <div class="col-md-6">
+                            <div class="info-section d-flex flex-row position-absolute bottom-0 start-0">
+                                <?php
+                                include "../connectDb.php";
+
+                                // Prepare the query to fetch the student's profile picture and other details
+                                $query = "SELECT 
                      CONCAT(s.last_name, ', ', s.first_name, ' ', LEFT(s.middle_name, 1), '.') AS full_name, 
-                     s.lrn AS lrn, 
+                     s.lrn AS lrn,
+                     s.student_id AS student_id,
                      s.current_status AS current_status, 
                      s.academic_year AS academic_year, 
-                     gl.grade_level AS grade_level, 
+                     gl.grade_level AS grade_level,
+                     gl.grade_level_id AS grade_level_id,  
                      sec.section_name AS section_name, 
                      sec.section_id AS section_id,
                      CONCAT(p.last_name, ', ', p.first_name, ' ', LEFT(p.middle_name, 1), '.') AS parent_name,
@@ -100,89 +101,62 @@ if (isset($_SESSION['logged_in']) != True) {
                   LEFT JOIN student_file sf ON s.student_id = sf.student_id
                   WHERE s.lrn = ?";
 
-        // Prepare the statement to prevent SQL injection
-        $stmt = $conn->prepare($query);
+                                // Prepare the statement to prevent SQL injection
+                                $stmt = $conn->prepare($query);
 
-        // Bind the session user_id to the query
-        $stmt->bind_param('s', $_SESSION['user_id']);
+                                // Bind the session user_id to the query
+                                $stmt->bind_param('s', $_SESSION['user_id']);
 
-        // Execute the query
-        $stmt->execute();
-        $result = $stmt->get_result();
+                                // Execute the query
+                                $stmt->execute();
+                                $result = $stmt->get_result();
 
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) { ?>
-                <img src="<?php echo htmlspecialchars($row['student_profile']); ?>" class="avatar m-4" alt="Profile" style="width: 11%; height: 11%;">
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) { ?>
+                                        <img src="<?php if ($row['student_profile'] == NULL) {
+                                                        echo '../img/avatar.jpg';
+                                                    } else {
+                                                        echo htmlspecialchars($row['student_profile']);
+                                                    } ?>" class="avatar m-4" alt="Profile" style="width: 11%; height: 11%;">
 
-                <div class="user-info d-flex flex-column justify-content-center">
-                    <p class="info-bold text-start text-uppercase"><?php echo htmlspecialchars($row['parent_name']); ?></p>
-                    <p class="info-text text-start"><?php echo htmlspecialchars($row['full_name']); ?></p>
-                    <p class="info-text text-start">LRN (<?php echo htmlspecialchars($row['lrn']); ?>)</p>
-                    <p class="info-text text-start">Grade <?php echo htmlspecialchars($row['grade_level']); ?> - <?php echo htmlspecialchars($row['section_name']); ?></p>
-                    <p class="en-status text-start text-uppercase">
-                        <?php echo htmlspecialchars($row['current_status']); ?> (AY <?php echo htmlspecialchars($row['academic_year']); ?>)
-                    </p>
-                </div>
-            <?php
-                $_SESSION['section_id'] = $row['section_id'];
-            }
-        } else { ?>
-            <p class="info-bold text-start">No student found.</p>
-        <?php }
+                                        <div class="user-info d-flex flex-column justify-content-center">
+                                            <p class="info-bold text-start text-uppercase"><?php echo htmlspecialchars($row['parent_name']); ?></p>
+                                            <p class="info-text text-start"><?php echo htmlspecialchars($row['full_name']); ?></p>
+                                            <p class="info-text text-start">LRN (<?php echo htmlspecialchars($row['lrn']); ?>)</p>
+                                            <p class="info-text text-start"><?php if($row['grade_level_id'] == 1) {
+                                                echo htmlspecialchars($row['grade_level']); ?> - <?php echo htmlspecialchars($row['section_name']);
+                                            } else { ?>
+                                             Grade <?php echo htmlspecialchars($row['grade_level']); ?> - <?php echo htmlspecialchars($row['section_name']);} ?></p>
+                                            <p class="en-status text-start text-uppercase">
+                                                <?php echo htmlspecialchars($row['current_status']); ?> (AY <?php echo htmlspecialchars($row['academic_year']); ?>)
+                                            </p>
+                                        </div>
+                                    <?php
+                                        $_SESSION['section_id'] = $row['section_id'];
+                                        $_SESSION['student_id'] = $row['student_id'];
+                                    }
+                                } else { ?>
+                                    <p class="info-bold text-start">No student found.</p>
+                                <?php }
 
-        // Close the statement and connection
-        $stmt->close();
-        $conn->close();
-        ?>
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                                // Close the statement and connection
+                                $stmt->close();
+                                $conn->close();
+                                ?>
+                            </div>
+                        </div>
 
 
                         <!-- Sign Out -->
                         <div class="col-md-6">
-        <div class="so-section position-absolute bottom-0 end-0">
-            <form id="logoutForm" action="../function/logoutAccount.php" method="POST">
-                <button type="button" onclick="confirmLogout()" class="btn so-btn btn-primary rounded-5">
-                    <i class="bi bi-box-arrow-in-right"></i> Sign Out
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <script>
-        function confirmLogout() {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "Do you really want to logout?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, logout'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Submit the form if confirmed
-                    document.getElementById('logoutForm').submit();
-                }
-            });
-        }
-    </script>
+                            <div class="so-section position-absolute bottom-0 end-0">
+                                <form id="signOutForm" action="../function/logoutAccount.php" method="POST">
+                                    <button type="button" onclick="confirmSignOut()" class="btn so-btn btn-primary rounded-5">
+                                        <i class="bi bi-box-arrow-in-right"></i> Sign Out
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
 
                     </div>
                 </header>
@@ -197,7 +171,7 @@ if (isset($_SESSION['logged_in']) != True) {
                     <a type="button" class="text-break d-flex flex-row align-items-center btn menu-btn btn-primary rounded-2" data-bs-toggle="modal" data-bs-target="#classScheduleModal"><i class="menu-icon bi bi-calendar"></i><span style="margin: 0 0 0 10px;">Class Schedule</span></a>
                     <a type="button" class="text-break d-flex flex-row align-items-center btn menu-btn btn-primary rounded-2" data-bs-toggle="modal" data-bs-target="#gradesModal"><i class="menu-icon bi bi-list-check"></i><span style="margin: 0 0 0 10px;">Grades</span></a>
                     <a type="button" class="text-break d-flex flex-row align-items-center btn menu-btn btn-primary rounded-2" data-bs-toggle="modal" data-bs-target="#viewMaterialsModal"><iconify-icon class="menu-icon ph-icon" icon="ph:pen"></iconify-icon><span style="margin: 0 0 0 10px;">School Materials</span></a>
-                    <a type="button" class="text-break d-flex flex-row align-items-center btn menu-btn btn-primary rounded-2" data-bs-toggle="modal" data-bs-target="#viewEcertModal"><iconify-icon class="menu-icon ph-icon" icon="ph:certificate"></iconify-icon><span style="margin: 0 0 0 10px;">eCertificate</span></a>
+                    <a type="button" class="text-break d-flex flex-row align-items-center btn menu-btn btn-primary rounded-2" data-bs-toggle="modal" data-bs-target="#viewCertModal"><iconify-icon class="menu-icon ph-icon" icon="ph:certificate"></iconify-icon><span style="margin: 0 0 0 10px;">eCertificate</span></a>
                 </div>
 
             </div>
