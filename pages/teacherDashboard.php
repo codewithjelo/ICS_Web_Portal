@@ -19,7 +19,6 @@ if (isset($_SESSION['logged_in']) != True) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ICS - Teacher Dashboard</title>
     <?php include "../partials/head.php" ?>
-    <?php include "../modal/inputGradesModal.php" ?>
     <?php include "../modal/learningMaterialsModal.php" ?>
     <?php include "../modal/viewMissionVisionModal.php" ?>
     <?php include "../modal/viewAnnouncementsModal.php" ?>
@@ -31,6 +30,9 @@ if (isset($_SESSION['logged_in']) != True) {
     <link rel="stylesheet" href="../css/body.css">
     <link rel="stylesheet" href="../css/footer.css">
     <script src="../js/confirmSignOut.js"></script>
+    <script src="../js/getSectionCertificate.js"></script>
+    <script src="../js/filterSectionCertificate.js"></script>
+    <script src="../js/deleteCertificate.js"></script>
 </head>
 
 <body>
@@ -83,12 +85,14 @@ if (isset($_SESSION['logged_in']) != True) {
                                     include "../connectDb.php";
                                     // Prepare the query
                                     $query = "SELECT CONCAT(t.last_name, ', ', t.first_name, ' ', LEFT(t.middle_name, 1), '.') AS full_name, 
-                                                     t.teacher_id AS teacher_id,
-                                                     r.rank_name AS rank_name
-                                              FROM teacher t
-                                              LEFT JOIN subject sub ON t.subject_id = sub.subject_id
-                                              LEFT JOIN rank r ON t.rank_id = r.rank_id
-                                              WHERE t.teacher_id = RIGHT(?, 4)";
+                                            t.teacher_id AS teacher_id,
+                                            r.rank_name AS rank_name,
+                                            gl.grade_level_id AS grade_level_id
+                                        FROM teacher t
+                                        LEFT JOIN section s ON t.section_id = s.section_id
+                                        LEFT JOIN grade_level gl ON s.grade_level_id = gl.grade_level_id
+                                        LEFT JOIN rank r ON t.rank_id = r.rank_id
+                                        WHERE t.teacher_id = RIGHT(?, 4);";
 
                                     // Prepare the statement to prevent SQL injection
                                     $stmt = $conn->prepare($query);
@@ -106,6 +110,7 @@ if (isset($_SESSION['logged_in']) != True) {
                                             <p class="info-text text-start">ICS-TCH<?php echo htmlspecialchars($row['teacher_id']); ?></p>
                                             <p class="info-text text-start"><?php echo htmlspecialchars($row['rank_name']); ?></p>
                                         <?php $_SESSION['get_user_id'] = $row['teacher_id'];
+                                            $_SESSION['grade_level_id'] = $row['grade_level_id'];
                                         }
                                     } else { ?>
                                         <p class="info-bold text-start">No teacher found.</p>
@@ -142,8 +147,8 @@ if (isset($_SESSION['logged_in']) != True) {
                     <a type="button" class="text-break d-flex flex-row align-items-center btn menu-btn btn-primary rounded-2" data-bs-toggle="modal" data-bs-target="#inputGradesModal"><iconify-icon class="menu-icon ph-icon" icon="material-symbols:list-alt-outline"></iconify-icon><span style="margin: 0 0 0 10px;">Input Grades</span></a>
                     <a type="button" class="text-break d-flex flex-row align-items-center btn menu-btn btn-primary rounded-2" data-bs-toggle="modal" data-bs-target="#teacherMaterialsModal"><iconify-icon class="menu-icon ph-icon" icon="ph:pen"></iconify-icon><span style="margin: 0 0 0 10px;">School Materials</span></a>
                     <a type="button" class="text-break d-flex flex-row align-items-center btn menu-btn btn-primary rounded-2" data-bs-toggle="modal" data-bs-target="#eCertModal">
-                        <iconify-icon class="menu-icon ph-icon" icon="mdi:send" width="20" height="20"></iconify-icon>
-                        <span style="margin: 0 0 0 10px;">  E-certificates</span>
+                        <iconify-icon class="menu-icon ph-icon" icon="ph:certificate"></iconify-icon>
+                        <span style="margin: 0 0 0 10px;"> eCertificates</span>
                     </a>
                     <a type="button" class="text-break d-flex flex-row align-items-center btn menu-btn btn-primary rounded-2" data-bs-toggle="modal" data-bs-target="#turnOverModal"><iconify-icon class="menu-icon ph-icon" icon="material-symbols:turn-right-rounded"></iconify-icon><span style="margin: 0 0 0 10px;">Turnover Record</span></a>
                 </div>
