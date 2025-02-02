@@ -2,23 +2,23 @@
 <?php
 include '../connectDb.php';
 
-// Get section filter from POST request
+
 $sectionFilter = isset($_POST['section_filter']) ? intval($_POST['section_filter']) : 0;
 
-// Query the database based on the selected section ID
+
 $query = "SELECT school_materials, school_materials_id FROM school_materials WHERE section_id = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param('i', $sectionFilter);
 $stmt->execute();
 $result = $stmt->get_result();
 
-// Output results
+
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        // Get the full path of the file
+        
         $file_path = $row['school_materials'];
 
-        // Remove the "../school_materials/" part from the file name for display purposes
+        
         $file_name = str_replace('../school_materials/', '', $file_path);
 ?>
         <div class="row column-gap-5 mt-3 mx-1 align-content-center position-relative rounded-3 border border-1" style="height: 40px;">

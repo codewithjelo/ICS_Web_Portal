@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Nov 20, 2024 at 01:36 AM
+-- Generation Time: Nov 25, 2024 at 05:45 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -46,7 +46,7 @@ INSERT INTO `account` (`user_id`, `user_password`, `role_id`) VALUES
 ('100000000006', '$2y$10$6FKuim6pxUAHw4I3qNP9uOMd9mMV.VvOfKNIkOo74m9lathq2t3Nu', 1),
 ('100000000007', '$2y$10$pjwaMjodXZomKybnuHzvCOYnfvmf3bIDO.UM4jJz2Btq4GNMh0R/2', 1),
 ('100000000008', '$2y$10$/o9m.2OmvJ/KXlVM6yH86e0e2CDPfnAMLukohMkMg.6odFkTLEFnO', 1),
-('100000000009', '$2y$10$EEFsbsxV3Uy1Bvh2w4rxRe16nMm0lbk8P83QQ4MTSpYpqaunkNfVW', 1),
+('100000000009', '$2y$10$FLOJzeJc2jBUnkh1zjApI.fQgNevOrFxGZ7tNsF7XaKPr9x1Do3Zq', 1),
 ('100000000010', '$2y$10$dUlE9tklddCbBx1cuPB5qOh0LA.hb21fqDw/1/PJSmEDUZiIfP9Jm', 1),
 ('100000000011', '$2y$10$zPos4pYcQh5c0hFcPN5DbuDljpkuxnxmQHhpoS4t7QccromFCma9K', 1),
 ('100000000012', '$2y$10$YQ90Nd/0bkBM4JforGNXHu8m9CFLb27H.3SogYJ/b5nm3hNWPuzXK', 1),
@@ -92,6 +92,8 @@ INSERT INTO `account` (`user_id`, `user_password`, `role_id`) VALUES
 ('100000000052', '$2y$10$eaIG5BuU97THViwXq7xy8elisu0oeO2zUdfXmbggRXhi8HnSPWZ/S', 1),
 ('100000000053', '$2y$10$gIOgEQc8nUtR3uy0UXmsB.t.sJ5uwhbVN.K7VgAeGBFvrHUkZFuOa', 1),
 ('100000000054', '$2y$10$BeHlvQ9V31LLAbN4VQ39cOUtts1.Kd6M2TAjS4uneqTybZupiiI8e', 1),
+('100000000060', '$2y$10$1E3j2C0Bnf3FZx.C96avWugTizRt5TbAXeN3Lb8b6kpGPFVtyAuAm', 1),
+('123123123123', '$2y$10$uHATFlgEySn9SqUhlxRs.OyxHawMWDntVRvgk6cGSUMCnsH2EpSrm', 1),
 ('ICS-GUI4001', '$2y$10$6uIqfq6B2ERsVCcyK5Co4.yv7Wx0iB8DNrv35HHLq1pfcY1/9gKL2', 4),
 ('ICS-PDO6001', '$2y$10$7MqZFzFhjaY6yVOaRmPV9.3Dj8kvbuFqNh472hWAZ64Jb/i1BDuLS', 6),
 ('ICS-PRI5001', '$2y$10$QKNp82g47r0oFSx5oqLUve1ZOnrdFa26jhMV24kaoaO/e3Owp26rC', 5),
@@ -131,14 +133,6 @@ CREATE TABLE `announcements` (
   `rank_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `announcements`
---
-
-INSERT INTO `announcements` (`announcement_id`, `title`, `announcement_text`, `announcement_file`, `created_at`, `updated_at`, `full_name`, `rank_name`) VALUES
-(1, 'Test 1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', '../announcement/Sisig.jpg', '2024-09-28 09:36:30', '2024-10-21 14:13:18', 'Maranan, Bien Q.', 'Principal IV'),
-(2, 'School Year 2024 Enrollment Scheduledsada', 'We are pleased to inform you that enrollment for the School Year 2024-2025 is now open! Key Dates: October 1: Start of Early Enrollment for returning students  October 15: Regular Enrollment for new students  November 5: Classes begin Please ensure to submit all the necessary requirements before the deadline. You can access the enrollment portal via the school’s website. Jelo\\\'s Sari-sari storernrnrnjfgjfgjf', '../announcement/', '2024-09-28 10:42:19', '2024-10-21 14:13:21', 'Maranan, Bien Q.', 'Principal IV');
-
 -- --------------------------------------------------------
 
 --
@@ -158,36 +152,96 @@ CREATE TABLE `class_schedule` (
 --
 
 INSERT INTO `class_schedule` (`class_schedule_id`, `class_time`, `subject_name`, `weekday`, `section_id`) VALUES
-(1, '9:00 AM', 'Math', 'Monday', 1),
-(2, '9:00 AM', 'Science', 'Tuesday', 1),
-(3, '9:00 AM', 'History', 'Wednesday', 1),
-(4, '9:00 AM', 'Literature', 'Thursday', 1),
-(5, '9:00 AM', 'Art', 'Friday', 1),
-(6, '10:00 AM', 'Chemistry', 'Monday', 1),
-(7, '10:00 AM', 'Math', 'Tuesday', 1),
-(8, '10:00 AM', 'Science', 'Wednesday', 1),
-(9, '10:00 AM', 'History', 'Thursday', 1),
-(10, '10:00 AM', 'Literature', 'Friday', 1),
-(11, '11:00 AM', 'English', 'Monday', 1),
-(12, '11:00 AM', 'Chemistry', 'Tuesday', 1),
-(13, '11:00 AM', 'Math', 'Wednesday', 1),
-(14, '11:00 AM', 'Science', 'Thursday', 1),
-(15, '11:00 AM', 'History', 'Friday', 1),
-(16, '12:00 PM', 'Physics', 'Monday', 1),
-(17, '12:00 PM', 'English', 'Tuesday', 1),
-(18, '12:00 PM', 'Chemistry', 'Wednesday', 1),
-(19, '12:00 PM', 'Math', 'Thursday', 1),
-(20, '12:00 PM', 'Science', 'Friday', 1),
-(21, '1:00 PM', 'Literature', 'Monday', 1),
-(22, '1:00 PM', 'Physics', 'Tuesday', 1),
-(23, '1:00 PM', 'English', 'Wednesday', 1),
-(24, '1:00 PM', 'Chemistry', 'Thursday', 1),
-(25, '1:00 PM', 'Math', 'Friday', 1),
-(26, '2:00 PM', 'Music', 'Monday', 1),
-(27, '2:00 PM', 'Literature', 'Tuesday', 1),
-(28, '2:00 PM', 'Physics', 'Wednesday', 1),
-(29, '2:00 PM', 'English', 'Thursday', 1),
-(30, '2:00 PM', 'Chemistry', 'Friday', 1);
+(31, '9:00 AM', 'Math', 'Monday', 31),
+(32, '9:00 AM', 'Science', 'Tuesday', 31),
+(33, '9:00 AM', 'History', 'Wednesday', 31),
+(34, '9:00 AM', 'Literature', 'Thursday', 31),
+(35, '9:00 AM', 'Art', 'Friday', 31),
+(36, '10:00 AM', 'Chemistry', 'Monday', 31),
+(37, '10:00 AM', 'Math', 'Tuesday', 31),
+(38, '10:00 AM', 'Science', 'Wednesday', 31),
+(39, '10:00 AM', 'History', 'Thursday', 31),
+(40, '10:00 AM', 'Literature', 'Friday', 31),
+(41, '11:00 AM', 'English', 'Monday', 31),
+(42, '11:00 AM', 'Chemistry', 'Tuesday', 31),
+(43, '11:00 AM', 'Math', 'Wednesday', 31),
+(44, '11:00 AM', 'Science', 'Thursday', 31),
+(45, '11:00 AM', 'History', 'Friday', 31),
+(46, '12:00 PM', 'Physics', 'Monday', 31),
+(47, '12:00 PM', 'English', 'Tuesday', 31),
+(48, '12:00 PM', 'Chemistry', 'Wednesday', 31),
+(49, '12:00 PM', 'Math', 'Thursday', 31),
+(50, '12:00 PM', 'Science', 'Friday', 31),
+(51, '1:00 PM', 'Literature', 'Monday', 31),
+(52, '1:00 PM', 'Physics', 'Tuesday', 31),
+(53, '1:00 PM', 'English', 'Wednesday', 31),
+(54, '1:00 PM', 'Chemistry', 'Thursday', 31),
+(55, '1:00 PM', 'Math', 'Friday', 31),
+(56, '2:00 PM', 'Music', 'Monday', 31),
+(57, '2:00 PM', 'Literature', 'Tuesday', 31),
+(58, '2:00 PM', 'Physics', 'Wednesday', 31),
+(59, '2:00 PM', 'English', 'Thursday', 31),
+(60, '2:00 PM', 'Chemistry', 'Friday', 31),
+(121, '9:00 AM', 'Math', 'Monday', 22),
+(122, '9:00 AM', 'Science', 'Tuesday', 22),
+(123, '9:00 AM', 'History', 'Wednesday', 22),
+(124, '9:00 AM', 'Literature', 'Thursday', 22),
+(125, '9:00 AM', 'Art', 'Friday', 22),
+(126, '10:00 AM', 'Chemistry', 'Monday', 22),
+(127, '10:00 AM', 'Math', 'Tuesday', 22),
+(128, '10:00 AM', 'Science', 'Wednesday', 22),
+(129, '10:00 AM', 'History', 'Thursday', 22),
+(130, '10:00 AM', 'Literature', 'Friday', 22),
+(131, '11:00 AM', 'English', 'Monday', 22),
+(132, '11:00 AM', 'Chemistry', 'Tuesday', 22),
+(133, '11:00 AM', 'Math', 'Wednesday', 22),
+(134, '11:00 AM', 'Science', 'Thursday', 22),
+(135, '11:00 AM', 'History', 'Friday', 22),
+(136, '12:00 PM', 'Physics', 'Monday', 22),
+(137, '12:00 PM', 'English', 'Tuesday', 22),
+(138, '12:00 PM', 'Chemistry', 'Wednesday', 22),
+(139, '12:00 PM', 'Math', 'Thursday', 22),
+(140, '12:00 PM', 'Science', 'Friday', 22),
+(141, '1:00 PM', 'Literature', 'Monday', 22),
+(142, '1:00 PM', 'Physics', 'Tuesday', 22),
+(143, '1:00 PM', 'English', 'Wednesday', 22),
+(144, '1:00 PM', 'Chemistry', 'Thursday', 22),
+(145, '1:00 PM', 'Math', 'Friday', 22),
+(146, '2:00 PM', 'Music', 'Monday', 22),
+(147, '2:00 PM', 'Literature', 'Tuesday', 22),
+(148, '2:00 PM', 'Physics', 'Wednesday', 22),
+(149, '2:00 PM', 'English', 'Thursday', 22),
+(150, '2:00 PM', 'Chemistry', 'Friday', 22),
+(151, '9:00 AM', 'Math', 'Monday', 1),
+(152, '9:00 AM', 'Science', 'Tuesday', 1),
+(153, '9:00 AM', 'History', 'Wednesday', 1),
+(154, '9:00 AM', 'Literature', 'Thursday', 1),
+(155, '9:00 AM', 'Art', 'Friday', 1),
+(156, '10:00 AM', 'Chemistry', 'Monday', 1),
+(157, '10:00 AM', 'Math', 'Tuesday', 1),
+(158, '10:00 AM', 'Science', 'Wednesday', 1),
+(159, '10:00 AM', 'History', 'Thursday', 1),
+(160, '10:00 AM', 'Literature', 'Friday', 1),
+(161, '11:00 AM', 'English', 'Monday', 1),
+(162, '11:00 AM', 'Chemistry', 'Tuesday', 1),
+(163, '11:00 AM', 'Math', 'Wednesday', 1),
+(164, '11:00 AM', 'Science', 'Thursday', 1),
+(165, '11:00 AM', 'History', 'Friday', 1),
+(166, '12:00 PM', 'Physics', 'Monday', 1),
+(167, '12:00 PM', 'English', 'Tuesday', 1),
+(168, '12:00 PM', 'Chemistry', 'Wednesday', 1),
+(169, '12:00 PM', 'Math', 'Thursday', 1),
+(170, '12:00 PM', 'Science', 'Friday', 1),
+(171, '1:00 PM', 'Literature', 'Monday', 1),
+(172, '1:00 PM', 'Physics', 'Tuesday', 1),
+(173, '1:00 PM', 'English', 'Wednesday', 1),
+(174, '1:00 PM', 'Chemistry', 'Thursday', 1),
+(175, '1:00 PM', 'Math', 'Friday', 1),
+(176, '2:00 PM', 'Music', 'Monday', 1),
+(177, '2:00 PM', 'Literature', 'Tuesday', 1),
+(178, '2:00 PM', 'Physics', 'Wednesday', 1),
+(179, '2:00 PM', 'English', 'Thursday', 1),
+(180, '2:00 PM', 'Chemistry', 'Friday', 1);
 
 -- --------------------------------------------------------
 
@@ -202,6 +256,102 @@ CREATE TABLE `class_schedule_archive` (
   `weekday` enum('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday') NOT NULL,
   `section_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `class_schedule_archive`
+--
+
+INSERT INTO `class_schedule_archive` (`archive_schedule_id`, `class_time`, `subject_name`, `weekday`, `section_id`) VALUES
+(31, '9:00 AM', 'Math', 'Monday', 22),
+(32, '9:00 AM', 'Science', 'Tuesday', 22),
+(33, '9:00 AM', 'History', 'Wednesday', 22),
+(34, '9:00 AM', 'Literature', 'Thursday', 22),
+(35, '9:00 AM', 'Art', 'Friday', 22),
+(36, '10:00 AM', 'Chemistry', 'Monday', 22),
+(37, '10:00 AM', 'Math', 'Tuesday', 22),
+(38, '10:00 AM', 'Science', 'Wednesday', 22),
+(39, '10:00 AM', 'History', 'Thursday', 22),
+(40, '10:00 AM', 'Literature', 'Friday', 22),
+(41, '11:00 AM', 'English', 'Monday', 22),
+(42, '11:00 AM', 'Chemistry', 'Tuesday', 22),
+(43, '11:00 AM', 'Math', 'Wednesday', 22),
+(44, '11:00 AM', 'Science', 'Thursday', 22),
+(45, '11:00 AM', 'History', 'Friday', 22),
+(46, '12:00 PM', 'Physics', 'Monday', 22),
+(47, '12:00 PM', 'English', 'Tuesday', 22),
+(48, '12:00 PM', 'Chemistry', 'Wednesday', 22),
+(49, '12:00 PM', 'Math', 'Thursday', 22),
+(50, '12:00 PM', 'Science', 'Friday', 22),
+(51, '1:00 PM', 'Literature', 'Monday', 22),
+(52, '1:00 PM', 'Physics', 'Tuesday', 22),
+(53, '1:00 PM', 'English', 'Wednesday', 22),
+(54, '1:00 PM', 'Chemistry', 'Thursday', 22),
+(55, '1:00 PM', 'Math', 'Friday', 22),
+(56, '2:00 PM', 'Music', 'Monday', 22),
+(57, '2:00 PM', 'Literature', 'Tuesday', 22),
+(58, '2:00 PM', 'Physics', 'Wednesday', 22),
+(59, '2:00 PM', 'English', 'Thursday', 22),
+(60, '2:00 PM', 'Chemistry', 'Friday', 22),
+(62, '9:00 AM', 'Math', 'Monday', 22),
+(63, '9:00 AM', 'Science', 'Tuesday', 22),
+(64, '9:00 AM', 'History', 'Wednesday', 22),
+(65, '9:00 AM', 'Literature', 'Thursday', 22),
+(66, '9:00 AM', 'Art', 'Friday', 22),
+(67, '10:00 AM', 'Chemistry', 'Monday', 22),
+(68, '10:00 AM', 'Math', 'Tuesday', 22),
+(69, '10:00 AM', 'Science', 'Wednesday', 22),
+(70, '10:00 AM', 'History', 'Thursday', 22),
+(71, '10:00 AM', 'Literature', 'Friday', 22),
+(72, '11:00 AM', 'English', 'Monday', 22),
+(73, '11:00 AM', 'Chemistry', 'Tuesday', 22),
+(74, '11:00 AM', 'Math', 'Wednesday', 22),
+(75, '11:00 AM', 'Science', 'Thursday', 22),
+(76, '11:00 AM', 'History', 'Friday', 22),
+(77, '12:00 PM', 'Physics', 'Monday', 22),
+(78, '12:00 PM', 'English', 'Tuesday', 22),
+(79, '12:00 PM', 'Chemistry', 'Wednesday', 22),
+(80, '12:00 PM', 'Math', 'Thursday', 22),
+(81, '12:00 PM', 'Science', 'Friday', 22),
+(82, '1:00 PM', 'Literature', 'Monday', 22),
+(83, '1:00 PM', 'Physics', 'Tuesday', 22),
+(84, '1:00 PM', 'English', 'Wednesday', 22),
+(85, '1:00 PM', 'Chemistry', 'Thursday', 22),
+(86, '1:00 PM', 'Math', 'Friday', 22),
+(87, '2:00 PM', 'Music', 'Monday', 22),
+(88, '2:00 PM', 'Literature', 'Tuesday', 22),
+(89, '2:00 PM', 'Physics', 'Wednesday', 22),
+(90, '2:00 PM', 'English', 'Thursday', 22),
+(91, '2:00 PM', 'Chemistry', 'Friday', 22),
+(93, '9:00 AM', 'Math', 'Monday', 1),
+(94, '9:00 AM', 'Science', 'Tuesday', 1),
+(95, '9:00 AM', 'History', 'Wednesday', 1),
+(96, '9:00 AM', 'Literature', 'Thursday', 1),
+(97, '9:00 AM', 'Art', 'Friday', 1),
+(98, '10:00 AM', 'Chemistry', 'Monday', 1),
+(99, '10:00 AM', 'Math', 'Tuesday', 1),
+(100, '10:00 AM', 'Science', 'Wednesday', 1),
+(101, '10:00 AM', 'History', 'Thursday', 1),
+(102, '10:00 AM', 'Literature', 'Friday', 1),
+(103, '11:00 AM', 'English', 'Monday', 1),
+(104, '11:00 AM', 'Chemistry', 'Tuesday', 1),
+(105, '11:00 AM', 'Math', 'Wednesday', 1),
+(106, '11:00 AM', 'Science', 'Thursday', 1),
+(107, '11:00 AM', 'History', 'Friday', 1),
+(108, '12:00 PM', 'Physics', 'Monday', 1),
+(109, '12:00 PM', 'English', 'Tuesday', 1),
+(110, '12:00 PM', 'Chemistry', 'Wednesday', 1),
+(111, '12:00 PM', 'Math', 'Thursday', 1),
+(112, '12:00 PM', 'Science', 'Friday', 1),
+(113, '1:00 PM', 'Literature', 'Monday', 1),
+(114, '1:00 PM', 'Physics', 'Tuesday', 1),
+(115, '1:00 PM', 'English', 'Wednesday', 1),
+(116, '1:00 PM', 'Chemistry', 'Thursday', 1),
+(117, '1:00 PM', 'Math', 'Friday', 1),
+(118, '2:00 PM', 'Music', 'Monday', 1),
+(119, '2:00 PM', 'Literature', 'Tuesday', 1),
+(120, '2:00 PM', 'Physics', 'Wednesday', 1),
+(121, '2:00 PM', 'English', 'Thursday', 1),
+(122, '2:00 PM', 'Chemistry', 'Friday', 1);
 
 -- --------------------------------------------------------
 
@@ -226,7 +376,13 @@ INSERT INTO `e_certificate` (`e_certificate_id`, `e_certificate`, `full_name`, `
 (11, '../student_certificate/certyyy.jpg', 'Dela Cruz, Elena D.', 1006, 3001, 2),
 (12, '../student_certificate/certyyy.jpg', 'Dela Cruz, Andres D.', 1003, 3001, 1),
 (13, '../student_certificate/certyyy.jpg', 'Dela Cruz, Luis D.', 1001, 3001, 1),
-(14, '../student_certificate/certyyy.jpg', 'Dela Cruz, Gabriel D.', 1009, 3001, 3);
+(14, '../student_certificate/certyyy.jpg', 'Dela Cruz, Gabriel D.', 1009, 3001, 3),
+(16, '../student_certificate/certyyy.jpg', 'Delos Reyes, Samuel D.', 1014, 3001, 5),
+(18, '../student_certificate/certyyy.jpg', 'Dela Cruz, Luis D.', 1001, 3001, 1),
+(19, '../student_certificate/6743708c284da_certyyy.jpg', 'Dela Cruz, Luis D.', 1001, 3001, 1),
+(20, '../student_certificate/6743708c284da_certyyy.jpg', 'Dela Cruz, Luis D.', 1001, 3001, 1),
+(21, '../student_certificate/6743708c284da_certyyy.jpg', 'Dela Cruz, Luis D.', 1001, 3001, 1),
+(22, '../student_certificate/6743708c284da_certyyy.jpg', 'Dela Cruz, Luis D.', 1001, 3001, 1);
 
 -- --------------------------------------------------------
 
@@ -238,6 +394,7 @@ CREATE TABLE `grade` (
   `grade_id` int(11) NOT NULL,
   `student_id` int(11) DEFAULT NULL,
   `subject_id` int(11) DEFAULT NULL,
+  `section_id` int(11) NOT NULL,
   `teacher_id` int(11) DEFAULT NULL,
   `academic_year` varchar(10) DEFAULT NULL,
   `first_quarter` decimal(5,2) DEFAULT NULL,
@@ -250,10 +407,49 @@ CREATE TABLE `grade` (
 -- Dumping data for table `grade`
 --
 
-INSERT INTO `grade` (`grade_id`, `student_id`, `subject_id`, `teacher_id`, `academic_year`, `first_quarter`, `second_quarter`, `third_quarter`, `fourth_quarter`) VALUES
-(1, 1001, 6, 3006, '2024', 95.00, 85.00, 80.00, 83.00),
-(2, 1002, 6, 3006, '2024', 98.00, 85.00, 96.00, 88.00),
-(3, 1003, 6, 3006, '2024', 88.00, 97.00, 89.00, 97.00);
+INSERT INTO `grade` (`grade_id`, `student_id`, `subject_id`, `section_id`, `teacher_id`, `academic_year`, `first_quarter`, `second_quarter`, `third_quarter`, `fourth_quarter`) VALUES
+(14, 1001, 1, 1, 3001, '2022-2023', 84.00, 86.00, 97.00, 94.00),
+(15, 1002, 1, 1, 3001, '2022-2023', 85.00, 97.00, 90.00, 95.00),
+(16, 1003, 1, 1, 3001, '2022-2023', 87.00, 77.00, 96.00, 90.00),
+(17, 1001, 1, 3, 3001, '2022-2023', 84.00, 86.00, 97.00, 94.00),
+(18, 1002, 1, 3, 3001, '2022-2023', 85.00, 97.00, 90.00, 95.00),
+(19, 1003, 1, 3, 3001, '2022-2023', 87.00, 77.00, 96.00, 90.00),
+(20, 1001, 1, 7, 3001, '2022-2023', 84.00, 86.00, 97.00, 94.00),
+(21, 1002, 1, 7, 3001, '2022-2023', 85.00, 97.00, 90.00, 95.00),
+(22, 1003, 1, 7, 3001, '2022-2023', 87.00, 77.00, 96.00, 90.00),
+(23, 1001, 1, 6, 3001, '2022-2023', 84.00, 86.00, 97.00, 94.00),
+(24, 1002, 1, 6, 3001, '2022-2023', 85.00, 97.00, 90.00, 95.00),
+(25, 1003, 1, 6, 3001, '2022-2023', 87.00, 77.00, 96.00, 90.00),
+(26, 1001, 1, 4, 3001, '2022-2023', 84.00, 86.00, 97.00, 94.00),
+(27, 1002, 1, 4, 3001, '2022-2023', 85.00, 97.00, 90.00, 95.00),
+(28, 1003, 1, 4, 3001, '2022-2023', 87.00, 77.00, 96.00, 90.00),
+(29, 1001, 2, 1, 3002, '2022-2023', 84.00, 86.00, 97.00, 94.00),
+(30, 1002, 2, 1, 3002, '2022-2023', 85.00, 97.00, 90.00, 95.00),
+(31, 1003, 2, 1, 3002, '2022-2023', 87.00, 77.00, 96.00, 90.00),
+(32, 1001, 3, 1, 3003, '2022-2023', 97.00, 96.00, 96.00, 95.00),
+(33, 1002, 3, 1, 3003, '2022-2023', 94.00, 94.00, 93.00, 93.00),
+(34, 1003, 3, 1, 3003, '2022-2023', 93.00, 94.00, 94.00, 94.00),
+(35, 1001, 4, 1, 3004, '2022-2023', 97.00, 96.00, 96.00, 95.00),
+(36, 1002, 4, 1, 3004, '2022-2023', 94.00, 94.00, 93.00, 93.00),
+(37, 1003, 4, 1, 3004, '2022-2023', 93.00, 94.00, 94.00, 94.00),
+(38, 1001, 5, 1, 3005, '2022-2023', 84.00, 86.00, 97.00, 94.00),
+(39, 1002, 5, 1, 3005, '2022-2023', 85.00, 97.00, 90.00, 95.00),
+(40, 1003, 5, 1, 3005, '2022-2023', 87.00, 77.00, 96.00, 90.00),
+(41, 1031, 1, 1, 3001, '2021-2022', 88.92, 90.22, 92.21, 93.10),
+(42, 1031, 2, 1, 3002, '2021-2022', 84.92, 91.22, 87.21, 89.10),
+(43, 1031, 3, 1, 3003, '2021-2022', 92.92, 91.22, 97.21, 97.10),
+(44, 1031, 4, 1, 3004, '2021-2022', 95.92, 89.22, 90.21, 93.10),
+(45, 1031, 5, 1, 3005, '2021-2022', 94.92, 89.22, 87.21, 84.10),
+(46, 1032, 1, 1, 3001, '2021-2022', 94.92, 89.22, 87.21, 84.10),
+(47, 1032, 2, 1, 3002, '2021-2022', 92.92, 91.22, 97.21, 97.10),
+(48, 1032, 3, 1, 3003, '2021-2022', 88.92, 90.22, 92.21, 93.10),
+(49, 1032, 4, 1, 3004, '2021-2022', 84.92, 91.22, 87.21, 89.10),
+(50, 1032, 5, 1, 3005, '2021-2022', 95.92, 89.22, 90.21, 93.10),
+(51, 1033, 1, 1, 3001, '2021-2022', 94.92, 89.22, 87.21, 84.10),
+(52, 1033, 2, 1, 3002, '2021-2022', 84.92, 91.22, 87.21, 89.10),
+(53, 1033, 3, 1, 3003, '2021-2022', 92.92, 91.22, 97.21, 97.10),
+(54, 1033, 4, 1, 3004, '2021-2022', 95.92, 89.22, 90.21, 93.10),
+(55, 1033, 5, 1, 3005, '2021-2022', 88.92, 90.22, 92.21, 93.10);
 
 -- --------------------------------------------------------
 
@@ -300,7 +496,7 @@ CREATE TABLE `guidance` (
 --
 
 INSERT INTO `guidance` (`guidance_id`, `first_name`, `middle_name`, `last_name`, `email`, `role_id`, `rank_id`) VALUES
-(4001, 'ken', 'mercado', 'mercado', 'ken@gmail.com', 4, 18);
+(4001, 'Alvin Jan Josef', 'Zara', 'Espino', 'alvinespino@gmail.com', 4, 18);
 
 -- --------------------------------------------------------
 
@@ -316,6 +512,7 @@ CREATE TABLE `parent` (
   `email` varchar(100) DEFAULT NULL,
   `phone_number` varchar(15) DEFAULT NULL,
   `address` varchar(100) DEFAULT NULL,
+  `civil_status` varchar(20) DEFAULT NULL,
   `role_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -323,108 +520,74 @@ CREATE TABLE `parent` (
 -- Dumping data for table `parent`
 --
 
-INSERT INTO `parent` (`parent_id`, `first_name`, `middle_name`, `last_name`, `email`, `phone_number`, `address`, `role_id`) VALUES
-(2001, 'Juan', 'Andres', 'Dela Cruz', 'juan.delacruz@example.com', '09123456789', 'Brgy. Batangas City, Batangas', 2),
-(2002, 'Maria', 'Santos', 'Reyes', 'maria.reyes@example.com', '09123456780', 'Brgy. San Jose, Batangas City', 2),
-(2003, 'Jose', 'Lopez', 'Flores', 'jose.flores@example.com', '09123456781', 'Brgy. Wawa, Batangas City', 2),
-(2004, 'Ana', 'Dela Torre', 'Mendoza', 'ana.mendoza@example.com', '09123456782', 'Brgy. Alangilan, Batangas City', 2),
-(2005, 'David', 'Mercado', 'Gonzalez', 'david.gonzalez@example.com', '09123456783', 'Brgy. San Luis, Batangas City', 2),
-(2006, 'Jessica', 'Luna', 'Torres', 'jessica.torres@example.com', '09123456784', 'Brgy. Pallocan, Batangas City', 2),
-(2007, 'Robert', 'Salvador', 'Bautista', 'robert.bautista@example.com', '09123456785', 'Brgy. Gulod, Batangas City', 2),
-(2008, 'Laura', 'Buenaventura', 'Aquino', 'laura.aquino@example.com', '09123456786', 'Brgy. Libjo, Batangas City', 2),
-(2009, 'James', 'Cabrera', 'Ramos', 'james.ramos@example.com', '09123456787', 'Brgy. Sta. Clara, Batangas City', 2),
-(2010, 'Linda', 'Garcia', 'Villanueva', 'linda.villanueva@example.com', '09123456788', 'Brgy. Balagtas, Batangas City', 2),
-(2011, 'Mark', 'Diaz', 'Delos Santos', 'mark.delossantos@example.com', '09123456789', 'Brgy. San Pascual, Batangas City', 2),
-(2012, 'Anna', 'Pascual', 'Gomez', 'anna.gomez@example.com', '09123456790', 'Brgy. Calicanto, Batangas City', 2),
-(2013, 'Brian', 'Manalang', 'Padilla', 'brian.padilla@example.com', '09123456791', 'Brgy. Concepcion, Batangas City', 2),
-(2014, 'Elizabeth', 'Soriano', 'Castro', 'elizabeth.castro@example.com', '09123456792', 'Brgy. San Carlos, Batangas City', 2),
-(2015, 'Steven', 'Navarro', 'Rivera', 'steven.rivera@example.com', '09123456793', 'Brgy. Loma, Batangas City', 2),
-(2016, 'Amy', 'Fernandez', 'Ortega', 'amy.ortega@example.com', '09123456794', 'Brgy. Mataasnakahoy, Batangas City', 2),
-(2017, 'Joshua', 'Marasigan', 'Lazaro', 'joshua.lazaro@example.com', '09123456795', 'Brgy. Sico, Batangas City', 2),
-(2018, 'Sophia', 'Ramos', 'Santiago', 'sophia.santiago@example.com', '09123456796', 'Brgy. Taal, Batangas City', 2),
-(2019, 'Carlos', 'Ocampo', 'Alvarez', 'carlos.alvarez@example.com', '09123456797', 'Brgy. Libis, Batangas City', 2),
-(2020, 'Rebecca', 'Ibarra', 'Cruz', 'rebecca.cruz@example.com', '09123456798', 'Brgy. Bagong Silang, Batangas City', 2),
-(2021, 'Michael', 'Cuenca', 'Bautista', 'michael.bautista@example.com', '09123456799', 'Brgy. Ilijan, Batangas City', 2),
-(2022, 'Nina', 'Llamas', 'Magsaysay', 'nina.magsaysay@example.com', '09123456800', 'Brgy. San Isidro, Batangas City', 2),
-(2023, 'Rafael', 'Velasco', 'Cordero', 'rafael.cordero@example.com', '09123456801', 'Brgy. San Antonio, Batangas City', 2),
-(2024, 'Julia', 'Alcantara', 'Morales', 'julia.morales@example.com', '09123456802', 'Brgy. Bolbok, Batangas City', 2),
-(2025, 'Pedro', 'Bacani', 'Diokno', 'pedro.diokno@example.com', '09123456803', 'Brgy. San Vicente, Batangas City', 2),
-(2026, 'Claudia', 'Cruz', 'Nieves', 'claudia.nieves@example.com', '09123456804', 'Brgy. Banay-Banay, Batangas City', 2),
-(2027, 'Victor', 'Estrada', 'Salvador', 'victor.salvador@example.com', '09123456805', 'Brgy. Malitam, Batangas City', 2),
-(2028, 'Isabel', 'Marquez', 'Paz', 'isabel.paz@example.com', '09123456806', 'Brgy. Marawoy, Batangas City', 2),
-(2029, 'Leo', 'Tan', 'Pascual', 'leo.pascual@example.com', '09123456807', 'Brgy. San Juan, Batangas City', 2),
-(2030, 'Carmen', 'Aguilar', 'Sison', 'carmen.sison@example.com', '09123456808', 'Brgy. Batangas, Batangas City', 2),
-(2031, 'Wendy', 'Bautista', 'Ferrer', 'wendy.ferrer@example.com', '09123456809', 'Brgy. Buli, Batangas City', 2),
-(2032, 'Evelyn', 'Lim', 'Pineda', 'evelyn.pineda@example.com', '09123456810', 'Brgy. Biga, Batangas City', 2),
-(2033, 'Ramon', 'Quinto', 'Toribio', 'ramon.toribio@example.com', '09123456811', 'Brgy. Lower Bicutan, Batangas City', 2),
-(2034, 'Ella', 'Rosales', 'Alfaro', 'ella.alfaro@example.com', '09123456812', 'Brgy. Banga, Batangas City', 2),
-(2035, 'Carlos', 'Rizal', 'Quintero', 'carlos.quintero@example.com', '09123456813', 'Brgy. San Miguel, Batangas City', 2),
-(2036, 'Nina', 'De Guzman', 'Guevarra', 'nina.guevarra@example.com', '09123456814', 'Brgy. Sitio Pook, Batangas City', 2),
-(2037, 'Marco', 'Manalo', 'Castro', 'marco.castro@example.com', '09123456815', 'Brgy. Brgy. 6, Batangas City', 2),
-(2038, 'Bela', 'Padua', 'Manalaysay', 'bela.manalaysay@example.com', '09123456816', 'Brgy. San Luis, Batangas City', 2),
-(2039, 'Lara', 'Almoite', 'Alcantara', 'lara.alcantara@example.com', '09123456817', 'Brgy. 11, Batangas City', 2),
-(2040, 'Gina', 'Dizon', 'Bongat', 'gina.bongat@example.com', '09123456818', 'Brgy. 4, Batangas City', 2),
-(2041, 'Henry', 'Cruz', 'Bilaro', 'henry.bilaro@example.com', '09123456819', 'Brgy. 2, Batangas City', 2),
-(2042, 'Daisy', 'Aguilar', 'Lalangan', 'daisy.lalangan@example.com', '09123456820', 'Brgy. 9, Batangas City', 2),
-(2043, 'Joey', 'Enriquez', 'Gamboa', 'joey.gamboa@example.com', '09123456821', 'Brgy. 10, Batangas City', 2),
-(2044, 'Flora', 'Resurreccion', 'Anacore', 'flora.anacore@example.com', '09123456822', 'Brgy. 3, Batangas City', 2),
-(2045, 'Tina', 'Sabino', 'Ocampo', 'tina.ocampo@example.com', '09123456823', 'Brgy. 1, Batangas City', 2),
-(2046, 'Henry', 'Soriano', 'De Vera', 'henry.devera@example.com', '09123456824', 'Brgy. 5, Batangas City', 2),
-(2047, 'Ronald', 'Ferrer', 'Manalo', 'ronald.manalo@example.com', '09123456825', 'Brgy. 8, Batangas City', 2),
-(2048, 'Christine', 'Bautista', 'Alvarado', 'christine.alvarado@example.com', '09123456826', 'Brgy. Manggahan, Batangas City', 2),
-(2049, 'Arnel', 'Riviera', 'Pablo', 'arnel.pablo@example.com', '09123456827', 'Brgy. Maricaban, Batangas City', 2),
-(2050, 'Sharon', 'Valdez', 'Delos Santos', 'sharon.delossantos@example.com', '09123456828', 'Brgy. As-Is, Batangas City', 2),
-(2051, 'Greg', 'Tan', 'Quezada', 'greg.quezada@example.com', '09123456829', 'Brgy. San Pedro, Batangas City', 2),
-(2052, 'Grace', 'Gonzalez', 'Martinez', 'grace.martinez@example.com', '09123456830', 'Brgy. Pook, Batangas City', 2),
-(2053, 'Ferdinand', 'Cruz', 'Alarcon', 'ferdinand.alarcon@example.com', '09123456831', 'Brgy. Santo Niño, Batangas City', 2),
-(2054, 'Angelica', 'Bautista', 'Pineda', 'angelica.pineda@example.com', '09123456832', 'Brgy. Tinga Labac, Batangas City', 2),
-(2055, 'Burnik', '', 'Panaligan', 'jannangelodimaano@gmail.com', '9454210467', 'Wawa, Batangas City', 2),
-(2056, 'sdadasda', '', 'sdadasdas', 'ken@gmail.com', '9319511199', 'san jose', 2),
-(2057, 'sdadasda', '', 'asdadsdad', 'ken@gmail.com', '9319511199', 'sanjose', 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `parent_archive`
---
-
-CREATE TABLE `parent_archive` (
-  `parent_archive_id` int(11) NOT NULL,
-  `parent_id` int(11) NOT NULL,
-  `first_name` varchar(100) NOT NULL,
-  `middle_name` varchar(100) DEFAULT NULL,
-  `last_name` varchar(100) NOT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `phone_number` int(15) DEFAULT NULL,
-  `address` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `parent_archive`
---
-
-INSERT INTO `parent_archive` (`parent_archive_id`, `parent_id`, `first_name`, `middle_name`, `last_name`, `email`, `phone_number`, `address`) VALUES
-(1, 2001, 'Juan', 'Andres', 'Dela Cruz', 'juan.delacruz@example.com', 2147483647, 'Brgy. Batangas City, Batangas');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `password_resets`
---
-
-CREATE TABLE `password_resets` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `token` varchar(255) DEFAULT NULL,
-  `expires` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `password_resets`
---
-
-INSERT INTO `password_resets` (`id`, `user_id`, `token`, `expires`) VALUES
-(18, 22, 'e57222bf31a4b525dcd0e0932b43e3dc4e73ba0d8eecc9c29aef607c9b825d73', '2024-11-12 16:19:16');
+INSERT INTO `parent` (`parent_id`, `first_name`, `middle_name`, `last_name`, `email`, `phone_number`, `address`, `civil_status`, `role_id`) VALUES
+(2001, 'Juan', 'Andres', 'Dela Cruz', 'juan.delacruz@example.com', '09123456789', 'Brgy. Batangas City, Batangas', 'Married', 2),
+(2002, 'Maria', 'Santos', 'Reyes', 'maria.reyes@example.com', '09123456780', 'Brgy. San Jose, Batangas City', 'Married', 2),
+(2003, 'Jose', 'Lopez', 'Flores', 'jose.flores@example.com', '09123456781', 'Brgy. Wawa, Batangas City', 'Married', 2),
+(2004, 'Ana', 'Dela Torre', 'Mendoza', 'ana.mendoza@example.com', '09123456782', 'Brgy. Alangilan, Batangas City', 'Married', 2),
+(2005, 'David', 'Mercado', 'Gonzalez', 'david.gonzalez@example.com', '09123456783', 'Brgy. San Luis, Batangas City', 'Married', 2),
+(2006, 'Jessica', 'Luna', 'Torres', 'jessica.torres@example.com', '09123456784', 'Brgy. Pallocan, Batangas City', 'Married', 2),
+(2007, 'Robert', 'Salvador', 'Bautista', 'robert.bautista@example.com', '09123456785', 'Brgy. Gulod, Batangas City', 'Married', 2),
+(2008, 'Laura', 'Buenaventura', 'Aquino', 'laura.aquino@example.com', '09123456786', 'Brgy. Libjo, Batangas City', 'Married', 2),
+(2009, 'James', 'Cabrera', 'Ramos', 'james.ramos@example.com', '09123456787', 'Brgy. Sta. Clara, Batangas City', 'Married', 2),
+(2010, 'Linda', 'Garcia', 'Villanueva', 'linda.villanueva@example.com', '09123456788', 'Brgy. Balagtas, Batangas City', 'Married', 2),
+(2011, 'Mark', 'Diaz', 'Delos Santos', 'mark.delossantos@example.com', '09123456789', 'Brgy. San Pascual, Batangas City', 'Married', 2),
+(2012, 'Anna', 'Pascual', 'Gomez', 'anna.gomez@example.com', '09123456790', 'Brgy. Calicanto, Batangas City', 'Married', 2),
+(2013, 'Brian', 'Manalang', 'Padilla', 'brian.padilla@example.com', '09123456791', 'Brgy. Concepcion, Batangas City', 'Married', 2),
+(2014, 'Elizabeth', 'Soriano', 'Castro', 'elizabeth.castro@example.com', '09123456792', 'Brgy. San Carlos, Batangas City', 'Married', 2),
+(2015, 'Steven', 'Navarro', 'Rivera', 'steven.rivera@example.com', '09123456793', 'Brgy. Loma, Batangas City', 'Married', 2),
+(2016, 'Amy', 'Fernandez', 'Ortega', 'amy.ortega@example.com', '09123456794', 'Brgy. Mataasnakahoy, Batangas City', 'Married', 2),
+(2017, 'Joshua', 'Marasigan', 'Lazaro', 'joshua.lazaro@example.com', '09123456795', 'Brgy. Sico, Batangas City', 'Married', 2),
+(2018, 'Sophia', 'Ramos', 'Santiago', 'sophia.santiago@example.com', '09123456796', 'Brgy. Taal, Batangas City', 'Married', 2),
+(2019, 'Carlos', 'Ocampo', 'Alvarez', 'carlos.alvarez@example.com', '09123456797', 'Brgy. Libis, Batangas City', 'Married', 2),
+(2020, 'Rebecca', 'Ibarra', 'Cruz', 'rebecca.cruz@example.com', '09123456798', 'Brgy. Bagong Silang, Batangas City', 'Married', 2),
+(2021, 'Michael', 'Cuenca', 'Bautista', 'michael.bautista@example.com', '09123456799', 'Brgy. Ilijan, Batangas City', 'Married', 2),
+(2022, 'Nina', 'Llamas', 'Magsaysay', 'nina.magsaysay@example.com', '09123456800', 'Brgy. San Isidro, Batangas City', 'Married', 2),
+(2023, 'Rafael', 'Velasco', 'Cordero', 'rafael.cordero@example.com', '09123456801', 'Brgy. San Antonio, Batangas City', 'Married', 2),
+(2024, 'Julia', 'Alcantara', 'Morales', 'julia.morales@example.com', '09123456802', 'Brgy. Bolbok, Batangas City', 'Married', 2),
+(2025, 'Pedro', 'Bacani', 'Diokno', 'pedro.diokno@example.com', '09123456803', 'Brgy. San Vicente, Batangas City', 'Married', 2),
+(2026, 'Claudia', 'Cruz', 'Nieves', 'claudia.nieves@example.com', '09123456804', 'Brgy. Banay-Banay, Batangas City', 'Married', 2),
+(2027, 'Victor', 'Estrada', 'Salvador', 'victor.salvador@example.com', '09123456805', 'Brgy. Malitam, Batangas City', 'Married', 2),
+(2028, 'Isabel', 'Marquez', 'Paz', 'isabel.paz@example.com', '09123456806', 'Brgy. Marawoy, Batangas City', 'Married', 2),
+(2029, 'Leo', 'Tan', 'Pascual', 'leo.pascual@example.com', '09123456807', 'Brgy. San Juan, Batangas City', 'Married', 2),
+(2030, 'Carmen', 'Aguilar', 'Sison', 'carmen.sison@example.com', '09123456808', 'Brgy. Batangas, Batangas City', 'Married', 2),
+(2031, 'Wendy', 'Bautista', 'Ferrer', 'wendy.ferrer@example.com', '09123456809', 'Brgy. Buli, Batangas City', 'Married', 2),
+(2032, 'Evelyn', 'Lim', 'Pineda', 'evelyn.pineda@example.com', '09123456810', 'Brgy. Biga, Batangas City', 'Married', 2),
+(2033, 'Ramon', 'Quinto', 'Toribio', 'ramon.toribio@example.com', '09123456811', 'Brgy. Lower Bicutan, Batangas City', 'Married', 2),
+(2034, 'Ella', 'Rosales', 'Alfaro', 'ella.alfaro@example.com', '09123456812', 'Brgy. Banga, Batangas City', 'Married', 2),
+(2035, 'Carlos', 'Rizal', 'Quintero', 'carlos.quintero@example.com', '09123456813', 'Brgy. San Miguel, Batangas City', 'Married', 2),
+(2036, 'Nina', 'De Guzman', 'Guevarra', 'nina.guevarra@example.com', '09123456814', 'Brgy. Sitio Pook, Batangas City', 'Married', 2),
+(2037, 'Marco', 'Manalo', 'Castro', 'marco.castro@example.com', '09123456815', 'Brgy. Brgy. 6, Batangas City', 'Married', 2),
+(2038, 'Bela', 'Padua', 'Manalaysay', 'bela.manalaysay@example.com', '09123456816', 'Brgy. San Luis, Batangas City', 'Married', 2),
+(2039, 'Lara', 'Almoite', 'Alcantara', 'lara.alcantara@example.com', '09123456817', 'Brgy. 11, Batangas City', 'Married', 2),
+(2040, 'Gina', 'Dizon', 'Bongat', 'gina.bongat@example.com', '09123456818', 'Brgy. 4, Batangas City', 'Married', 2),
+(2041, 'Henry', 'Cruz', 'Bilaro', 'henry.bilaro@example.com', '09123456819', 'Brgy. 2, Batangas City', 'Married', 2),
+(2042, 'Daisy', 'Aguilar', 'Lalangan', 'daisy.lalangan@example.com', '09123456820', 'Brgy. 9, Batangas City', 'Married', 2),
+(2043, 'Joey', 'Enriquez', 'Gamboa', 'joey.gamboa@example.com', '09123456821', 'Brgy. 10, Batangas City', 'Married', 2),
+(2044, 'Flora', 'Resurreccion', 'Anacore', 'flora.anacore@example.com', '09123456822', 'Brgy. 3, Batangas City', 'Married', 2),
+(2045, 'Tina', 'Sabino', 'Ocampo', 'tina.ocampo@example.com', '09123456823', 'Brgy. 1, Batangas City', 'Married', 2),
+(2046, 'Henry', 'Soriano', 'De Vera', 'henry.devera@example.com', '09123456824', 'Brgy. 5, Batangas City', 'Married', 2),
+(2047, 'Ronald', 'Ferrer', 'Manalo', 'ronald.manalo@example.com', '09123456825', 'Brgy. 8, Batangas City', 'Married', 2),
+(2048, 'Christine', 'Bautista', 'Alvarado', 'christine.alvarado@example.com', '09123456826', 'Brgy. Manggahan, Batangas City', 'Married', 2),
+(2049, 'Arnel', 'Riviera', 'Pablo', 'arnel.pablo@example.com', '09123456827', 'Brgy. Maricaban, Batangas City', 'Married', 2),
+(2050, 'Sharon', 'Valdez', 'Delos Santos', 'sharon.delossantos@example.com', '09123456828', 'Brgy. As-Is, Batangas City', 'Married', 2),
+(2051, 'Greg', 'Tan', 'Quezada', 'greg.quezada@example.com', '09123456829', 'Brgy. San Pedro, Batangas City', 'Married', 2),
+(2052, 'Grace', 'Gonzalez', 'Martinez', 'grace.martinez@example.com', '09123456830', 'Brgy. Pook, Batangas City', 'Married', 2),
+(2053, 'Ferdinand', 'Cruz', 'Alarcon', 'ferdinand.alarcon@example.com', '09123456831', 'Brgy. Santo Niño, Batangas City', 'Married', 2),
+(2054, 'Angelica', 'Bautista', 'Pineda', 'angelica.pineda@example.com', '09123456832', 'Brgy. Tinga Labac, Batangas City', 'Married', 2),
+(2055, 'Burnik', '', 'Panaligan', 'jannangelodimaano@gmail.com', '9454210467', 'Wawa, Batangas City', 'Married', 2),
+(2056, 'sdadasda', '', 'sdadasdas', 'ken@gmail.com', '9319511199', 'san jose', 'Married', 2),
+(2057, 'sdadasda', '', 'asdadsdad', 'ken@gmail.com', '9319511199', 'sanjose', 'Married', 2),
+(2058, 'Janet', '', 'Dimaano', 'janetdimaano@gmail.com', '9454210467', '8 C. Tirona Street, Barangay 10, Batangas City, Batangas', 'Married', 2),
+(2059, 'Angelo', '', 'Panaligan', 'jannangelodimaano@gmail.com', '9454210467', '', 'Married', 2),
+(2060, 'Janet', '', 'Panaligan', 'jannangelodimaano@gmail.com', '09454210467', '', 'Married', 2),
+(2061, 'Warlock', '', 'War', 'jannangelodimaano@gmail.com', '09454210467', '', 'Married', 2),
+(2062, 'Selo', '', 'Panaligan', 'jannangelodimaano@gmail.com', '09454210467', '', 'Married', 2),
+(2063, 'Janet', '', 'Dimaano', 'jannangelodimaano@gmail.com', '9454210467', '', 'Married', 2),
+(2064, 'Janet', '', 'Maranan', 'jannangelodimaano@gmail.com', '9454210467', '', 'Married', 2),
+(2065, 'Janet', '', 'Dimaano', 'jannangelodimaano@gmail.com', '9454210467', '', 'Married', 2),
+(2066, 'Janet', '', 'Dimaano', 'jannangelodimaano@gmail.com', '9454210467', '', 'Married', 2),
+(2067, 'Janet', '', 'Dimaano', 'jannangelodimaano@gmail.com', '9454210467', '', 'Married', 2);
 
 -- --------------------------------------------------------
 
@@ -447,7 +610,7 @@ CREATE TABLE `pdo` (
 --
 
 INSERT INTO `pdo` (`pdo_id`, `first_name`, `middle_name`, `last_name`, `email`, `role_id`, `rank_id`) VALUES
-(6001, 'john', 'Zara', 'juan', 'juan@gmail.com', 6, 19);
+(6001, 'John', 'Zara', 'Smith', 'juan@gmail.com', 6, 19);
 
 -- --------------------------------------------------------
 
@@ -470,7 +633,7 @@ CREATE TABLE `principal` (
 --
 
 INSERT INTO `principal` (`principal_id`, `first_name`, `middle_name`, `last_name`, `email`, `role_id`, `rank_id`) VALUES
-(5001, 'drake', 'Quintano', 'dimagiba', 'dimagiba@gmail.com', 5, 17);
+(5001, 'Angelo', 'Quintano', 'Bartolome', 'bartolome_angelo@gmail.com', 5, 17);
 
 -- --------------------------------------------------------
 
@@ -553,7 +716,11 @@ INSERT INTO `schedule_list` (`id`, `title`, `description`, `start_datetime`, `en
 (7, 'dasdada', 'dadadacadaa', '2024-09-27 21:50:00', '2024-09-29 23:51:00'),
 (8, 'dasdadadada', 'dadadacadaadasdad', '2024-09-27 21:50:00', '2024-09-29 23:51:00'),
 (9, 'dasda', 'dasfasfxacac', '2024-09-23 22:15:00', '2024-09-23 12:15:00'),
-(10, 'midterm_exam', 'bagsakan na', '2024-10-28 15:47:00', '2024-10-30 15:47:00');
+(10, 'midterm_exam', 'bagsakan na', '2024-10-28 15:47:00', '2024-10-30 15:47:00'),
+(11, 'VCT Champions', 'Valorant Tournament in Berlin', '2024-11-30 13:00:00', '2024-11-22 22:00:00'),
+(12, 'Jelo', 'Jelo Event', '2024-11-06 09:00:00', '2024-11-06 10:00:00'),
+(13, 'Hallo', 'Dimaano', '2024-11-07 09:00:00', '2024-11-08 10:00:00'),
+(14, 'adsa', 'adsada', '2024-11-04 09:00:00', '2024-11-04 10:00:00');
 
 -- --------------------------------------------------------
 
@@ -665,63 +832,73 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`student_id`, `lrn`, `first_name`, `middle_name`, `last_name`, `sex`, `date_of_birth`, `current_status`, `academic_year`, `parent_id`, `grade_level_id`, `section_id`, `role_id`) VALUES
-(1001, 100000000001, 'Luis', 'Dela Cruz', 'Dela Cruz', 'male', '2013-01-15', 'enrolled', '2022-2023', 2001, 1, 1, 1),
-(1002, 100000000002, 'Maria', 'Dela Cruz', 'Dela Cruz', 'female', '2013-02-20', 'enrolled', '2022-2023', 2002, 1, 1, 1),
-(1003, 100000000003, 'Andres', 'Dela Cruz', 'Dela Cruz', 'male', '2013-03-12', 'enrolled', '2023-2024', 2003, 2, 8, 1),
-(1004, 100000000004, 'Carmen', 'Dela Cruz', 'Dela Cruz', 'female', '2013-04-05', 'enrolled', '2023-2024', 2004, 2, 8, 1),
-(1005, 100000000005, 'Jose', 'Dela Cruz', 'Dela Cruz', 'male', '2013-05-10', 'enrolled', '2023-2024', 2005, 2, 8, 1),
-(1006, 100000000006, 'Elena', 'Dela Cruz', 'Dela Cruz', 'female', '2013-06-25', 'enrolled', '2023-2024', 2006, 2, 9, 1),
-(1007, 100000000007, 'Fernando', 'Dela Cruz', 'Dela Cruz', 'male', '2013-07-30', 'enrolled', '2023-2024', 2007, 2, 8, 1),
-(1008, 100000000008, 'Raquel', 'Dela Cruz', 'Dela Cruz', 'female', '2013-08-15', 'enrolled', '2022-2023', 2008, 1, 3, 1),
-(1009, 100000000009, 'Gabriel', 'Dela Cruz', 'Dela Cruz', 'male', '2013-09-05', 'enrolled', '2023-2024', 2009, 2, 8, 1),
-(1010, 100000000010, 'Pedro', 'Delos Reyes', 'Delos Reyes', 'male', '2014-01-11', 'enrolled', '2024-2025', 2010, 2, 4, 1),
-(1011, 100000000011, 'Sofia', 'Delos Reyes', 'Delos Reyes', 'female', '2014-02-14', 'enrolled', '2024-2025', 2011, 2, 4, 1),
-(1012, 100000000012, 'Rico', 'Delos Reyes', 'Delos Reyes', 'male', '2014-03-20', 'enrolled', '2024-2025', 2012, 2, 4, 1),
-(1013, 100000000013, 'Lia', 'Delos Reyes', 'Delos Reyes', 'female', '2014-04-18', 'enrolled', '2024-2025', 2013, 2, 5, 1),
-(1014, 100000000014, 'Samuel', 'Delos Reyes', 'Delos Reyes', 'male', '2014-05-25', 'enrolled', '2024-2025', 2014, 2, 5, 1),
-(1015, 100000000015, 'Nina', 'Delos Reyes', 'Delos Reyes', 'female', '2014-06-30', 'enrolled', '2024-2025', 2015, 2, 5, 1),
-(1016, 100000000016, 'Miguel', 'Delos Reyes', 'Delos Reyes', 'male', '2014-07-15', 'enrolled', '2024-2025', 2016, 2, 6, 1),
-(1017, 100000000017, 'Marisol', 'Delos Reyes', 'Delos Reyes', 'female', '2014-08-10', 'enrolled', '2024-2025', 2017, 2, 6, 1),
-(1018, 100000000018, 'Hector', 'Delos Reyes', 'Delos Reyes', 'male', '2014-09-25', 'enrolled', '2024-2025', 2018, 2, 6, 1),
-(1019, 100000000019, 'Daniel', 'Bautista', 'Bautista', 'male', '2015-01-19', 'enrolled', '2024-2025', 2019, 3, 7, 1),
-(1020, 100000000020, 'Liza', 'Bautista', 'Bautista', 'female', '2015-02-22', 'enrolled', '2024-2025', 2020, 3, 7, 1),
-(1021, 100000000021, 'Jorge', 'Bautista', 'Bautista', 'male', '2015-03-15', 'enrolled', '2024-2025', 2021, 3, 7, 1),
-(1022, 100000000022, 'Vivian', 'Bautista', 'Bautista', 'female', '2015-04-08', 'enrolled', '2024-2025', 2022, 3, 8, 1),
-(1023, 100000000023, 'Eric', 'Bautista', 'Bautista', 'male', '2015-05-23', 'enrolled', '2024-2025', 2023, 3, 8, 1),
-(1024, 100000000024, 'Raquel', 'Bautista', 'Bautista', 'female', '2015-06-30', 'enrolled', '2024-2025', 2024, 3, 8, 1),
-(1025, 100000000025, 'Alvin', 'Bautista', 'Bautista', 'male', '2015-07-15', 'enrolled', '2024-2025', 2025, 3, 9, 1),
-(1026, 100000000026, 'Giselle', 'Bautista', 'Bautista', 'female', '2015-08-12', 'enrolled', '2024-2025', 2026, 3, 9, 1),
-(1027, 100000000027, 'Felipe', 'Bautista', 'Bautista', 'male', '2015-09-11', 'enrolled', '2024-2025', 2027, 3, 9, 1),
-(1028, 100000000028, 'Carlos', 'Cruz', 'Cruz', 'male', '2016-01-01', 'enrolled', '2024-2025', 2028, 4, 10, 1),
-(1029, 100000000029, 'Daisy', 'Cruz', 'Cruz', 'female', '2016-02-10', 'enrolled', '2024-2025', 2029, 4, 10, 1),
-(1030, 100000000030, 'Antonio', 'Cruz', 'Cruz', 'male', '2016-03-22', 'enrolled', '2024-2025', 2030, 4, 10, 1),
-(1031, 100000000031, 'Cecilia', 'Cruz', 'Cruz', 'female', '2016-04-12', 'enrolled', '2024-2025', 2031, 4, 11, 1),
-(1032, 100000000032, 'Greg', 'Cruz', 'Cruz', 'male', '2016-05-30', 'enrolled', '2024-2025', 2032, 4, 11, 1),
-(1033, 100000000033, 'Lia', 'Cruz', 'Cruz', 'female', '2016-06-15', 'enrolled', '2024-2025', 2033, 4, 11, 1),
-(1034, 100000000034, 'Alvin', 'Cruz', 'Cruz', 'male', '2016-07-21', 'enrolled', '2024-2025', 2034, 4, 12, 1),
-(1035, 100000000035, 'Ivy', 'Cruz', 'Cruz', 'female', '2016-08-11', 'enrolled', '2024-2025', 2035, 4, 12, 1),
-(1036, 100000000036, 'Nico', 'Cruz', 'Cruz', 'male', '2016-09-18', 'enrolled', '2024-2025', 2036, 4, 12, 1),
-(1037, 100000000037, 'David', 'Santos', 'Santos', 'male', '2017-01-14', 'enrolled', '2024-2025', 2037, 5, 13, 1),
-(1038, 100000000038, 'Rita', 'Santos', 'Santos', 'female', '2017-02-20', 'enrolled', '2024-2025', 2038, 5, 13, 1),
-(1039, 100000000039, 'Hugo', 'Santos', 'Santos', 'male', '2017-03-05', 'enrolled', '2024-2025', 2039, 5, 13, 1),
-(1040, 100000000040, 'Tina', 'Santos', 'Santos', 'female', '2017-04-27', 'enrolled', '2024-2025', 2040, 5, 14, 1),
-(1041, 100000000041, 'Paul', 'Santos', 'Santos', 'male', '2017-05-17', 'enrolled', '2024-2025', 2041, 5, 14, 1),
-(1042, 100000000042, 'Clara', 'Santos', 'Santos', 'female', '2017-06-21', 'enrolled', '2024-2025', 2042, 5, 14, 1),
-(1043, 100000000043, 'Ben', 'Santos', 'Santos', 'male', '2017-07-10', 'enrolled', '2024-2025', 2043, 5, 15, 1),
-(1044, 100000000044, 'Ella', 'Santos', 'Santos', 'female', '2017-08-16', 'enrolled', '2024-2025', 2044, 5, 15, 1),
-(1045, 100000000045, 'Ramon', 'Santos', 'Santos', 'male', '2017-09-15', 'enrolled', '2024-2025', 2045, 5, 15, 1),
-(1046, 100000000046, 'Faye', 'Luna', 'Luna', 'female', '2018-01-25', 'enrolled', '2024-2025', 2046, 6, 16, 1),
-(1047, 100000000047, 'Manny', 'Luna', 'Luna', 'male', '2018-02-13', 'enrolled', '2024-2025', 2047, 6, 16, 1),
-(1048, 100000000048, 'Lily', 'Luna', 'Luna', 'female', '2018-03-14', 'enrolled', '2024-2025', 2048, 6, 16, 1),
-(1049, 100000000049, 'Marco', 'Luna', 'Luna', 'male', '2018-04-22', 'enrolled', '2024-2025', 2049, 6, 17, 1),
-(1050, 100000000050, 'Zara', 'Luna', 'Luna', 'female', '2018-05-30', 'enrolled', '2024-2025', 2050, 6, 17, 1),
-(1051, 100000000051, 'Leo', 'Luna', 'Luna', 'male', '2018-06-15', 'enrolled', '2024-2025', 2051, 6, 17, 1),
-(1052, 100000000052, 'Cathy', 'Luna', 'Luna', 'female', '2018-08-18', 'enrolled', '2024-2025', 2052, 6, 18, 1),
-(1053, 100000000053, 'Jay', 'Luna', 'Luna', 'male', '2018-09-27', 'enrolled', '2024-2025', 2053, 6, 18, 1),
-(1054, 100000000054, 'Nina', 'Luna', 'Luna', 'female', '2018-10-05', 'enrolled', '2024-2025', 2054, 6, 18, 1),
-(1055, NULL, 'Laurence', 'Mendoza', 'Panaligan', 'male', '2002-10-21', 'enrolled', '2024-2025', 2055, 6, 17, 1),
-(1056, NULL, 'ken', 'laurence', 'mercado', 'male', '2004-02-12', 'enrolled', '2024-2025', 2056, 1, 1, 1),
-(1057, NULL, 'ken laurence ', 'Mercado', 'dumara-og', 'male', '2024-11-06', 'enrolled', '2024-2025', 2057, 1, 1, 1);
+(1001, 100000000001, 'Luis', 'Dela Cruz', 'Dela Cruz', 'Male', '2013-01-15', 'Enrolled', '2022-2023', 2001, 1, 1, 1),
+(1002, 100000000002, 'Maria', 'Dela Cruz', 'Dela Cruz', 'Female', '2013-02-20', 'Enrolled', '2022-2023', 2002, 1, 1, 1),
+(1003, 100000000003, 'Andres', 'Dela Cruz', 'Dela Cruz', 'Male', '2013-03-12', 'Enrolled', '2022-2023', 2003, 1, 1, 1),
+(1004, 100000000004, 'Carmen', 'Dela Cruz', 'Dela Cruz', 'Female', '2013-04-05', 'Enrolled', '2022-2023', 2004, 1, 2, 1),
+(1005, 100000000005, 'Jose', 'Dela Cruz', 'Dela Cruz', 'Male', '2013-05-10', 'Enrolled', '2022-2023', 2005, 1, 2, 1),
+(1006, 100000000006, 'Elena', 'Dela Cruz', 'Dela Cruz', 'Female', '2013-06-25', 'Enrolled', '2022-2023', 2006, 1, 2, 1),
+(1007, 100000000007, 'Fernando', 'Dela Cruz', 'Dela Cruz', 'Male', '2013-07-30', 'Enrolled', '2022-2023', 2007, 1, 3, 1),
+(1008, 100000000008, 'Raquel', 'Dela Cruz', 'Dela Cruz', 'Female', '2013-08-15', 'Enrolled', '2022-2023', 2008, 1, 3, 1),
+(1009, 100000000009, 'Gabriel', 'Dela Cruz', 'Dela Cruz', 'Male', '2013-09-05', 'Enrolled', '2022-2023', 2009, 1, 3, 1),
+(1010, 100000000010, 'Pedro', 'Delos Reyes', 'Delos Reyes', 'Male', '2014-01-11', 'Enrolled', '2022-2023', 2010, 1, 4, 1),
+(1011, 100000000011, 'Sofia', 'Delos Reyes', 'Delos Reyes', 'Female', '2014-02-14', 'Enrolled', '2022-2023', 2011, 1, 4, 1),
+(1012, 100000000012, 'Rico', 'Delos Reyes', 'Delos Reyes', 'Male', '2014-03-20', 'Enrolled', '2022-2023', 2012, 1, 4, 1),
+(1013, 100000000013, 'Lia', 'Delos Reyes', 'Delos Reyes', 'Female', '2014-04-18', 'Enrolled', '2022-2023', 2013, 1, 5, 1),
+(1014, 100000000014, 'Samuel', 'Delos Reyes', 'Delos Reyes', 'Male', '2014-05-25', 'Enrolled', '2022-2023', 2014, 1, 5, 1),
+(1015, 100000000015, 'Nina', 'Delos Reyes', 'Delos Reyes', 'Female', '2014-06-30', 'Enrolled', '2022-2023', 2015, 1, 5, 1),
+(1016, 100000000016, 'Miguel', 'Delos Reyes', 'Delos Reyes', 'Male', '2014-07-15', 'Enrolled', '2022-2023', 2016, 1, 6, 1),
+(1017, 100000000017, 'Marisol', 'Delos Reyes', 'Delos Reyes', 'Female', '2014-08-10', 'Enrolled', '2022-2023', 2017, 1, 6, 1),
+(1018, 100000000018, 'Hector', 'Delos Reyes', 'Delos Reyes', 'Male', '2014-09-25', 'Enrolled', '2022-2023', 2018, 1, 6, 1),
+(1019, 100000000019, 'Daniel', 'Bautista', 'Bautista', 'Male', '2015-01-19', 'Enrolled', '2022-2023', 2019, 1, 7, 1),
+(1020, 100000000020, 'Liza', 'Bautista', 'Bautista', 'Female', '2015-02-22', 'Enrolled', '2022-2023', 2020, 1, 7, 1),
+(1021, 100000000021, 'Jorge', 'Bautista', 'Bautista', 'Male', '2015-03-15', 'Enrolled', '2022-2023', 2021, 1, 7, 1),
+(1022, 100000000022, 'Vivian', 'Bautista', 'Bautista', 'Female', '2015-04-08', 'Enrolled', '2022-2023', 2022, 2, 8, 1),
+(1023, 100000000023, 'Eric', 'Bautista', 'Bautista', 'Male', '2015-05-23', 'Enrolled', '2022-2023', 2023, 2, 8, 1),
+(1024, 100000000024, 'Raquel', 'Bautista', 'Bautista', 'Female', '2015-06-30', 'Enrolled', '2022-2023', 2024, 2, 8, 1),
+(1025, 100000000025, 'Alvin', 'Bautista', 'Bautista', 'Male', '2015-07-15', 'Enrolled', '2022-2023', 2025, 2, 9, 1),
+(1026, 100000000026, 'Giselle', 'Bautista', 'Bautista', 'Female', '2015-08-12', 'Enrolled', '2022-2023', 2026, 2, 9, 1),
+(1027, 100000000027, 'Felipe', 'Bautista', 'Bautista', 'Male', '2015-09-11', 'Enrolled', '2022-2023', 2027, 2, 9, 1),
+(1028, 100000000028, 'Carlos', 'Cruz', 'Cruz', 'Male', '2016-01-01', 'Enrolled', '2022-2023', 2028, 2, 10, 1),
+(1029, 100000000029, 'Daisy', 'Cruz', 'Cruz', 'Female', '2016-02-10', 'Enrolled', '2022-2023', 2029, 2, 10, 1),
+(1030, 100000000030, 'Antonio', 'Cruz', 'Cruz', 'Male', '2016-03-22', 'Enrolled', '2022-2023', 2030, 2, 10, 1),
+(1031, 100000000031, 'Cecilia', 'Cruz', 'Cruz', 'Female', '2016-04-12', 'Enrolled', '2022-2023', 2031, 2, 11, 1),
+(1032, 100000000032, 'Greg', 'Cruz', 'Cruz', 'Male', '2016-05-30', 'Enrolled', '2022-2023', 2032, 2, 11, 1),
+(1033, 100000000033, 'Lia', 'Cruz', 'Cruz', 'Female', '2016-06-15', 'Enrolled', '2022-2023', 2033, 2, 11, 1),
+(1034, 100000000034, 'Alvin', 'Cruz', 'Cruz', 'Male', '2016-07-21', 'Enrolled', '2022-2023', 2034, 2, 12, 1),
+(1035, 100000000035, 'Ivy', 'Cruz', 'Cruz', 'Female', '2016-08-11', 'Enrolled', '2022-2023', 2035, 2, 12, 1),
+(1036, 100000000036, 'Nico', 'Cruz', 'Cruz', 'Male', '2016-09-18', 'Enrolled', '2022-2023', 2036, 2, 12, 1),
+(1037, 100000000037, 'David', 'Santos', 'Santos', 'Male', '2017-01-14', 'Enrolled', '2022-2023', 2037, 2, 13, 1),
+(1038, 100000000038, 'Rita', 'Santos', 'Santos', 'Female', '2017-02-20', 'Enrolled', '2022-2023', 2038, 2, 13, 1),
+(1039, 100000000039, 'Hugo', 'Santos', 'Santos', 'Male', '2017-03-05', 'Enrolled', '2022-2023', 2039, 2, 13, 1),
+(1040, 100000000040, 'Tina', 'Santos', 'Santos', 'Female', '2017-04-27', 'Enrolled', '2022-2023', 2040, 3, 14, 1),
+(1041, 100000000041, 'Paul', 'Santos', 'Santos', 'Male', '2017-05-17', 'Enrolled', '2022-2023', 2041, 3, 14, 1),
+(1042, 100000000042, 'Clara', 'Santos', 'Santos', 'Female', '2017-06-21', 'Enrolled', '2022-2023', 2042, 3, 14, 1),
+(1043, 100000000043, 'Ben', 'Santos', 'Santos', 'Male', '2017-07-10', 'Enrolled', '2022-2023', 2043, 3, 15, 1),
+(1044, 100000000044, 'Ella', 'Santos', 'Santos', 'Female', '2017-08-16', 'Enrolled', '2022-2023', 2044, 3, 15, 1),
+(1045, 100000000045, 'Ramon', 'Santos', 'Santos', 'Male', '2017-09-15', 'Enrolled', '2022-2023', 2045, 3, 15, 1),
+(1046, 100000000046, 'Faye', 'Luna', 'Luna', 'Female', '2018-01-25', 'Enrolled', '2022-2023', 2046, 3, 16, 1),
+(1047, 100000000047, 'Manny', 'Luna', 'Luna', 'Male', '2018-02-13', 'Enrolled', '2022-2023', 2047, 3, 16, 1),
+(1048, 100000000048, 'Lily', 'Luna', 'Luna', 'Female', '2018-03-14', 'Enrolled', '2022-2023', 2048, 3, 16, 1),
+(1049, 100000000049, 'Marco', 'Luna', 'Luna', 'Male', '2018-04-22', 'Enrolled', '2022-2023', 2049, 3, 17, 1),
+(1050, 100000000050, 'Zara', 'Luna', 'Luna', 'Female', '2018-05-30', 'Enrolled', '2022-2023', 2050, 3, 17, 1),
+(1051, 100000000051, 'Leo', 'Luna', 'Luna', 'Male', '2018-06-15', 'Enrolled', '2022-2023', 2051, 3, 17, 1),
+(1052, 100000000052, 'Cathy', 'Luna', 'Luna', 'Female', '2018-08-18', 'Enrolled', '2022-2023', 2052, 3, 18, 1),
+(1053, 100000000053, 'Jay', 'Luna', 'Luna', 'Male', '2018-09-27', 'Enrolled', '2022-2023', 2053, 3, 18, 1),
+(1054, 100000000054, 'Nina', 'Luna', 'Luna', 'Female', '2018-10-05', 'Enrolled', '2022-2023', 2054, 3, 18, 1),
+(1055, NULL, 'Laurence', 'Mendoza', 'Panaligan', 'Male', '2002-10-21', 'Enrolled', '2022-2023', 2055, 3, 17, 1),
+(1056, NULL, 'ken', 'laurence', 'mercado', 'Male', '2004-02-12', 'Enrolled', '2022-2023', 2056, 1, 1, 1),
+(1057, NULL, 'ken laurence ', 'Mercado', 'dumara-og', 'Male', '2024-11-06', 'Enrolled', '2022-2023', 2057, 1, 1, 1),
+(1058, 100000000060, 'Jann Angelo', 'Calalo', 'Dimaano', 'Male', '2015-07-10', 'Enrolled', '2022-2023', 2058, 4, 22, 1),
+(1059, NULL, 'Laurence', 'Calalo', 'Dimaano', 'Male', '2000-07-10', 'Enrolled', '2022-2023', 2059, 1, 1, 1),
+(1060, 123123123123, 'Jann', 'Mendoza', 'Panaligan', 'Male', '2000-01-01', 'Enrolled', '2022-2023', 2060, 1, 1, 1),
+(1061, NULL, 'Alvin', 'Zara', 'Espino', 'Male', '2003-03-01', 'Enrolled', '2022-2023', 2061, 1, 1, 1),
+(1062, NULL, 'Bien', 'Calalo', 'Panaligan', 'Male', '2000-07-10', 'Enrolled', '2022-2023', 2062, 1, 2, 1),
+(1063, NULL, 'Cristina', 'Mendoza', 'Punzalan', 'Male', '2003-07-10', 'Enrolled', '2022-2023', 2063, 1, 1, 1),
+(1064, NULL, 'Laurence', 'Zara', 'Maranan', 'Male', '2005-01-01', 'Enrolled', '2022-2023', 2064, 1, 3, 1),
+(1065, NULL, 'Laurence', 'Maranan', 'Zara', 'Female', '2003-02-03', 'Enrolled', '2022-2023', 2065, 1, 1, 1),
+(1066, NULL, 'Laurence', 'Calalo', 'Untalan', 'Male', '2003-07-10', 'Enrolled', '2022-2023', 2066, 1, 1, 1),
+(1067, NULL, 'Jelo', 'Calalo', 'Dimaano', 'Male', '2003-07-10', 'Enrolled', '2022-2023', 2067, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -750,16 +927,15 @@ CREATE TABLE `student_archives` (
 --
 
 INSERT INTO `student_archives` (`archive_id`, `student_id`, `lrn`, `first_name`, `middle_name`, `last_name`, `sex`, `date_of_birth`, `current_status`, `academic_year`, `parent_id`, `grade_level_id`, `section_id`) VALUES
-(13, 1003, 100000000003, 'Andres', 'Dela Cruz', 'Dela Cruz', 'male', '2013-03-12', 'Passed', '2024-2025', 2003, 1, 1),
-(14, 1004, 100000000004, 'Carmen', 'Dela Cruz', 'Dela Cruz', 'female', '2013-04-05', 'Passed', '2022-2023', 2004, 1, 2),
-(15, 1006, 100000000006, 'Elena', 'Dela Cruz', 'Dela Cruz', 'female', '2013-06-25', 'Passed', '2022-2023', 2006, 1, 2),
-(16, 1007, 100000000007, 'Fernando', 'Dela Cruz', 'Dela Cruz', 'male', '2013-07-30', 'Passed', '2022-2023', 2007, 1, 3),
-(17, 1009, 100000000009, 'Gabriel', 'Dela Cruz', 'Dela Cruz', 'male', '2013-09-05', 'Passed', '2022-2023', 2009, 1, 3),
-(18, 1005, 100000000005, 'Jose', 'Dela Cruz', 'Dela Cruz', 'male', '2013-05-10', 'Passed', '2022-2023', 2005, 1, 2),
-(19, 1001, 100000000001, 'Luis', 'Dela Cruz', 'Dela Cruz', 'male', '2013-01-15', 'Dropped', '2022-2023', 2001, 1, 1),
-(20, 1001, 100000000001, 'Luis', 'Dela Cruz', 'Dela Cruz', 'male', '2013-01-15', 'Dropped', '2022-2023', 2001, 1, 1),
-(21, 1001, 100000000001, 'Luis', 'Dela Cruz', 'Dela Cruz', 'male', '2013-01-15', 'Dropped', '2022-2023', 2001, 1, 1),
-(22, 1001, 100000000001, 'Luis', 'Dela Cruz', 'Dela Cruz', 'male', '2013-01-15', 'Dropped', '2022-2023', 2001, 1, 1);
+(1, 1019, 100000000019, 'Daniel', 'Bautista', 'Bautista', 'Male', '2015-01-19', 'Passed', '2021-2022', 2019, 3, 7),
+(2, 1020, 100000000020, 'Liza', 'Bautista', 'Bautista', 'Female', '2015-02-22', 'Passed', '2021-2022', 2020, 3, 7),
+(3, 1021, 100000000021, 'Jorge', 'Bautista', 'Bautista', 'Male', '2015-03-15', 'Passed', '2021-2022', 2021, 3, 7),
+(4, 1022, 100000000022, 'Vivian', 'Bautista', 'Bautista', 'Female', '2015-04-08', 'Passed', '2021-2022', 2022, 3, 8),
+(5, 1023, 100000000023, 'Eric', 'Bautista', 'Bautista', 'Male', '2015-05-23', 'Passed', '2021-2022', 2023, 3, 8),
+(6, 1024, 100000000024, 'Raquel', 'Bautista', 'Bautista', 'Female', '2015-06-30', 'Passed', '2021-2022', 2024, 3, 8),
+(7, 1025, 100000000025, 'Alvin', 'Bautista', 'Bautista', 'Male', '2015-07-15', 'Passed', '2021-2022', 2025, 3, 9),
+(8, 1026, 100000000026, 'Giselle', 'Bautista', 'Bautista', 'Female', '2015-08-12', 'Passed', '2021-2022', 2026, 3, 9),
+(9, 1027, 100000000027, 'Felipe', 'Bautista', 'Bautista', 'Male', '2015-09-11', 'Passed', '2021-2022', 2027, 3, 9);
 
 -- --------------------------------------------------------
 
@@ -781,9 +957,19 @@ CREATE TABLE `student_file` (
 --
 
 INSERT INTO `student_file` (`student_file_id`, `student_picture`, `psa_birth_certificate`, `progress_report_card`, `medical_assessment`, `student_id`) VALUES
-(1, '../uploads/casual_white.jpg', '../uploads/DIMAANO-IT-413-Laboratory-Activity-3 CVSS.pdf', '../uploads/DIMAANO-IT-413-Laboratory-Activity-3 CVSS.pdf', '../uploads/DIMAANO-IT-413-Laboratory-Activity-3 CVSS.pdf', 1055),
-(2, '../uploads/wallpaperflare.com_wallpaper (5).jpg', '../uploads/AIAS Exercises - Questionnaire.pdf', '../uploads/AIAS Exercises - Questionnaire.pdf', '../uploads/AIAS Exercises - Questionnaire.pdf', 1056),
-(3, '../uploads/465108667_1109069934111600_7000308353688477088_n.jpg', '../uploads/AIAS Exercises - Questionnaire.pdf', '../uploads/AIAS Exercises - Questionnaire.pdf', '../uploads/AIAS Exercises - Questionnaire.pdf', 1057);
+(1, '../uploads/casual_white.jpg', '../uploads/DIMAANO-IT-413-Laboratory-Activity-3 CVSS.pdf', '../uploads/DIMAANO-IT-413-Laboratory-Activity-3 CVSS.pdf', '../uploads/DIMAANO-IT-413-Laboratory-Activity-3 CVSS.pdf', 1001),
+(2, '../uploads/wallpaperflare.com_wallpaper (5).jpg', '../uploads/AIAS Exercises - Questionnaire.pdf', '../uploads/AIAS Exercises - Questionnaire.pdf', '../uploads/AIAS Exercises - Questionnaire.pdf', 1002),
+(3, '../uploads/465108667_1109069934111600_7000308353688477088_n.jpg', '../uploads/AIAS Exercises - Questionnaire.pdf', '../uploads/AIAS Exercises - Questionnaire.pdf', '../uploads/AIAS Exercises - Questionnaire.pdf', 1003),
+(4, '../uploads/simple_white.jpg', '../uploads/Copy of test-strategy-template.docx', '../uploads/Statistical-Process-Control (1).pdf', '../uploads/Maranan-4103-AIAS-Exercises-Questionnaire.pdf', 1004),
+(5, '../uploads/', '../uploads/certyyy.jpg', '../uploads/casual_white.jpg', '../uploads/Copy of test-strategy-template.docx', 1059),
+(6, '../uploads/6743708c280ad_casual_white.jpg', '../uploads/6743708c28233_certyyy.jpg', '../uploads/6743708c28397_certyyy.jpg', '../uploads/6743708c284da_certyyy.jpg', 1060),
+(7, 'file_67437392e476a2.49577059.jpg', 'file_67437392e49579.60161203.jpg', 'file_67437392e4bbb3.54033482.jpg', 'file_67437392e4d354.27700014.pdf', 1061),
+(8, 'file_67437650965fa8.07261291.jpg', 'file_67437650967d86.09846614.docx', 'file_67437650969f46.01920518.pdf', 'file_67437650988d02.29637169.pdf', 1062),
+(9, 'casual_white.jpg', 'AIAS Reviewer (2).pdf', 'LRN_Quarter_Grades - Copy.xlsx', 'SQA-For-no-choice-moments (1).pdf', 1063),
+(10, '../uploads/casual_white.jpg', '../uploads/LRN_Quarter_Grades - Copy.xlsx', '../uploads/SQA-For-no-choice-moments (1).pdf', '../uploads/Dimaano_JannAngelo_IT4103_MidtermLab.docx', 1064),
+(11, '../uploads/casual_white.jpg', '../uploads/SQA-For-no-choice-moments (1).pdf', '../uploads/Dimaano_JannAngelo_IT4103_MidtermLab.docx', '../uploads/AIAS Reviewer (2).pdf', 1065),
+(12, '../uploads/student_67437d20aa7ec.jpg', '../uploads/psa_67437d20aa7f2.pdf', '../uploads/report_67437d20aa7f3.pdf', '../uploads/medical_67437d20aa7f5.xlsx', 1066),
+(13, '../uploads/student_67437f19d0bee.jpg', '../uploads/psa_67437f19d0bf4.pdf', '../uploads/report_67437f19d0bf7.xlsx', '../uploads/medical_67437f19d0bf9.pdf', 1067);
 
 -- --------------------------------------------------------
 
@@ -882,7 +1068,6 @@ CREATE TABLE `teacher` (
   `middle_name` varchar(100) NOT NULL,
   `last_name` varchar(100) NOT NULL,
   `email` varchar(100) DEFAULT NULL,
-  `section_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
   `rank_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -891,25 +1076,25 @@ CREATE TABLE `teacher` (
 -- Dumping data for table `teacher`
 --
 
-INSERT INTO `teacher` (`teacher_id`, `first_name`, `middle_name`, `last_name`, `email`, `section_id`, `role_id`, `rank_id`) VALUES
-(3001, 'Jann', 'Naruto', 'Uzumaki', 'naruto@gmail.com', 1, 3, 10),
-(3002, 'Emily', 'Santos', 'Reyes', 'emily.reyes@example.com', 2, 3, 1),
-(3003, 'Michael', 'Lopez', 'Flores', 'michael.flores@example.com', 3, 3, 3),
-(3004, 'Sarah', 'Dela Cruz', 'Mendoza', 'sarah.mendoza@example.com', 4, 3, 9),
-(3005, 'David', 'Mercado', 'Gonzalez', 'david.gonzalez@example.com', 5, 3, 11),
-(3006, 'Jessica', 'Luna', 'Torres', 'jessica.torres@example.com', 6, 3, 3),
-(3007, 'Robert', 'Salvador', 'Bautista', 'robert.bautista@example.com', 7, 3, 5),
-(3008, 'Laura', 'Buenaventura', 'Aquino', 'laura.aquino@example.com', 8, 3, 3),
-(3009, 'James', 'Cabrera', 'Ramos', 'james.ramos@example.com', 9, 3, 13),
-(3010, 'Linda', 'Garcia', 'Villanueva', 'linda.villanueva@example.com', 10, 3, 3),
-(3011, 'Mark', 'Diaz', 'Delos Santos', 'mark.delossantos@example.com', 11, 3, 13),
-(3012, 'Anna', 'Pascual', 'Gomez', 'anna.gomez@example.com', 12, 3, 4),
-(3013, 'Brian', 'Manalang', 'Padilla', 'brian.padilla@example.com', 13, 3, 6),
-(3014, 'Elizabeth', 'Soriano', 'Castro', 'elizabeth.castro@example.com', 14, 3, 5),
-(3015, 'Steven', 'Navarro', 'Rivera', 'steven.rivera@example.com', 15, 3, 7),
-(3016, 'Amy', 'Fernandez', 'Ortega', 'amy.ortega@example.com', 16, 3, 7),
-(3017, 'Joshua', 'Marasigan', 'Lazaro', 'joshua.lazaro@example.com', 17, 3, 1),
-(3018, 'Sophia', 'Ramos', 'Santiago', 'sophia.santiago@example.com', 18, 3, 7);
+INSERT INTO `teacher` (`teacher_id`, `first_name`, `middle_name`, `last_name`, `email`, `role_id`, `rank_id`) VALUES
+(3001, 'Jann', 'Naruto', 'Uzumaki', 'naruto@gmail.com', 3, 10),
+(3002, 'Emily', 'Santos', 'Reyes', 'emily.reyes@example.com', 3, 1),
+(3003, 'Michael', 'Lopez', 'Flores', 'michael.flores@example.com', 3, 3),
+(3004, 'Sarah', 'Dela Cruz', 'Mendoza', 'sarah.mendoza@example.com', 3, 9),
+(3005, 'David', 'Mercado', 'Gonzalez', 'david.gonzalez@example.com', 3, 11),
+(3006, 'Jessica', 'Luna', 'Torres', 'jessica.torres@example.com', 3, 3),
+(3007, 'Robert', 'Salvador', 'Bautista', 'robert.bautista@example.com', 3, 5),
+(3008, 'Laura', 'Buenaventura', 'Aquino', 'laura.aquino@example.com', 3, 3),
+(3009, 'James', 'Cabrera', 'Ramos', 'james.ramos@example.com', 3, 13),
+(3010, 'Linda', 'Garcia', 'Villanueva', 'linda.villanueva@example.com', 3, 3),
+(3011, 'Mark', 'Diaz', 'Delos Santos', 'mark.delossantos@example.com', 3, 13),
+(3012, 'Anna', 'Pascual', 'Gomez', 'anna.gomez@example.com', 3, 4),
+(3013, 'Brian', 'Manalang', 'Padilla', 'brian.padilla@example.com', 3, 6),
+(3014, 'Elizabeth', 'Soriano', 'Castro', 'elizabeth.castro@example.com', 3, 5),
+(3015, 'Steven', 'Navarro', 'Rivera', 'steven.rivera@example.com', 3, 7),
+(3016, 'Amy', 'Fernandez', 'Ortega', 'amy.ortega@example.com', 3, 7),
+(3017, 'Joshua', 'Marasigan', 'Lazaro', 'joshua.lazaro@example.com', 3, 1),
+(3018, 'Sophia', 'Ramos', 'Santiago', 'sophia.santiago@example.com', 3, 7);
 
 -- --------------------------------------------------------
 
@@ -931,17 +1116,17 @@ INSERT INTO `teacher_section` (`teacher_section_id`, `teacher_id`, `section_id`)
 (1, 3001, 1),
 (2, 3001, 2),
 (3, 3001, 3),
-(4, 3002, 1),
-(5, 3002, 2),
-(6, 3002, 3),
-(7, 3003, 1),
-(8, 3003, 2),
-(9, 3003, 3),
-(10, 3004, 4),
-(11, 3004, 5),
-(12, 3004, 6),
-(13, 3005, 4),
-(14, 3005, 5),
+(4, 3001, 4),
+(5, 3001, 5),
+(6, 3001, 6),
+(7, 3001, 7),
+(8, 3002, 1),
+(9, 3002, 2),
+(10, 3002, 3),
+(11, 3002, 4),
+(12, 3002, 5),
+(13, 3002, 6),
+(14, 3002, 7),
 (15, 3005, 6),
 (16, 3006, 4),
 (17, 3006, 5),
@@ -981,7 +1166,28 @@ INSERT INTO `teacher_section` (`teacher_section_id`, `teacher_id`, `section_id`)
 (51, 3017, 18),
 (52, 3018, 16),
 (53, 3018, 17),
-(54, 3018, 18);
+(54, 3018, 18),
+(55, 3003, 1),
+(56, 3003, 2),
+(57, 3003, 3),
+(58, 3003, 4),
+(59, 3003, 5),
+(60, 3003, 6),
+(61, 3003, 7),
+(62, 3004, 1),
+(63, 3004, 2),
+(64, 3004, 3),
+(65, 3004, 4),
+(66, 3004, 5),
+(67, 3004, 6),
+(68, 3004, 7),
+(70, 3005, 2),
+(71, 3005, 3),
+(72, 3005, 4),
+(73, 3005, 5),
+(74, 3005, 6),
+(75, 3005, 7),
+(76, 3005, 1);
 
 -- --------------------------------------------------------
 
@@ -994,6 +1200,17 @@ CREATE TABLE `teacher_subject` (
   `teacher_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `teacher_subject`
+--
+
+INSERT INTO `teacher_subject` (`teacher_subject_id`, `teacher_id`, `subject_id`) VALUES
+(1, 3001, 1),
+(2, 3002, 2),
+(3, 3003, 3),
+(4, 3004, 4),
+(5, 3005, 5);
 
 --
 -- Indexes for dumped tables
@@ -1030,8 +1247,7 @@ ALTER TABLE `class_schedule_archive`
 -- Indexes for table `e_certificate`
 --
 ALTER TABLE `e_certificate`
-  ADD PRIMARY KEY (`e_certificate_id`),
-  ADD UNIQUE KEY `student_id` (`student_id`);
+  ADD PRIMARY KEY (`e_certificate_id`);
 
 --
 -- Indexes for table `grade`
@@ -1061,19 +1277,6 @@ ALTER TABLE `guidance`
 ALTER TABLE `parent`
   ADD PRIMARY KEY (`parent_id`),
   ADD KEY `role_id` (`role_id`);
-
---
--- Indexes for table `parent_archive`
---
-ALTER TABLE `parent_archive`
-  ADD PRIMARY KEY (`parent_archive_id`);
-
---
--- Indexes for table `password_resets`
---
-ALTER TABLE `password_resets`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `pdo`
@@ -1154,8 +1357,7 @@ ALTER TABLE `subject`
 --
 ALTER TABLE `teacher`
   ADD PRIMARY KEY (`teacher_id`),
-  ADD KEY `role_id` (`role_id`),
-  ADD KEY `subject_id` (`section_id`);
+  ADD KEY `role_id` (`role_id`);
 
 --
 -- Indexes for table `teacher_section`
@@ -1179,31 +1381,31 @@ ALTER TABLE `teacher_subject`
 -- AUTO_INCREMENT for table `announcements`
 --
 ALTER TABLE `announcements`
-  MODIFY `announcement_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `announcement_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `class_schedule`
 --
 ALTER TABLE `class_schedule`
-  MODIFY `class_schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `class_schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=181;
 
 --
 -- AUTO_INCREMENT for table `class_schedule_archive`
 --
 ALTER TABLE `class_schedule_archive`
-  MODIFY `archive_schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `archive_schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- AUTO_INCREMENT for table `e_certificate`
 --
 ALTER TABLE `e_certificate`
-  MODIFY `e_certificate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `e_certificate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `grade`
 --
 ALTER TABLE `grade`
-  MODIFY `grade_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `grade_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `grade_level`
@@ -1221,19 +1423,7 @@ ALTER TABLE `guidance`
 -- AUTO_INCREMENT for table `parent`
 --
 ALTER TABLE `parent`
-  MODIFY `parent_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2058;
-
---
--- AUTO_INCREMENT for table `parent_archive`
---
-ALTER TABLE `parent_archive`
-  MODIFY `parent_archive_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `password_resets`
---
-ALTER TABLE `password_resets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `parent_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2068;
 
 --
 -- AUTO_INCREMENT for table `pdo`
@@ -1263,7 +1453,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `schedule_list`
 --
 ALTER TABLE `schedule_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `school_materials`
@@ -1281,19 +1471,19 @@ ALTER TABLE `section`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1058;
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1068;
 
 --
 -- AUTO_INCREMENT for table `student_archives`
 --
 ALTER TABLE `student_archives`
-  MODIFY `archive_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `archive_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `student_file`
 --
 ALTER TABLE `student_file`
-  MODIFY `student_file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `student_file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `subject`
@@ -1311,13 +1501,13 @@ ALTER TABLE `teacher`
 -- AUTO_INCREMENT for table `teacher_section`
 --
 ALTER TABLE `teacher_section`
-  MODIFY `teacher_section_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `teacher_section_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `teacher_subject`
 --
 ALTER TABLE `teacher_subject`
-  MODIFY `teacher_subject_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `teacher_subject_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -1348,12 +1538,6 @@ ALTER TABLE `grade`
   ADD CONSTRAINT `grade_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`),
   ADD CONSTRAINT `grade_ibfk_2` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`),
   ADD CONSTRAINT `grade_ibfk_3` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`);
-
---
--- Constraints for table `password_resets`
---
-ALTER TABLE `password_resets`
-  ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `teacher_subject`

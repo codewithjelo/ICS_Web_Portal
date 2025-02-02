@@ -8,7 +8,7 @@
                 <button type="button" class="btn-close position-absolute top-0 end-0" style="top: 25px !important; right: 25px !important;" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="overflow-y" id="uploadedCertificate" style="max-height: 295px;">
+                <div class="overflow-y-scroll" id="uploadedCertificate" style="max-height: 450px;">
 
                     <!-- List of Uploaded Certificate by Section -->
                     <?php

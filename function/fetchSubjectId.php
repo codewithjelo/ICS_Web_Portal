@@ -1,8 +1,8 @@
 <?php
 require "../connectDb.php";
-session_start(); // Ensure the session is started to access session variables
+session_start();
 
-// Retrieve teacher_id from session
+
 if (isset($_SESSION['get_user_id'])) {
     $teacher_id = $_SESSION['get_user_id'];
 
@@ -13,7 +13,7 @@ if (isset($_SESSION['get_user_id'])) {
 
     $result = mysqli_query($conn, $sql);
 
-    // Prepare an array to hold the results
+    
     $subjects = [];
     if ($result && mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
@@ -24,7 +24,7 @@ if (isset($_SESSION['get_user_id'])) {
         }
     }
 
-    // Return the sections as a JSON response
+    
     echo json_encode($subjects);
 } else {
     echo json_encode([]);

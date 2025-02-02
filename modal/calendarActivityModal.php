@@ -1,130 +1,169 @@
-<!DOCTYPE html>
-<html lang="en">
+<link rel="stylesheet" href="../css/calendarActivity.css?v=1.0">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendar Activity - ICS PDO Portal</title>
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' rel='stylesheet' />
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
-    <style>
-        /* Optional: Set a height for the calendar */
-        #calendar {
-            max-width: 900px;
-            margin: 40px auto;
-        }
-    </style>
-</head>
-
-<body>
-    <!-- Modal -->
-    <div class="modal fade modal-xl" id="calendarActivityModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title" id="staticBackdropLabel">CALENDAR ACTIVITY</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-9">
-                            <div id="calendar"></div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card rounded-2 shadow">
-                                <div class="card-header bg-gradient bg-primary text-light">
-                                    <h5 class="card-title">Schedule Form</h5>
-                                </div>
-                                <div class="card-body">
-                                    <form action="../function/saveSchedule.php" method="post" id="schedule-form">
-                                        <input type="hidden" name="id" value="">
-                                        <div class="form-group mb-2">
-                                            <label for="title" class="control-label">Title</label>
-                                            <input type="text" class="form-control form-control-sm rounded-0" name="title" id="title" required>
-                                        </div>
-                                        <div class="form-group mb-2">
-                                            <label for="description" class="control-label">Description</label>
-                                            <textarea rows="3" class="form-control form-control-sm rounded-0" name="description" id="description" required></textarea>
-                                        </div>
-                                        <div class="form-group mb-2">
-                                            <label for="start_datetime" class="control-label">Start</label>
-                                            <input type="datetime-local" class="form-control form-control-sm rounded-0" name="start_datetime" id="start_datetime" required>
-                                        </div>
-                                        <div class="form-group mb-2">
-                                            <label for="end_datetime" class="control-label">End</label>
-                                            <input type="datetime-local" class="form-control form-control-sm rounded-0" name="end_datetime" id="end_datetime" required>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="text-center">
-                                        <button class="btn btn-primary btn-sm rounded-0" type="submit" form="schedule-form"><i class="fa fa-save"></i> Save</button>
-                                        <button class="btn btn-default border btn-sm rounded-0" type="reset" form="schedule-form"><i class="fa fa-reset"></i> Cancel</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<!-- Modal -->
+<div class="modal fade modal-xl" id="calendarActivityModal" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="height: 700px !important;">
+            <div class="modal-header justify-content-center" style="border-bottom: none; height: 100px !important; padding: 0 !important;">
+                <h1 class="modal-title" id="staticBackdropLabel">CALENDAR ACTIVITY</h1>
+                <button type="button" class="btn-close btn-close position-absolute top-0 end-0" style="top: 25px !important; right: 25px !important;" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row scroll overflow-y-scroll" style="max-height: 550px;">
+                    <div class="col-md-12">
+                        <div id="icsCalendar"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <script>
-        $(document).ready(function() {
-            $('#calendar').fullCalendar({
-                header: {
-                    left: 'prev,next today',
+<!-- Modal for adding/editing event -->
+<div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background-color: var(--white);">
+            <div class="modal-header">
+                <h5 class="modal-title" id="eventModalLabel">Event</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="eventForm">
+                    <div class="mb-3">
+                        <label for="eventTitle" class="form-label">Event Title</label>
+                        <input type="text" class="form-control" id="eventTitle" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="eventDescription" class="form-label">Event Description</label>
+                        <textarea class="form-control" id="eventDescription"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="eventStart" class="form-label">Event Start</label>
+                        <input type="datetime-local" class="form-control" id="eventStart" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="eventEnd" class="form-label">Event End</label>
+                        <input type="datetime-local" class="form-control" id="eventEnd" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="background-color: var(--maroon); color: var(--white); border: none; font-weight: bold;">Save Event</button>
+                    <button type="button" id="deleteEventBtn" class="btn btn-danger" style="background-color: var(--white); color: var(--maroon); border: 1px solid var(--maroon); font-weight: bold;">Delete Event</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('icsCalendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            events: {
+                url: '../calendar/icsCalendar.php',  // URL updated to point to icsFunction.php
+                method: 'GET',
+                failure: function() {
+                    alert('Failed to load events!');
+                }
+            },
+            headerToolbar: {
+                    left: 'prev',
                     center: 'title',
-                    right: 'month,agendaWeek,agendaDay'
+                    right: 'today next'
                 },
-                events: [
-                    <?php
-                    // Database connection
-                    $host     = 'localhost:3308'; // Change as necessary
-                    $username = 'root';      // Change as necessary
-                    $password = '';          // Change as necessary
-                    $dbname   = 'ics_db';    // Change as necessary
+            eventColor: '#5e030a',
+            locale: 'en',
+            dateClick: function(info) {
+                // Open modal for adding event when a date is clicked
+                $('#eventModalLabel').text('Add Event');
+                $('#eventTitle').val('');
+                $('#eventDescription').val('');
+                $('#eventStart').val(info.dateStr + 'T09:00'); // Default start time
+                $('#eventEnd').val(info.dateStr + 'T10:00'); // Default end time
+                $('#deleteEventBtn').hide();
+                $('#eventModal').modal('show');
+            },
+            eventClick: function(info) {
+                // Open modal for editing event when an event is clicked
+                $('#eventModalLabel').text('Edit Event');
+                $('#eventTitle').val(info.event.title);
+                $('#eventDescription').val(info.event.extendedProps.description || '');
+                $('#eventStart').val(info.event.start.toISOString().slice(0, 16)); // Format to datetime-local
+                $('#eventEnd').val(info.event.end ? info.event.end.toISOString().slice(0, 16) : info.event.start.toISOString().slice(0, 16)); // If no end date, use start
+                $('#deleteEventBtn').show();
+                $('#eventModal').modal('show');
 
-                    // Create connection
-                    $conn = new mysqli($host, $username, $password, $dbname);
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    }
+                // Store event ID for deletion
+                $('#deleteEventBtn').data('eventId', info.event.id);
+            },
+        });
 
-                    // Fetch events from the database
-                    $sql = "SELECT title, description, start_datetime AS start, end_datetime AS end FROM schedule_list";
-                    $result = $conn->query($sql);
+        $('#eventForm').submit(function(e) {
+            e.preventDefault();
 
-                    if ($result->num_rows > 0) {
-                        // Output data for each event
-                        while ($row = $result->fetch_assoc()) {
-                            echo json_encode([
-                                'title' => $row['title'],
-                                'start' => $row['start'],
-                                'end'   => $row['end'],
-                                'description' => $row['description']
-                            ]) . ",";
-                        }
-                    } else {
-                        echo "[]"; // No events found
-                    }
+            var eventTitle = $('#eventTitle').val();
+            var eventDescription = $('#eventDescription').val();
+            var eventStart = $('#eventStart').val();
+            var eventEnd = $('#eventEnd').val();
+            var eventId = $('#deleteEventBtn').data('eventId');
 
-                    // Close the database connection
-                    $conn->close();
-                    ?>
-                ],
-                eventRender: function(event, element) {
-                    element.find('.fc-title').append("<br/>" + event.description); // Append the description to the title
+            if (!eventTitle || !eventStart || !eventEnd) {
+                alert('Event title, start, and end are required!');
+                return;
+            }
+
+            // Update or create event via AJAX
+            var eventData = {
+                title: eventTitle,
+                description: eventDescription,
+                start: eventStart,
+                end: eventEnd
+            };
+
+            if (eventId) {
+                // If an event ID is set, it's an edit
+                eventData.id = eventId;
+                eventData.action = 'edit'; // specify action to be an edit
+            } else {
+                // Otherwise, it's a new event
+                eventData.action = 'add';
+            }
+
+            $.ajax({
+                url: '../calendar/icsFunction.php',  // Updated to point to icsFunction.php
+                method: 'POST',
+                data: eventData,
+                success: function(response) {
+                    calendar.refetchEvents(); // Reload events after saving
+                    $('#eventModal').modal('hide');
                 },
-                editable: false // Set to true if you want to allow editing of events
+                error: function() {
+                    alert('Failed to save event.');
+                }
             });
         });
-    </script>
 
-    <script src="../js/schedule.js"></script>
-</body>
+        $('#deleteEventBtn').click(function() {
+            var eventId = $(this).data('eventId');
 
-</html>
+            $.ajax({
+                url: '../calendar/icsFunction.php',  // Updated to point to icsFunction.php
+                method: 'POST',
+                data: {
+                    action: 'delete',
+                    id: eventId
+                },
+                success: function(response) {
+                    calendar.refetchEvents(); // Reload events after deleting
+                    $('#eventModal').modal('hide');
+                },
+                error: function() {
+                    alert('Failed to delete event.');
+                }
+            });
+        });
+
+        $('#calendarActivityModal').on('shown.bs.modal', function() {
+            calendar.render();
+        });
+    });
+</script>

@@ -15,6 +15,215 @@
     --subheader3: 14px;
     --subheader4: 12px;
   }
+
+  @media only screen and (max-width: 767px) {
+                
+    .logo-section {
+        margin: 10px 0 0 10px;
+        gap: 5px;
+    }
+    
+    .header-title {
+        font-size: var(--subheader3);
+    }
+
+    .logo {
+        width: 30px;
+        height: 100%;
+        margin-left: 10px;
+        margin-bottom: 15px;
+    }
+
+    .info-section {
+        position: absolute !important;
+    }
+
+    .user-info-admin {
+      margin-bottom: 10px;
+    }
+
+    .avatar-admin {
+      margin: 20px 10px 0 22px !important;
+      width: 40px !important;
+      height: 40px !important;
+    }
+
+    .avatar {
+      margin: 40px 10px 0 22px !important;
+      width: 40px !important;
+      height: 40px !important;
+    }
+
+    .info-bold {
+      margin-top: 30px;
+      margin-bottom: 8px;
+        font-size: 10px;
+    }
+
+    .info-text {
+        margin-bottom: 8px;
+        font-size: 8px;
+        line-height: 2px;
+    }
+
+    .en-status {
+      font-size: 10px;
+    }
+
+    .body-container {
+        flex-wrap: nowrap;
+        flex-direction: column;
+        row-gap: 20px;
+    }
+
+    .so-btn {
+      width: 65px !important;
+      height: 30px !important;
+      font-size: 8px !important;
+    }
+
+    .menu a {
+      font-size: var(--subheader4) !important;
+    }
+
+    .menu-principal {
+      height: 273px !important;
+    }
+
+    .menu-pdo {
+      height: 396px !important;
+    }
+
+    .analytic-dashboard {
+      width: 400px !important;
+      max-width: 400px !important;
+    }
+
+    
+    #filterSection {
+      column-gap: 30px !important;
+    }
+    
+    .form-select {
+      width: 80px !important;
+      height: 30px !important;
+      font-size: 12px
+    }
+
+    #filterSection .form-label  {
+      font-size: 12px;
+    }
+
+    .bar-chart {
+      width: 352px !important;
+      max-height: 500px !important;
+    }
+
+    #averageSubjectBarChart {
+      max-height: 500px;
+    }
+
+    .analytic-scroll {
+      width: 400px !important;
+    }
+
+    .recommendation-container {
+      width: 352px !important;
+    }
+
+    .footer-img {
+      column-gap: 40px !important;
+    }
+
+    .footer-img img {
+      width: 70px;
+      height: 70px;
+    }
+
+    .footer-info {
+      margin: 0 15px 15px 15px;
+      column-gap: 20px !important;
+    }
+
+    .footer-info li {
+      font-size: 12px;
+    }
+
+    .modal-body {
+      overflow-x: scroll;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+
+  .logo-section {
+    margin: 10px 0 0 20px;
+    gap: 5px;
+  }
+  .logo {
+    width: 70px;
+    height: 70px;
+  }
+
+  .header-title {
+    font-size: 28px;
+    margin: 10px 10px 10px 0;
+  }
+
+  .user-info {
+    margin-top: 20px;
+  }
+
+  .info-bold {
+    font-size: var(--subheader2);
+  }
+
+  .info-text {
+    font-size: var(--subheader4);
+    line-height: 3px;
+  }
+
+  .en-status {
+    font-size: var(--subheader3);
+  }
+
+  .menu {
+    width: 280px;
+  }
+
+  .mv-body {
+    margin-left: 115px;
+  }
+
+  .mv-scroll {
+    width: 400px;
+  }
+  
+  .announcement-body {
+    margin-top: 16px;
+  }
+  
+  .announcement-scroll {
+    width: 696px;
+  }
+
+  .analytic-container {
+    width: 500px !important;
+  }
+
+  .footer-info {
+    margin: 0 15px 15px 15px;
+    column-gap: 20px !important;
+  }
+
+  .footer-info li {
+    font-size: 12px;
+  }
+
+  .modal-body {
+    overflow-x: scroll;
+  }
+}
   
   * {
     margin: 0;
@@ -106,43 +315,5 @@
     border-radius: 1rem;
     flex-direction: column;
   }
-  #applyFilter {
-    border: none;
-    background: transparent;
-  }
-  #applyFilter i {
-    color: #ffffff;
-  }
-  #filterSection ul li {
-    list-style: none;
-  }
-  #statistics-btn.not-active {
-    background: rgb(242, 242, 242);
-  }
-  #statistics-btn {
-    background: #22c55e;
-  }
-  #statistics-btn:hover {
-    background: #bababa;
-  }
-  .section-con {
-    flex-wrap: nowrap;
-  }
-  .recommendation-text {
-    padding: 10px;
-    border: 1px solid white;
-  }
-  .recommendation-text p {
-    line-height: 1em;
-  }
-  .recommendation-text p:last-of-type {
-    margin-bottom: 0;
-  }
-  @media screen and (max-width: 767px) {
-    .section-con {
-      flex-direction: column;
-    }
-    .main-con {
-      width: 100%;
-    }}
+
   

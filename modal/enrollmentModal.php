@@ -1,7 +1,6 @@
-<link rel="stylesheet" href="../css/modal.css">
+<!-- <link rel="stylesheet" href="../css/modal.css"> -->
 <script src="../js/gradeLevel.js"></script>
-<script src="../js/getId.js"></script>
-<script src="../js/enrollAlert.js"></script>
+<script src="../js/addLrn.js"></script>
 <script src="../js/pendingDt.js"></script>
 
 <div class="modal fade modal-xl" id="enrollmentModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -15,10 +14,10 @@
                 <!-- Tabs Navigation -->
                 <ul class="nav nav-tabs mx-3" id="enrollmentTabs" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="enrollment-tab" data-bs-toggle="tab" data-bs-target="#enrollment" type="button" role="tab" aria-controls="enrollment" aria-selected="true">Enrollment</button>
+                        <button class="nav-link active" id="enrollment-tab" data-bs-toggle="tab" data-bs-target="#enrollment" type="button" role="tab" aria-controls="enrollment" aria-selected="true" style="color: black">Enrollment</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pending-tab" data-bs-toggle="tab" data-bs-target="#pending" type="button" role="tab" aria-controls="pending" aria-selected="false">Pending</button>
+                        <button class="nav-link" id="pending-tab" data-bs-toggle="tab" data-bs-target="#pending" type="button" role="tab" aria-controls="pending" aria-selected="false" style="color: black">Pending</button>
                     </li>
                 </ul>
 
@@ -117,25 +116,25 @@
 
                                     <div class="mb-3">
                                         <label for="studentPicture" class="form-label">Student's Picture</label>
-                                        <input class="form-control" type="file" id="studentPicture" name="student_picture" required>
+                                        <input class="form-control" type="file" id="studentPicture" name="student_picture" accept=".jpg, .jpeg, .png">
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="psaBirthCertificate" class="form-label">PSA - Birth Certificate</label>
-                                        <input class="form-control" type="file" id="psaBirthCertificate" name="psa_birth_certificate" required>
+                                        <input class="form-control" type="file" id="psaBirthCertificate" name="psa_birth_certificate">
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="progressReportCard" class="form-label">Progress Report Card</label>
-                                        <input class="form-control" type="file" id="progressReportCard" name="progress_report_card" required>
+                                        <input class="form-control" type="file" id="progressReportCard" name="progress_report_card">
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="medicalAssessment" class="form-label">Medical Assessment</label>
-                                        <input class="form-control" type="file" id="medicalAssessment" name="medical_assessment" required>
+                                        <input class="form-control" type="file" id="medicalAssessment" name="medical_assessment">
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary w-100">Enroll</button>
+                                    <button type="submit" class="btn btn-primary w-100 border-0" style="background-color: var(--maroon)">Enroll</button>
                                 </form>
                             </div>
                         </div>
@@ -143,7 +142,7 @@
 
                     <!-- Pending Tab -->
                     <div class="tab-pane fade" id="pending" role="tabpanel" aria-labelledby="pending-tab">
-                        <div class="table-responsive m-2">
+                        <div class="table-responsive m-2" style="max-height: 500px;">
 
                             <table id="pendingTable" class="table">
                                 <thead>
@@ -151,6 +150,9 @@
                                         <th>Name</th>
                                         <th>Grade Level</th>
                                         <th>Section</th>
+                                        <th>LRN</th>
+                                        <th>Password</th>
+                                        <th>Confirm Password</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -162,7 +164,7 @@
                                     $query = "SELECT CONCAT(s.first_name, ' ', s.middle_name, ' ', s.last_name) AS full_name,
                                                         gl.grade_level AS grade_level,
                                                         sec.section_name AS section_name,
-                                                        s.student_id AS student_id_lrn
+                                                        s.student_id AS student_id
                                                 FROM student s
                                                 LEFT JOIN section sec ON s.section_id = sec.section_id
                                                 LEFT JOIN grade_level gl ON sec.grade_level_id = gl.grade_level_id
@@ -173,17 +175,28 @@
                                     if (mysqli_num_rows($result) > 0) {
                                         while ($row = mysqli_fetch_assoc($result)) { ?>
                                             <tr>
-                                                <td> <?php htmlspecialchars($row['full_name']) ?> </td>
-                                                <td> <?php htmlspecialchars($row['grade_level']) ?> </td>
-                                                <td> <?php htmlspecialchars($row['section_name']) ?> </td>
+                                                <td class="fw-bold"> <?php echo htmlspecialchars($row['full_name']) ?></td>
+                                                <td class="fw-bold"> <?php echo htmlspecialchars($row['grade_level']) ?> </td>
+                                                <td class="fw-bold"> <?php echo htmlspecialchars($row['section_name']) ?> </td>
+                                                <td class="fw-bold">
+                                                    <div class="col">
+                                                        <input type="hidden" id="getStudentId" name="get_lrn_student_id" value="">
+                                                        <input type="number" class="form-control studentLrn" name="student_lrn" data-row-id="<?php echo htmlspecialchars($row['student_id']); ?>" pattern="^\d{12}$" title="LRN must be exactly 12 digits" maxlength="12">
+                                                    </div>
+                                                </td>
                                                 <td>
-                                                    <button class="btn btn-primary add-lrn-btn"
-                                                        data-bs-toggle="collapse"
-                                                        href="#collapseAddLrn"
-                                                        role="button"
-                                                        aria-expanded="false"
-                                                        aria-controls="collapseAddLrn"
-                                                        onclick="setStudentId(<?php $row['student_id_lrn'] ?>)">
+                                                    <div class="col">
+                                                        <input type="password" class="form-control studentPassword" name="student_password" data-row-id="<?php echo htmlspecialchars($row['student_id']); ?>" minlength="8" title="Password must be at least 8 characters long">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="col">
+                                                        <input type="password" class="form-control confirmPassword" name="confirm_password" data-row-id="<?php echo htmlspecialchars($row['student_id']); ?>">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-primary add-lrn-btn border-0"
+                                                        onclick="addLrn(this)" data-student-id="<?php echo htmlspecialchars($row['student_id']); ?>" style="background-color: var(--maroon)">
                                                         Add LRN
                                                     </button>
                                                 </td>
@@ -192,10 +205,8 @@
                                         }
                                     } else { ?>
                                         <tr>
-                                            <td class="text-center"></td>
-                                            <td class="text-end" style="width: 120px;">No records found.</td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class=" text-center" style="width: 120px;" colspan="7">No records found.
+                                            </td>
                                         </tr> <?php
                                             }
                                                 ?>
@@ -203,32 +214,7 @@
                                 </tbody>
                             </table>
 
-                            <div class="collapse" id="collapseAddLrn">
-                                <div class="card card-body position-absolute top-50 start-50 translate-middle" style="width: 400px;">
-                                    <form action="../function/addStudentAccount.php" method="POST" enctype="multipart/form-data">
-                                        <div class="col">
-                                            <label for="studentLrn" class="form-label">LRN</label>
-                                            <input type="number" class="form-control" id="studentLrn" name="student_lrn"
-                                                pattern="^\d{12}$"
-                                                required title="LRN must be exactly 12 digits"
-                                                maxlength="12"
-                                                oninput="this.value = this.value.replace(/[^0-9]/g, '');">
-                                        </div>
-                                        <div class="col">
-                                            <label for="studentPassword" class="form-label">Password</label>
-                                            <input type="password" class="form-control" id="password" name="password" required minlength="8" title="Password must be at least 8 characters long">
-                                        </div>
-                                        <div class="col">
-                                            <label for="confirmPassword" class="form-label">Confirm Password</label>
-                                            <input type="password" class="form-control" id="confirmPassword" name="confirm_password" required>
-                                        </div>
-                                        <input type="hidden" id="student_id_lrn" name="student_id_lrn" value="">
-                                        <div class="col mt-3">
-                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>

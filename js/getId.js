@@ -1,7 +1,3 @@
-function setStudentId(studentId) {
-  document.getElementById("student_id_lrn").value = studentId;
-}
-
 function editAnnouncement(announcementData) {
   // Fetch data from the button's data-* attributes
   var announcementId = announcementData.getAttribute("data-announcement-id");

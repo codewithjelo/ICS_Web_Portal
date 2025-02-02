@@ -14,14 +14,14 @@
                     <form id="uploadScheduleForm" action="../function/uploadSchedule.php" method="POST" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="gradeLevelSchedule" class="form-label">Grade Level</label>
-                            <select class="form-select" id="gradeLevelSchedule" name="grade_level" required>
+                            <select class="form-select" id="gradeLevelSchedule" name="grade_level_schedule" required>
                                 <option selected disabled>Select</option>
                             </select>
                         </div>
 
                         <div class="mb-3">
                             <label for="sectionSchedule" class="form-label">Section</label>
-                            <select class="form-select" id="sectionSchedule" name="section" required>
+                            <select class="form-select" id="sectionSchedule" name="section_schedule" required>
                                 <option selected disabled>Select</option>
                             </select>
                         </div>

@@ -8,7 +8,7 @@
                 <button type="button" class="btn-close position-absolute top-0 end-0" style="top: 25px !important; right: 25px !important;" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="row">
+                <div class="row px-2">
                     <div class="row">
                         <h1 class="text-center">
                             MISSION
@@ -16,7 +16,11 @@
                     </div>
                     <div class="row">
                         <p class="lh-sm" style="color: var(--black);">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            To protect and promote the right of every Filipino to quality, equitable, culture-based, and complete basic education where:
+                            Students learn in a child-friendly, gender-sensitive, safe, and motivating environment.
+                            Teachers facilitate learning and constantly nurture every learner.
+                            Administrators and staff, as stewards of the institution, ensure an enabling and supportive environment for effective learning to happen.
+                            Family, community, and other stakeholders are actively engaged and share responsibility for developing life-long learners.
                         </p>
                     </div>
                 </div>
@@ -28,7 +32,16 @@
                     </div>
                     <div class="row">
                         <p class="lh-sm" style="color: var(--black);">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            We dream of Filipinos
+                            who passionately love their country
+                            and whose values and competencies
+                            enable them to realize their full potential
+                            and contribute meaningfully to building the nation.
+
+                            As a learner-centered public institution,
+                            the Department of Education
+                            continuously improves itself
+                            to better serve its stakeholders
                         </p>
                     </div>
                 </div>

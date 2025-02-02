@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Input Grades - ICS Teacher Portal</title>
-    <link rel="stylesheet" href="../css/inputGradesModal.css">
+    <link rel="stylesheet" href="../css/modal.css">
     <script src="../js/gradeLevelSelect.js"></script>
     <script src="../js/subjectSelect.js"></script>
 </head>
@@ -23,7 +23,8 @@
                     <form id="uploadScheduleForm" action="../function/uploadGrades.php" method="POST" enctype="multipart/form-data">
 
                         <div class="mb-3">
-                            <?php $teacher_id = $_SESSION['get_user_id']; ?>
+                            <?php
+                            $teacher_id = $_SESSION['get_user_id']; ?>
                             <input type="hidden" name="teacher_id_input_grades" value="<?php echo $teacher_id ?>">
                             <label for="sectionInputGrades" class="form-label">Section</label>
                             <select class="form-select" id="sectionInputGrades" name="section_input_grades" required>
@@ -39,11 +40,11 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="section" class="form-label">Upload Grades</label>
+                            <label for="uploadInputGrades" class="form-label">Upload Grades</label>
                             <input class="form-control" type="file" id="uploadInputGrades" name="upload_input_grades" accept=".xls, .xlsx" required>
                         </div>
 
-                        <button type="submit" class="btn btn-primary w-100">Submit</button>
+                        <button type="submit" class="btn btn-primary w-100 border-0" style="background-color: var(--maroon)">Submit</button>
 
                     </form>
                 </div>

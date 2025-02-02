@@ -71,11 +71,7 @@
                                         ?>
                                                 <img class="img-fluid img-thumbnail" src="<?php echo htmlspecialchars($row['announcement_file']); ?>" alt="announcementFile" style="width: 400px !important;">
                                             <?php
-                                            } else {
-                                            ?>
-                                                <p>File not found: <?php echo $file_path; ?></p>'
-                                        <?php
-                                            }
+                                            } 
                                         }
                                         ?>
                                     </div>
@@ -83,9 +79,9 @@
                             </div>
                     <?php
                         }
-                    } else {
-                        echo "<p>No announcements available.</p>";
-                    }
+                    } else { ?>
+                        <p class='position-absolute top-50 start-50 translate-middle' style='color: gray; font-size: 20px'>No announcements available.</p>
+                    <?php }
                     ?>
                 </div>
 

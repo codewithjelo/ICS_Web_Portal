@@ -2,68 +2,67 @@
 session_start();
 include "../connectDb.php";
 
-// Check if the form is submitted
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Sanitize input to prevent SQL injection
-    $lrn = $conn->real_escape_string($_POST['student_lrn']);
-    $password = $conn->real_escape_string($_POST['password']);
-    $confirm_password = $conn->real_escape_string($_POST['confirm_password']);
-    $student_id = $conn->real_escape_string($_POST['student_id']);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $student_id = isset($_POST['get_lrn_student_id']) ? (int)$_POST['get_lrn_student_id'] : null;
+    $lrn = isset($_POST['student_lrn']) ? (int)$_POST['student_lrn'] : null;
+    $password = isset($_POST['student_password']) ? $conn->real_escape_string($_POST['student_password']) : null;
+    $confirm_password = isset($_POST['confirm_password']) ? $conn->real_escape_string($_POST['confirm_password']) : null;
 
-    // Validate if the passwords match
-    if ($password !== $confirm_password) {
-        $_SESSION['error_message'] = "Passwords do not match.";
-        header("Location: ../pages/guidanceDashboard");
+    if (!$student_id || !$lrn || !$password || !$confirm_password) {
+        echo json_encode(["status" => "error", "message" => "All fields are required."]);
+        exit;
     }
 
-    // Validate if the LRN is exactly 12 digits
     if (!preg_match('/^\d{12}$/', $lrn)) {
-        $_SESSION['error_message'] = "Invalid LRN. LRN must be exactly 12 digits.";
-        header("Location: ../pages/guidanceDashboard");
+        echo json_encode(["status" => "error", "message" => "Invalid LRN. Must be 12 digits."]);
+        exit;
     }
 
-    // Hash the password for security
+    if ($password !== $confirm_password) {
+        echo json_encode(["status" => "error", "message" => "Passwords do not match."]);
+        exit;
+    }
+
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    // Begin transaction to ensure data integrity
     $conn->begin_transaction();
 
     try {
-        // Update the student's LRN in the student table
-        $update_lrn_sql = "UPDATE student SET lrn = $lrn WHERE student_id = $student_id";
+        
+        $update_sql = "UPDATE student SET lrn = ? WHERE student_id = ?";
+        $stmt = $conn->prepare($update_sql);
+        $stmt->bind_param("ii", $lrn, $student_id);
 
-        if ($conn->query($update_lrn_sql) !== TRUE) {
-            throw new Exception("Error updating student LRN: " . $conn->error);
+        if (!$stmt->execute()) {
+            throw new Exception("Error updating LRN: " . $stmt->error);
         }
 
-        // Insert the LRN and hashed password into the student_credential table
-        $insert_credential_sql = "INSERT INTO student_credential (lrn, student_password, role_id) VALUES ($lrn, '$hashedPassword', 1)";
+        
+        error_log("Update Query Successful: LRN $lrn for Student ID $student_id");
 
-        if ($conn->query($insert_credential_sql) !== TRUE) {
-            throw new Exception("Error inserting into student_credential: " . $conn->error);
+        
+        $insert_sql = "INSERT INTO account (user_id, user_password, role_id) VALUES (?, ?, 1)";
+        $stmt = $conn->prepare($insert_sql);
+        $stmt->bind_param("is", $lrn, $hashedPassword);
+
+        if (!$stmt->execute()) {
+            throw new Exception("Error inserting account credentials: " . $stmt->error);
         }
 
-        // If everything is successful, commit the transaction
+        
+        error_log("Insert Query Successful: User ID $lrn with Role ID 1");
+
         $conn->commit();
-
-        // Set a success message and redirect
-        $_SESSION['success_message'] = "Student account successfully created!";
-        header("Location: ../pages/guidanceDashboard");
+        echo json_encode(["status" => "success", "message" => "Student account created successfully."]);
     } catch (Exception $e) {
-        // If there is an error, rollback the transaction
         $conn->rollback();
-
-        // Set an error message and redirect back to the form
-        $_SESSION['error_message'] = $e->getMessage();
-        header("Location: ../pages/guidanceDashboard");
+        error_log("Transaction Failed: " . $e->getMessage());
+        echo json_encode(["status" => "error", "message" => $e->getMessage()]);
+    } finally {
+        $stmt->close();
+        $conn->close();
     }
-
 } else {
-    // If accessed without POST request, redirect back
-    $_SESSION['error_message'] = "Invalid request method.";
-    header("Location: ../pages/guidanceDashboard");
+    echo json_encode(["status" => "error", "message" => "Invalid request method."]);
+    exit;
 }
-
-// Close the connection
-$conn->close();
-?>

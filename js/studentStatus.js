@@ -7,12 +7,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   table.addEventListener("change", function (event) {
-    if (event.target && event.target.id === "studentStatus") {
+    if (event.target && event.target.classList.contains("studentStatus")) {
       const studentStatus = event.target.value;
       const row = event.target.closest("tr");
-      const gradeSection = row.querySelector("#gradeSection");
-      const academicYear = row.querySelector("#academicYear");
-      const getGradeLevelId = row.querySelector("#getGradeLevel").value;
+      const gradeSection = row.querySelector(".gradeSection");
+      const academicYear = row.querySelector(".academicYear");
+      const getGradeLevelId = row.querySelector(".getGradeLevel").value;
       let gradeLevelId = parseInt(getGradeLevelId);
 
       // Reset gradeSection options
@@ -40,16 +40,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function fetchGradeSections(gradeLevelId, gradeSection) {
-    console.log("Fetching grade sections for grade level ID:", gradeLevelId);
     fetch(`../function/turnOverSection.php?grade_level_id=${gradeLevelId}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((data) => {
-        console.log("Fetched data:", data);
         if (Array.isArray(data) && data.length > 0) {
           data.forEach((section) => {
             const option = document.createElement("option");
@@ -57,12 +50,8 @@ document.addEventListener("DOMContentLoaded", function () {
             option.textContent = `${section.grade_level} - ${section.section_name}`;
             gradeSection.appendChild(option);
           });
-        } else {
-          console.log("No sections found for grade level", gradeLevelId);
         }
       })
-      .catch((error) => {
-        console.error("Error fetching grade sections:", error);
-      });
+      .catch((error) => console.error("Error fetching grade sections:", error));
   }
 });

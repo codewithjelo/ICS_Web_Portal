@@ -1,9 +1,7 @@
-<link rel="stylesheet" href="../css/modal.css">
-
 <!-- Modal -->
 <div class="modal fade modal-xl" id="classScheduleModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content px-3" style="height: 650px !important;">
+    <div class="cs-modal modal-content px-3" style="height: 650px !important;">
       <div class="modal-header justify-content-center" style="border-bottom: none; height: 100px !important; padding: 0 !important;">
         <h1 class="modal-title" id="staticBackdropLabel">CLASS SCHEDULE</h1>
         <button type="button" class="btn-close position-absolute top-0 end-0" style="top: 25px !important; right: 25px !important;" data-bs-dismiss="modal" aria-label="Close"></button>

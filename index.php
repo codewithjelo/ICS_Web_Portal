@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <?php include "partials/head.php" ?>
     <link rel="stylesheet" href="css/loginStyle.css">
     <script src="js/eyeToggle.js"></script>
@@ -13,15 +14,15 @@
 
 <body>
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
-        <div class="card shadow-lg" style="width: 50rem; height: 40rem; border-radius: 20px;">
+        <div class="card shadow-lg rounded-4">
             <div class="card-header text-center text-white position-relative">
                 <div class="z-2 rounded-top-4 overlay position-absolute top-50 start-50 translate-middle" style="width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);"></div>
                 <img src="img/schoolBanner.jpg" alt="Background" class="card-img-top bg-header img-fluid rounded-top-4">
                 <img src="img/icsLogo.png" alt="Logo" class="z-3 position-absolute top-50 start-50 translate-middle" style="width: 20%;">
             </div>
 
-            <div class="rounded-bottom-4 card-body form-body text-white">
-                
+            <div class="card-body rounded-bottom-4 card-body form-body text-white">
+
                 <h1 class="text-center mb-4">LOGIN</h1>
                 <?php if (isset($_SESSION['error_message'])): ?>
                     <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center" role="alert" style="height: 40px; margin: 0 185px;">
@@ -30,7 +31,7 @@
                     </div>
                     <?php unset($_SESSION['error_message']); ?>
                 <?php endif; ?>
-                
+
                 <form action="function/loginAccount.php" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="userId" class="form-label">User ID</label>
@@ -44,11 +45,13 @@
                         <label for="password" class="form-label">Password</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                            <input type="password" class="rounded-end-2 form-control" id="password" placeholder="Enter Password" name="user_password" style="padding-right: 30px;">
-                            <i class="position-absolute top-50 end-0 translate-middle-y bi bi-eye-slash" style="color: black; padding-right: 8px;" id="togglePasswordIcon" onclick="togglePassword()"></i>
+                            <input type="password" class="form-control border-end-0" id="password" placeholder="Enter Password" name="user_password" style="padding-right: 10px;">
+                            <span class="input-group-text border-0" style="width: 35px; background-color: white;">
+                                <i class="position-absolute top-50 end-0 translate-middle-y bi bi-eye-slash" style="color: black; padding-right: 10px;" id="togglePasswordIcon" onclick="togglePassword()"></i>
+                            </span>
                         </div>
                         <small class="form-text text-light">* Password is case sensitive</small>
-                        <a href="forgot_pass.php" class="text-light d-block mt-2">Forgot Password?</a>
+                        <a href="forgotPassword" class="text-light d-block mt-2">Forgot Password?</a>
                     </div>
 
                     <div class="d-flex justify-content-center">

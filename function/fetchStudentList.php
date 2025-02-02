@@ -2,17 +2,17 @@
 <?php
 include '../connectDb.php';
 
-// Get section filter from POST request
+
 $sectionFilter = isset($_POST['section_filter']) ? intval($_POST['section_filter']) : 0;
 
-// Query the database based on the selected section ID
+
 $query = "SELECT e_certificate, full_name, e_certificate_id FROM e_certificate WHERE section_id = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param('i', $sectionFilter);
 $stmt->execute();
 $result = $stmt->get_result();
 
-// Output results
+
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
 ?>

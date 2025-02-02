@@ -3,7 +3,7 @@
 
     $grade_level_id = $_GET['grade_level_id'];
 
-    // Query to get sections based on grade level
+   
     $query = "SELECT gl.grade_level, s.section_id, s.section_name 
                 FROM grade_level gl
                 JOIN section s ON gl.grade_level_id = s.grade_level_id

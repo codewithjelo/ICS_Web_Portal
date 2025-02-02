@@ -21,11 +21,11 @@ include '../connectDb.php';
                 <ul class="nav nav-tabs mx-3" id="uploadTabs" role="tablist">
 
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="post-tab" data-bs-toggle="tab" data-bs-target="#post" type="button" role="tab" aria-controls="post" aria-selected="true">Post</button>
+                        <button class="nav-link active" id="post-tab" data-bs-toggle="tab" data-bs-target="#post" type="button" role="tab" aria-controls="post" aria-selected="true" style="color: black">Post</button>
                     </li>
 
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="uploaded-tab" data-bs-toggle="tab" data-bs-target="#uploaded" type="button" role="tab" aria-controls="uploaded" aria-selected="false">Uploaded</button>
+                        <button class="nav-link" id="uploaded-tab" data-bs-toggle="tab" data-bs-target="#uploaded" type="button" role="tab" aria-controls="uploaded" aria-selected="false" style="color: black">Uploaded</button>
                     </li>
 
                 </ul>
@@ -59,7 +59,7 @@ include '../connectDb.php';
 
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Post</button>
+                                    <button type="submit" class="btn btn-primary border-0"  style="background-color: var(--maroon)">Post</button>
 
                                 </form>
 
