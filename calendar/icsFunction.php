@@ -1,6 +1,6 @@
 <?php
 // Database connection
-$host = 'localhost: 3308';
+$host = 'localhost';
 $dbname = 'ics_db';
 $username = 'root';
 $password = '';

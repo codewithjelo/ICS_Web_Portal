@@ -5,7 +5,7 @@ require '../vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 
-$db_host = 'localhost: 3308'; 
+$db_host = 'localhost'; 
 $db_name = 'ics_db';
 $db_user = 'root';
 $db_pass = ''; 
