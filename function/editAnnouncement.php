@@ -2,24 +2,30 @@
 include "../connectDb.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $pageName = [
+        4 => 'guidanceDashboard',
+        5 => 'principalDashboard',
+        6 => 'pdoDashboard',
+    ];
     
-    $announcement_id = $_POST['announcement_id'];
+    $announcementId = $_POST['announcement_id'];
     
     
-    $announcement_title = $conn->real_escape_string($_POST['announcement_title']);
+    $announcementTitle = $conn->real_escape_string($_POST['announcement_title']);
     
     
-    $announcement_text = stripslashes($_POST['announcement_text']); // Remove backslashes
-    $announcement_text = $conn->real_escape_string($announcement_text); // Escape the text
+    $announcementText = stripslashes($_POST['announcement_text']); // Remove backslashes
+    $announcementText = $conn->real_escape_string($announcementText); // Escape the text
 
     
     $query = "UPDATE announcements SET title = ?, announcement_text = ? WHERE announcement_id = ?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param('ssi', $announcement_title, $announcement_text, $announcement_id);
+    $stmt->bind_param('ssi', $announcementTitle, $announcementText, $announcementId);
 
     
     if ($stmt->execute()) {
-        header("Location: ../pages/guidanceDashboard");
+        header("Location: ../pages/{$pageName[intval(strval($_SESSION['uploader_id'])[0])]}");
         exit; 
     } else {
         echo "Error: " . $stmt->error;
