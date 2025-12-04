@@ -23,13 +23,14 @@ if (isset($_SESSION['logged_in']) != True) {
     <link rel="stylesheet" href="../css/body.css">
     <link rel="stylesheet" href="../css/footer.css">
     <script src="../js/confirmSignOut.js"></script>
-    <script src="../js/showStatistic.js"></script>
+    <script src="../js/showDashboard.js"></script>
+    <script src="../js/showManageAccount.js"></script>
 </head>
 
 <body>
     <div class="container mt-4">
 
-    
+
         <?php include "content/swalMessage.php" ?>
 
         <!-- Header Section  -->
@@ -37,13 +38,16 @@ if (isset($_SESSION['logged_in']) != True) {
             <div class="col-md-12">
                 <header class="header-bg text-center position-relative">
                     <!-- Header Background -->
-                    <div class="black-bg rounded-4 overlay position-absolute top-50 start-50 translate-middle" style="width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);"></div>
-                    <img src="../img/schoolBanner.jpg" class="ics-banner z-n2 rounded-4 img-fluid overflow-hidden" alt="Background" style="width: 100vw; height: 100%;">
+                    <div class="black-bg rounded-4 overlay position-absolute top-50 start-50 translate-middle"
+                        style="width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);"></div>
+                    <img src="../img/schoolBanner.jpg" class="ics-banner z-n2 rounded-4 img-fluid overflow-hidden"
+                        alt="Background" style="width: 100vw; height: 100%;">
 
                     <div class="row">
                         <!-- Logo Section -->
                         <div class="col-md-12">
-                            <div class="logo-section d-flex flex-row align-items-center position-absolute top-0 start-0">
+                            <div
+                                class="logo-section d-flex flex-row align-items-center position-absolute top-0 start-0">
                                 <img src="../img/icsLogo.png" class="logo img-fluid" alt="Logo">
                                 <p class="header-title">Ibaan Central School - Principal Portal</p>
                             </div>
@@ -54,45 +58,56 @@ if (isset($_SESSION['logged_in']) != True) {
                         <!-- Information Section -->
                         <div class="col-md-6">
                             <div class="info-section d-flex flex-row position-absolute bottom-0 start-0">
-                                <img src="../img/avatar.jpg" class="avatar-admin m-4" alt="Profile" style="width: 100px; height: 100px;">
-                                <div class="user-info-admin d-flex flex-column justify-content-center">
-                                    <?php
-                                    include "../connectDb.php";
-                                    // Prepare the query
-                                    $query = "SELECT CONCAT(pri.last_name, ', ', pri.first_name, ' ', LEFT(pri.middle_name, 1), '.') AS full_name, 
+                                <?php
+                                include "../connectDb.php";
+                                // Prepare the query
+                                $query = "SELECT CONCAT(pri.last_name, ', ', pri.first_name, ' ', LEFT(pri.middle_name, 1), '.') AS full_name, 
                                                      pri.principal_id AS principal_id,
-                                                     r.rank_name AS rank_name
+                                                     r.rank_name AS rank_name,
+                                                     pri.profile_picture AS profile_picture
                                               FROM principal pri
                                               LEFT JOIN rank r ON pri.rank_id = r.rank_id
                                               WHERE pri.principal_id = RIGHT(?, 4)";
 
-                                    // Prepare the statement to prevent SQL injection
-                                    $stmt = $conn->prepare($query);
+                                // Prepare the statement to prevent SQL injection
+                                $stmt = $conn->prepare($query);
 
-                                    // Bind the session user_id to the query
-                                    $stmt->bind_param('s', $_SESSION['user_id']);
+                                // Bind the session user_id to the query
+                                $stmt->bind_param('s', $_SESSION['user_id']);
 
-                                    // Execute the query
-                                    $stmt->execute();
-                                    $result = $stmt->get_result();
+                                // Execute the query
+                                $stmt->execute();
+                                $result = $stmt->get_result();
 
-                                    if ($result->num_rows > 0) {
-                                        while ($row = $result->fetch_assoc()) { ?>
-                                            <p class="info-bold text-start text-uppercase"><?php echo htmlspecialchars($row['full_name']); ?></p>
-                                            <p class="info-text text-start">ICS-PRI<?php echo htmlspecialchars($row['principal_id']); ?></p>
-                                            <p class="info-text text-start"><?php echo htmlspecialchars($row['rank_name']); ?></p>
-                                        <?php
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        $profilePic = !empty($row['profile_picture']) ?
+                                            htmlspecialchars($row['profile_picture']) : '../uploads/profile_pictures/avatar.jpg';
+                                        ?>
+                                        <img src="<?php echo $profilePic; ?>" class="avatar-admin m-4" alt="Profile"
+                                            style="width: 100px; height: 100px; object-fit: cover; border: 4px solid var(--maroon);">
+                                        <div class="user-info-admin d-flex flex-column justify-content-center">
+                                            <p class="info-bold text-start text-uppercase">
+                                                <?php echo htmlspecialchars($row['full_name']); ?>
+                                            </p>
+                                            <p class="info-text text-start">
+                                                ICS-PRI<?php echo htmlspecialchars($row['principal_id']); ?></p>
+                                            <p class="info-text text-start"><?php echo htmlspecialchars($row['rank_name']); ?>
+                                            </p>
+                                            <?php
                                             $_SESSION['full_name'] = $row['full_name'];
                                             $_SESSION['rank_name'] = $row['rank_name'];
-                                        }
-                                    } else { ?>
+                                            $_SESSION['profile_picture'] = $profilePic;
+                                            $_SESSION['uploader_id'] = $row['principal_id'];
+                                    }
+                                } else { ?>
                                         <p class="info-bold text-start">No guidance found.</p>
                                     <?php }
 
-                                    // Close the statement
-                                    $stmt->close();
-                                    $conn->close();
-                                    ?>
+                                // Close the statement
+                                $stmt->close();
+                                $conn->close();
+                                ?>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +116,8 @@ if (isset($_SESSION['logged_in']) != True) {
                         <div class="col-md-6">
                             <div class="so-section position-absolute bottom-0 end-0">
                                 <form id="signOutForm" action="../function/logoutAccount.php" method="POST">
-                                    <button type="button" onclick="confirmSignOut()" class="btn so-btn btn-primary rounded-5">
+                                    <button type="button" onclick="confirmSignOut()"
+                                        class="btn so-btn btn-primary rounded-5">
                                         <i class="bi bi-box-arrow-in-right"></i> Sign Out
                                     </button>
                                 </form>
@@ -118,8 +134,21 @@ if (isset($_SESSION['logged_in']) != True) {
             <div class="col-md-3">
                 <!-- Menu Bar -->
                 <div class="menu-principal menu d-flex flex-column rounded-4 row-gap-4 p-4" style="height: 520px;">
-                    <a type="button" class="text-break d-flex flex-row align-items-center btn menu-btn btn-primary rounded-2" data-bs-toggle="modal" data-bs-target="#announcementModal"><iconify-icon class="menu-icon ph-icon" icon="iconoir:megaphone"></iconify-icon><span style="margin: 0 0 0 10px;">Announcement</span></a>
-                    <a type="button" class="text-break d-flex flex-row align-items-center btn menu-btn btn-primary rounded-2 not-active" id="statisticBtn"><iconify-icon class="menu-icon ph-icon" icon="ant-design:dashboard-outlined"></iconify-icon><span style="margin: 0 0 0 10px;">Dashboard</span></a>
+                    <a type="button"
+                        class="text-break d-flex flex-row align-items-center btn menu-btn btn-primary rounded-2"
+                        data-bs-toggle="modal" data-bs-target="#announcementModal"><iconify-icon
+                            class="menu-icon ph-icon" icon="iconoir:megaphone"></iconify-icon><span
+                            style="margin: 0 0 0 10px;">Announcement</span></a>
+                    <a type="button"
+                        class="text-break d-flex flex-row align-items-center btn menu-btn btn-primary rounded-2 not-active"
+                        id="statisticBtn"><iconify-icon class="menu-icon ph-icon"
+                            icon="ant-design:dashboard-outlined"></iconify-icon><span
+                            style="margin: 0 0 0 10px;">Dashboard</span></a>
+                    <a type="button"
+                        class="text-break d-flex flex-row align-items-center btn menu-btn btn-primary rounded-2 not-active"
+                        id="manageAccountBtn"><iconify-icon class="menu-icon ph-icon"
+                            icon="iconoir:user"></iconify-icon><span style="margin: 0 0 0 10px;">Manage
+                            Account</span></a>
                 </div>
             </div>
 
@@ -134,8 +163,16 @@ if (isset($_SESSION['logged_in']) != True) {
             </div>
 
             <!-- Analytics Part -->
-            <div class="main-con col hidden" style="margin: 0 12px; max-height: 520px;">
+            <div class="main-con col hidden" style="margin: 0 0.75rem 0 0.5rem; max-height: 520px;">
                 <?php include "content/analyticsDashboard.php" ?>
+            </div>
+
+            <div class="main-con col hidden mt-3" style="margin: 0 0.75rem 0 1rem;">
+                <?php include "content/studentRecord.php" ?>
+            </div>
+
+            <div class="ma-con col hidden" style="margin: 0 0.75rem 0 0.5rem; max-height: 520px;">
+                <?php include "content/manageAccount.php" ?>
             </div>
 
         </div>
@@ -147,5 +184,61 @@ if (isset($_SESSION['logged_in']) != True) {
     </div>
 
 </body>
+
+<script>
+    <?php if (isset($_SESSION['account_updated']) && $_SESSION['account_updated']): ?>
+        $('#manageAccountBtn').removeClass('not-active');
+        $('.ma-con').removeClass('hidden');
+
+        $('#announcement').addClass('hidden');
+        $('#missionVision').addClass('hidden');
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'Account updated successfully',
+            timer: 2000,
+            showConfirmButton: false
+        });
+
+        <?php unset($_SESSION['account_updated']); ?>
+    <?php endif; ?>
+
+    <?php if (isset($_SESSION['account_added']) && $_SESSION['account_added']): ?>
+        $('#manageAccountBtn').removeClass('not-active');
+        $('.ma-con').removeClass('hidden');
+
+        $('#announcement').addClass('hidden');
+        $('#missionVision').addClass('hidden');
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'Account created successfully',
+            timer: 2000,
+            showConfirmButton: false
+        });
+
+        <?php unset($_SESSION['account_added']); ?>
+    <?php endif; ?>
+
+    <?php if (isset($_SESSION['account_deleted']) && $_SESSION['account_deleted']): ?>
+        $('#manageAccountBtn').removeClass('not-active');
+        $('.ma-con').removeClass('hidden');
+
+        $('#announcement').addClass('hidden');
+        $('#missionVision').addClass('hidden');
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'Account removed successfully',
+            timer: 2000,
+            showConfirmButton: false
+        });
+
+        <?php unset($_SESSION['account_deleted']); ?>
+    <?php endif; ?>
+</script>
 
 </html>
