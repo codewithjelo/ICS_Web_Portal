@@ -1,7 +1,6 @@
 <?php
-include '../connectDb.php'; // Modify this with your database connection file
+include '../connectDb.php';
 
-// Function to fetch grades based on student ID
 function fetchGrades($conn, $studentId)
 {
     $academic_year = $_SESSION['academic_year'];
@@ -9,8 +8,7 @@ function fetchGrades($conn, $studentId)
                s.subject_name
         FROM grade g
         JOIN subject s ON g.subject_id = s.subject_id
-        WHERE g.student_id = ? AND g.academic_year = ?
-    ";
+        WHERE g.student_id = ? AND g.academic_year = ?";
 
     $stmt = $conn->prepare($query);
     $stmt->bind_param("is", $studentId, $academic_year);
