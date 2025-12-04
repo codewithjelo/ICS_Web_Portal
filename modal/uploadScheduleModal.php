@@ -31,7 +31,7 @@
                             <input class="form-control" type="file" id="uploadSchedule" name="upload_schedule" accept=".xls, .xlsx" required>
                         </div>
 
-                        <button type="submit" class="btn btn-primary w-100">Submit</button>
+                        <button type="submit" class="btn btn-primary w-100 border-0" style="background-color: var(--maroon);">Upload</button>
                     </form>
                 </div>
             </div>
