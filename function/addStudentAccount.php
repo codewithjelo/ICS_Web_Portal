@@ -3,12 +3,12 @@ session_start();
 include "../connectDb.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $student_id = isset($_POST['get_lrn_student_id']) ? (int)$_POST['get_lrn_student_id'] : null;
+    $studentId = isset($_POST['get_lrn_student_id']) ? (int)$_POST['get_lrn_student_id'] : null;
     $lrn = isset($_POST['student_lrn']) ? (int)$_POST['student_lrn'] : null;
     $password = isset($_POST['student_password']) ? $conn->real_escape_string($_POST['student_password']) : null;
-    $confirm_password = isset($_POST['confirm_password']) ? $conn->real_escape_string($_POST['confirm_password']) : null;
+    $confirmPassword = isset($_POST['confirm_password']) ? $conn->real_escape_string($_POST['confirm_password']) : null;
 
-    if (!$student_id || !$lrn || !$password || !$confirm_password) {
+    if (!$studentId || !$lrn || !$password || !$confirmPassword) {
         echo json_encode(["status" => "error", "message" => "All fields are required."]);
         exit;
     }
@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    if ($password !== $confirm_password) {
+    if ($password !== $confirmPassword) {
         echo json_encode(["status" => "error", "message" => "Passwords do not match."]);
         exit;
     }
@@ -29,20 +29,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         
-        $update_sql = "UPDATE student SET lrn = ? WHERE student_id = ?";
-        $stmt = $conn->prepare($update_sql);
-        $stmt->bind_param("ii", $lrn, $student_id);
+        $updateStudentAccountSql = "UPDATE student SET lrn = ? WHERE student_id = ?";
+        $stmt = $conn->prepare($updateStudentAccountSql);
+        $stmt->bind_param("ii", $lrn, $studentId);
 
         if (!$stmt->execute()) {
             throw new Exception("Error updating LRN: " . $stmt->error);
         }
 
         
-        error_log("Update Query Successful: LRN $lrn for Student ID $student_id");
+        error_log("Update Query Successful: LRN $lrn for Student ID $studentId");
 
         
-        $insert_sql = "INSERT INTO account (user_id, user_password, role_id) VALUES (?, ?, 1)";
-        $stmt = $conn->prepare($insert_sql);
+        $insertStudentAccountSql = "INSERT INTO account (user_id, user_password, role_id) VALUES (?, ?, 1)";
+        $stmt = $conn->prepare($insertStudentAccountSql);
         $stmt->bind_param("is", $lrn, $hashedPassword);
 
         if (!$stmt->execute()) {
