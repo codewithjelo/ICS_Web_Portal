@@ -1,0 +1,27 @@
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.add-btn {
+    top: 0;
+    right: 0;
+    background-color: white;
+    border: none;
+    color: var(--black);
+}
+
+#addAccount label {
+    color: white;
+}
+
+#editAccount label {
+    color: white;
+}
+
+#accountTable td {
+    color: white;
+}
