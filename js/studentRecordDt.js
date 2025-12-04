@@ -1,8 +1,10 @@
 $(document).ready(function() {
     $('#studentRecord').DataTable({
-        "paging": true,
-        "searching": true,
-        "ordering": true, // Disable client-side sorting
-        "lengthChange": false
+        scrollCollapse: false,
+        paging: true,
+        searching: true,
+        fixedHeader: false,
+        pageLength: 10,
+        lengthChange: false
     });
 });
