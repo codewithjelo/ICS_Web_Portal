@@ -7,7 +7,8 @@
 
 <div class="analytic-container row">
     <div class="analytic-dashboard p-2">
-        <div class="analytic-scroll overflow-y-auto m-3" style="max-height: 480px; overflow-x: hidden;">
+        <h2 class="text-white d-flex align-items-center justify-content-center my-2">ACADEMIC PERFORMANCE OVERVIEW</h2>
+        <div class="analytic-scroll overflow-y-auto m-3" style="max-height: 425px; overflow-x: hidden;">
             <div id="filterSection" class="d-flex flex-row m-3 gap-2">
 
                 <!-- Grade Level Dropdown -->
