@@ -4,3 +4,4 @@ composer.lock
 composer.phar
 check.php
 composer-setup.php
+.vscode
