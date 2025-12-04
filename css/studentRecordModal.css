@@ -1,0 +1,90 @@
+#studentRecord_wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 1800px;
+    max-height: 470px;
+    position: relative;
+    border-radius: 20px;
+}
+
+#studentRecord_wrapper .dataTables_filter {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 10;
+    padding: 10px;
+    border-bottom: 1px solid #dee2e6;
+    flex-shrink: 0;
+    border-radius: 5px 5px 0 0;
+}
+
+.dataTables_wrapper .dataTables_filter label {
+    font-size: 14px !important;
+}
+
+
+#studentRecord_wrapper .dataTables_scrollBody {
+    flex: 1;
+    overflow-x: auto !important;
+    overflow-y: auto !important;
+    max-height: 450px;
+}
+
+#studentRecord_wrapper .dataTables_info,
+#studentRecord_wrapper .dataTables_paginate {
+    position: sticky;
+    bottom: 0;
+    background-color: white;
+    z-index: 10;
+    padding: 10px;
+    border-top: 1px solid #dee2e6;
+    flex-shrink: 0;
+}
+
+#studentRecord_wrapper .dataTables_paginate {
+    display: inline-block;
+    float: right;
+    border-radius: 0 0 5px 5px;
+}
+
+#studentRecord_wrapper .dataTables_info {
+    display: inline-block;
+    float: left;
+    font-size: 12px;
+}
+
+#studentRecord_wrapper .dataTables_wrapper::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, 
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    background: var(--maroon);
+    color: var(--white) !important;
+    border: 1px solid var(--maroon);
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    box-sizing: border-box;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none !important;
+    cursor: pointer;
+    color: black;
+    border: 1px solid var(--maroon);
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background: var(--maroon);
+    color: var(--white) !important;
+    border: 1px solid var(--maroon);
+    font-weight: bold;
+    font-size: 12px;
+}
