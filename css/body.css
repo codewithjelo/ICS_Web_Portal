@@ -5,7 +5,7 @@
     --gold-hover: #c69925;
     --green: #1bbc3f;
     --red: #bc381b;
-    --white-hover: #bababa;
+    --white-hover: #dfdfdf;
   
     --header1: 36px;
     --header2: 32px;
@@ -244,10 +244,17 @@
     font-weight: bold;
     text-align: left;
   }
-  
+
   .menu-btn:hover {
     background-color: var(--white-hover);
+    color: var(--black);
   }
+
+  .menu-btn:active {
+    background-color: var(--gold) !important;
+    color: var(--black) !important;
+  }
+
   
   .menu-icon {
     font-size: 2.5rem;
@@ -301,12 +308,11 @@
     font-size: var(--subheader3);
     color: var(--black);
   }
+
   .hidden {
-    display: none;
-  }
-  .main-con.hidden {
-    display: none;
-  }
+    display: none !important;
+}
+
   .main-con {
     display: flex;
     width: 70%;
@@ -314,6 +320,14 @@
     background: #5e030a;
     border-radius: 1rem;
     flex-direction: column;
-  }
+}
 
-  
+  .ma-con {
+    display: flex;
+    width: 70%;
+    gap: 10px;
+    background: #5e030a;
+    border-radius: 1rem;
+    flex-direction: column;
+}
+
