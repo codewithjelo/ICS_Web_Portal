@@ -2,6 +2,7 @@
 <script src="../js/getIdTurnOver.js"></script>
 <script src="../js/turnOverProcess.js"></script>
 <script src="../js/studentStatus.js"></script>
+<link rel="stylesheet" href="../css/turnOverModal.css">
 
 <div class="modal fade modal-xl" id="turnOverModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -30,7 +31,7 @@
                             include "../connectDb.php";
 
                             if (isset($_SESSION['get_user_id'])) {
-                                $teacher_id = $_SESSION['get_user_id'];
+                                $teacherId = $_SESSION['get_user_id'];
 
                                 $query = "SELECT s.student_id AS student_id,
                                         CONCAT(s.first_name, ' ', LEFT(s.middle_name, 1), '. ', s.last_name) AS full_name,
@@ -51,7 +52,7 @@
                                     WHERE 
                                         ts.teacher_id = ? AND current_status = 'Enrolled'";
                                 $stmt = $conn->prepare($query);
-                                $stmt->bind_param('i', $teacher_id);
+                                $stmt->bind_param('i', $teacherId);
                                 $stmt->execute();
                                 $result = $stmt->get_result();
                                 if (mysqli_num_rows($result) > 0) {

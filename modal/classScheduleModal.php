@@ -21,41 +21,41 @@
           </thead>
           <tbody>
             <?php
-            include "../connectDb.php"; // Ensure this file sets up $conn properly
+              include "../connectDb.php";
 
-            $section_id = $_SESSION['section_id'] ?? 1;
+              $sectionId = $_SESSION['section_id'] ?? 1;
 
-            $query = "SELECT 
-                        cs.class_time, 
-                        MAX(CASE WHEN cs.weekday = 'Monday' THEN cs.subject_name ELSE '' END) AS Monday,
-                        MAX(CASE WHEN cs.weekday = 'Tuesday' THEN cs.subject_name ELSE '' END) AS Tuesday,
-                        MAX(CASE WHEN cs.weekday = 'Wednesday' THEN cs.subject_name ELSE '' END) AS Wednesday,
-                        MAX(CASE WHEN cs.weekday = 'Thursday' THEN cs.subject_name ELSE '' END) AS Thursday,
-                        MAX(CASE WHEN cs.weekday = 'Friday' THEN cs.subject_name ELSE '' END) AS Friday
-                      FROM class_schedule cs
-                      JOIN section s ON cs.section_id = s.section_id
-                      WHERE cs.section_id = ? 
-                      GROUP BY cs.class_time
-                      ORDER BY STR_TO_DATE(cs.class_time, '%h:%i %p')";
+              $query = "SELECT cs.class_time, 
+                  MAX(CASE WHEN cs.weekday = 'Monday' THEN cs.subject_name ELSE '' END) AS Monday,
+                  MAX(CASE WHEN cs.weekday = 'Tuesday' THEN cs.subject_name ELSE '' END) AS Tuesday,
+                  MAX(CASE WHEN cs.weekday = 'Wednesday' THEN cs.subject_name ELSE '' END) AS Wednesday,
+                  MAX(CASE WHEN cs.weekday = 'Thursday' THEN cs.subject_name ELSE '' END) AS Thursday,
+                  MAX(CASE WHEN cs.weekday = 'Friday' THEN cs.subject_name ELSE '' END) AS Friday
+                FROM class_schedule cs
+                JOIN section s ON cs.section_id = s.section_id
+                WHERE cs.section_id = ? 
+                GROUP BY cs.class_time
+                ORDER BY STR_TO_DATE(cs.class_time, '%h:%i %p')";
 
-            // Prepare the SQL statement
-            $stmt = $conn->prepare($query);
-            if (!$stmt) {
-              die('Prepare failed: ' . $conn->error);
-            }
+              // Prepare the SQL statement
+              $stmt = $conn->prepare($query);
+              if (!$stmt) {
+                die('Prepare failed: ' . $conn->error);
+              }
 
-            // Bind the section_id to the query
-            $stmt->bind_param('i', $_SESSION['section_id']);
+              // Bind the section_id to the query
+              $stmt->bind_param('i', $_SESSION['section_id']);
 
-            // Execute the query
-            $stmt->execute();
+              // Execute the query
+              $stmt->execute();
 
-            // Get the result
-            $result = $stmt->get_result();
+              // Get the result
+              $result = $stmt->get_result();
 
-            // Check if there are any results
-            if ($result->num_rows > 0) {
-              while ($row = $result->fetch_assoc()) { ?>
+              // Check if there are any results
+              if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) { 
+                ?>
                 <tr>
                   <td><?php echo htmlspecialchars($row['class_time']); ?></td>
                   <td><?php echo htmlspecialchars($row['Monday']); ?></td>

@@ -16,14 +16,14 @@ $result = $stmt->get_result();
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         
-        $file_path = $row['school_materials'];
+        $filePath = $row['school_materials'];
 
         
-        $file_name = str_replace('../school_materials/', '', $file_path);
+        $fileName = str_replace('../school_materials/', '', $filePath);
 ?>
         <div class="row column-gap-5 mt-3 mx-1 align-content-center position-relative rounded-3 border border-1" style="height: 40px;">
             <input type="hidden" name="material_id" value="">
-            <div class="col-md-8 ms-2 fw-bold"><?php echo htmlspecialchars($file_name); ?></div>
+            <div class="col-md-8 ms-2 fw-bold"><?php echo htmlspecialchars($fileName); ?></div>
             <div class="col-md-2">
                 <a class="btn btn-secondary position-absolute top-50 end-0 translate-middle-y border border-0 me-5" style="height: 40px; width: 50px; background-color: transparent;" href="<?php echo htmlspecialchars($row['school_materials']); ?>" download>
                     <iconify-icon class="pt-1" icon="tabler:download" style="font-size: 20px; color: black;"></iconify-icon>

@@ -5,28 +5,28 @@ include '../connectDb.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     if (isset($_FILES['student_certificate']) && $_FILES['student_certificate']['error'] == 0) {
-        $teacher_id = $_SESSION['get_user_id'];
-        $section_id = $_POST['section_cert'];
-        $student_id = $_POST['student_cert'];
-        $full_name = $_POST['full_name'];
+        $teacherId = $_SESSION['get_user_id'];
+        $sectionId = $_POST['section_cert'];
+        $studentId = $_POST['student_cert'];
+        $fullName = $_POST['full_name'];
 
         
-        $file_name = $_FILES['student_certificate']['name'];
-        $file_tmp = $_FILES['student_certificate']['tmp_name'];
-        $file_size = $_FILES['student_certificate']['size'];
-        $file_type = $_FILES['student_certificate']['type'];
+        $fileName = $_FILES['student_certificate']['name'];
+        $fileTmp = $_FILES['student_certificate']['tmp_name'];
+        $fileSize = $_FILES['student_certificate']['size'];
+        $fileType = $_FILES['student_certificate']['type'];
 
         
-        $upload_directory = '../student_certificate/';
-        $file_destination = $upload_directory . basename($file_name);
+        $uploadDirectory = '../student_certificate/';
+        $fileDestination = $uploadDirectory . basename($fileName);
 
         
-        if (move_uploaded_file($file_tmp, $file_destination)) {
+        if (move_uploaded_file($fileTmp, $fileDestination)) {
             
             $query = "INSERT INTO e_certificate (e_certificate, full_name, student_id, teacher_id, section_id) 
                           VALUES (?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($query);
-            $stmt->bind_param('ssiii', $file_destination, $full_name, $student_id, $teacher_id, $section_id);
+            $stmt->bind_param('ssiii', $fileDestination, $fullName, $studentId, $teacherId, $sectionId);
 
             if ($stmt->execute()) {
                 $_SESSION['swal_message'] = [

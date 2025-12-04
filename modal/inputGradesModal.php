@@ -24,8 +24,8 @@
 
                         <div class="mb-3">
                             <?php
-                            $teacher_id = $_SESSION['get_user_id']; ?>
-                            <input type="hidden" name="teacher_id_input_grades" value="<?php echo $teacher_id ?>">
+                            $teacherId = $_SESSION['get_user_id']; ?>
+                            <input type="hidden" name="teacher_id_input_grades" value="<?php echo $teacherId ?>">
                             <label for="sectionInputGrades" class="form-label">Section</label>
                             <select class="form-select" id="sectionInputGrades" name="section_input_grades" required>
                                 <option selected disabled>Select</option>

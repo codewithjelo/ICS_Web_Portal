@@ -98,12 +98,12 @@
                                     <?php
                                     include '../connectDb.php';
                                     if (isset($_SESSION['get_user_id'])) {
-                                        $teacher_id = $_SESSION['get_user_id'];
+                                        $teacherId = $_SESSION['get_user_id'];
                                         // Query the database based on the selected section ID
                                         $query = "SELECT e_certificate, full_name, e_certificate_id FROM e_certificate
                                             WHERE teacher_id = ?";
                                         $stmt = $conn->prepare($query);
-                                        $stmt->bind_param('i', $teacher_id);
+                                        $stmt->bind_param('i', $teacherId);
                                         $stmt->execute();
                                         $result = $stmt->get_result();
 

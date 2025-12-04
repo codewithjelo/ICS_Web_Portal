@@ -14,12 +14,12 @@
                     <?php
                     include '../connectDb.php';
 
-                    $student_id = $_SESSION['student_id'];
+                    $studentId = $_SESSION['student_id'];
                     // Query the database based on the selected section ID
                     $query = "SELECT e_certificate, full_name, e_certificate_id FROM e_certificate
                             WHERE student_id = ?";
                     $stmt = $conn->prepare($query);
-                    $stmt->bind_param('i', $student_id);
+                    $stmt->bind_param('i', $studentId);
                     $stmt->execute();
                     $result = $stmt->get_result();
 

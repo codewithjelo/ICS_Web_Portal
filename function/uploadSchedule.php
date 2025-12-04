@@ -1,70 +1,56 @@
 <?php
-require '../vendor/autoload.php'; 
+require '../vendor/autoload.php';
+require '../connectDb.php';
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
-session_start(); 
+session_start();
 
-function uploadSchedule($file) {
-    // Database connection parameters
-    $host     = 'localhost';
-    $username = 'root';
-    $password = '';
-    $dbname   = 'ics_db';
+function uploadSchedule($file)
+{
+    global $pdo; 
+
+
+    $sectionId = $_POST['section_schedule'];
 
     try {
-       
-        $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        
-        $section_id = $_POST['section_schedule'];
-
-       
+        // Archive existing data
         $archiveStmt = $pdo->prepare("INSERT INTO class_schedule_archive (class_time, subject_name, weekday, section_id) SELECT class_time, subject_name, weekday, section_id FROM class_schedule WHERE section_id = ?");
-        $archiveStmt->execute([$section_id]);
+        $archiveStmt->execute([$sectionId]);
 
-        
+        // Delete existing data
         $deleteStmt = $pdo->prepare("DELETE FROM class_schedule WHERE section_id = ?");
-        $deleteStmt->execute([$section_id]);
+        $deleteStmt->execute([$sectionId]);
 
+        // Load and process the spreadsheet (unchanged)
         $spreadsheet = IOFactory::load($file['tmp_name']);
         $sheet = $spreadsheet->getActiveSheet();
-        $rows = $sheet->toArray(null, true, true, true); // Load data as an associative array
+        $rows = $sheet->toArray(null, true, true, true);
 
-       
         $insertStmt = $pdo->prepare("INSERT INTO class_schedule (class_time, subject_name, weekday, section_id) VALUES (?, ?, ?, ?)");
 
-        
         $weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 
-       
         foreach ($rows as $rowIndex => $row) {
-            if ($rowIndex == 1) continue; 
-
+            if ($rowIndex == 1)
+                continue;
             $time = $row['A'];
-
-          
             foreach ($weekdays as $i => $weekday) {
-                $subject_name = $row[chr(66 + $i)];
-
-              
-                if (!empty($subject_name)) {
-                    $insertStmt->execute([$time, $subject_name, $weekday, $section_id]);
+                $subjectName = $row[chr(66 + $i)];
+                if (!empty($subjectName)) {
+                    $insertStmt->execute([$time, $subjectName, $weekday, $sectionId]);
                 }
             }
         }
 
-      
         $_SESSION['swal_message'] = [
             'type' => 'success',
             'title' => "Schedule uploaded successfully.",
         ];
-
     } catch (Exception $e) {
-        
+        // Handle errors properly (see note below)
         $_SESSION['swal_message'] = [
-            'type' => 'success',
-            'title' => "Schedule uploaded successfully.",
+            'type' => 'error',
+            'title' => "Error uploading schedule: " . $e->getMessage(),
         ];
     }
 }
@@ -72,7 +58,7 @@ function uploadSchedule($file) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['upload_schedule'])) {
     uploadSchedule($_FILES['upload_schedule']);
-    header('Location: ../pages/guidanceDashboard'); 
-    exit(); 
+    header('Location: ../pages/guidanceDashboard');
+    exit();
 }
 ?>

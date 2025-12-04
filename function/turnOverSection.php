@@ -1,7 +1,7 @@
     <?php
     include '../connectDb.php';
 
-    $grade_level_id = $_GET['grade_level_id'];
+    $gradeLevelId = $_GET['grade_level_id'];
 
    
     $query = "SELECT gl.grade_level, s.section_id, s.section_name 
@@ -9,7 +9,7 @@
                 JOIN section s ON gl.grade_level_id = s.grade_level_id
                 WHERE gl.grade_level_id = ?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param('i', $grade_level_id);
+    $stmt->bind_param('i', $gradeLevelId);
     $stmt->execute();
     $result = $stmt->get_result();
 

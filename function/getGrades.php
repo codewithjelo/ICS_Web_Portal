@@ -1,14 +1,14 @@
 <?php
 include("../connectDb.php");
 
-header('Content-Type: application/json'); // Ensure JSON response
+header('Content-Type: application/json');
 
 try {
     // Get the POST data
-    $section_id = isset($_POST['section_analytics']) ? $_POST['section_analytics'] : null;
-    $academic_year = isset($_POST['academic_year_analytics']) ? $_POST['academic_year_analytics'] : "2022-2023";
+    $sectionId = isset($_POST['section_analytics']) ? $_POST['section_analytics'] : null;
+    $academicYear = isset($_POST['academic_year_analytics']) ? $_POST['academic_year_analytics'] : "2022-2023";
 
-    if (!$section_id || !$academic_year) {
+    if (!$sectionId || !$academicYear) {
         echo json_encode(['error' => 'Missing section_analytics or academic_year_analytics parameter']);
         exit;
     }
@@ -25,7 +25,7 @@ try {
         GROUP BY subject.subject_id, subject.subject_name";
 
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("is", $section_id, $academic_year);
+    $stmt->bind_param("is", $sectionId, $academicYear);
     $stmt->execute();
     $result = $stmt->get_result();
 

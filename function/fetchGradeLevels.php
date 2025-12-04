@@ -3,19 +3,19 @@
 include "../connectDb.php";
 
 
-$sql = "SELECT grade_level_id, grade_level FROM grade_level";
-$result = $conn->query($sql);
+$fetchAcademicyearSql = "SELECT grade_level_id, grade_level FROM grade_level";
+$result = $conn->query($fetchAcademicyearSql);
 
 
-$grade_levels = array();
+$gradeLevels = array();
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $grade_levels[] = $row;
+        $gradeLevels[] = $row;
     }
 }
 
 
-echo json_encode($grade_levels);
+echo json_encode($gradeLevels);
 
 
 $conn->close();

@@ -2,9 +2,9 @@
 include("../connectDb.php");
 
 if (isset($_POST['section_analytics'], $_POST['academic_year_analytics'], $_POST['subject_analytics'])) {
-    $section_id = $_POST['section_analytics'];
-    $academic_year = $_POST['academic_year_analytics'];
-    $subject_id = $_POST['subject_analytics'];
+    $sectionId = $_POST['section_analytics'];
+    $academicYear = $_POST['academic_year_analytics'];
+    $subjectId = $_POST['subject_analytics'];
 
     $query = "SELECT CONCAT(student.last_name, ', ', student.first_name, ' ', LEFT(student.middle_name, 1), '.') AS full_name,
                 CONCAT(student.last_name, ', ', student.first_name) AS full_name_2,
@@ -22,7 +22,7 @@ if (isset($_POST['section_analytics'], $_POST['academic_year_analytics'], $_POST
         exit;
     }
 
-    $stmt->bind_param('iis', $subject_id, $section_id, $academic_year);
+    $stmt->bind_param('iis', $subjectId, $sectionId, $academicYear);
     $stmt->execute();
     $result = $stmt->get_result();
 

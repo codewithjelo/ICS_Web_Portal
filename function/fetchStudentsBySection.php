@@ -3,12 +3,12 @@ require "../connectDb.php";
 
 
 if (isset($_GET['section_id'])) {
-    $section_id = $_GET['section_id'];
+    $sectionId = $_GET['section_id'];
 
     
-    $sql = "SELECT student_id, CONCAT(last_name, ', ', first_name, ' ', LEFT(middle_name, 1), '.') AS full_name
-            FROM student WHERE section_id = $section_id";
-    $result = mysqli_query($conn, $sql);
+    $fetchAcademicyearSql = "SELECT student_id, CONCAT(last_name, ', ', first_name, ' ', LEFT(middle_name, 1), '.') AS full_name
+            FROM student WHERE section_id = $sectionId";
+    $result = mysqli_query($conn, $fetchAcademicyearSql);
 
    
     $students = array();
