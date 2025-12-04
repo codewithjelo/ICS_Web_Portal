@@ -5,43 +5,46 @@ include "../connectDb.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $full_name = $conn->real_escape_string($_SESSION['full_name']);
-    $rank_name = $conn->real_escape_string($_SESSION['rank_name']);
-   
-    $announcement_title = $conn->real_escape_string($_POST['announcement_title']);
-    $announcement_text = $conn->real_escape_string($_POST['announcement_text']);
+    $pageName = [
+        4 => 'guidanceDashboard',
+        5 => 'principalDashboard',
+        6 => 'pdoDashboard',
+    ];
+    $uploaderId = $_SESSION['uploader_id'];
+    $announcementTitle = $conn->real_escape_string($_POST['announcement_title']);
+    $announcementText = $conn->real_escape_string($_POST['announcement_text']);
 
-    $upload_dir = '../announcement/'; 
-    $uploaded_file = $_FILES['announcement_file']; 
-    $target_path = null;
+    $uploadDir = '../announcement/';
+    $uploadedFile = $_FILES['announcement_file'];
+    $targetPath = null;
 
-    
-    if (isset($uploaded_file) && $uploaded_file['error'] === UPLOAD_ERR_OK) {
-        $file_name = basename($uploaded_file['name']);
-        $target_path = $upload_dir . $file_name;
 
-        
-        if (!move_uploaded_file($uploaded_file['tmp_name'], $target_path)) {
-            
+    if (isset($uploadedFile) && $uploadedFile['error'] === UPLOAD_ERR_OK) {
+        $fileName = basename($uploadedFile['name']);
+        $targetPath = $uploadDir . $fileName;
+
+
+        if (!move_uploaded_file($uploadedFile['tmp_name'], $targetPath)) {
+
             $_SESSION['swal_message'] = [
                 'type' => 'error',
                 'title' => 'Failed to upload the file.',
             ];
-            header("Location: ../pages/guidanceDashboard");
+            header("Location: ../pages/{$pageName[intval(strval($uploaderId)[0])]}");
             exit;
         }
     }
 
-    
+
     $conn->begin_transaction();
 
     try {
-        
-        $insert_announcement_sql = "INSERT INTO announcements (title, announcement_text, announcement_file, full_name, rank_name) 
-                                    VALUES ('$announcement_title', '$announcement_text', " . 
-                                    ($target_path ? "'$target_path'" : "NULL") . ", '$full_name', '$rank_name')";
 
-        if ($conn->query($insert_announcement_sql) !== TRUE) {
+        $insertAnnouncementSql = "INSERT INTO announcements (title, announcement_text, announcement_file, uploader_id) 
+                                    VALUES ('$announcementTitle', '$announcementText', " .
+            ($targetPath ? "'$targetPath'" : "NULL") . ", $uploaderId)";
+
+        if ($conn->query($insertAnnouncementSql) !== TRUE) {
             throw new Exception("Error inserting into announcements: " . $conn->error);
         }
 
@@ -51,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'title' => 'Announcement uploaded!',
         ];
     } catch (Exception $e) {
-        
+
         $conn->rollback();
 
         $_SESSION['swal_message'] = [
@@ -60,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ];
     }
 
-    header("Location: ../pages/guidanceDashboard");
+    header("Location: ../pages/{$pageName[intval(strval($uploaderId)[0])]}");
 }
 
 
