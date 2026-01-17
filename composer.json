@@ -1,7 +1,2 @@
 {
-    "autoload": {
-  "psr-4": {
-    "PhpOffice\\PhpSpreadsheet\\": "vendor/phpoffice/phpspreadsheet/src/"
-  }
-}
 }
