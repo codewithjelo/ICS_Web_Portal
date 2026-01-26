@@ -1,4 +1,0 @@
-  $host     = 'localhost';
-  $username = 'u166646431_ics_portal';
-  $password = '@ICSPortalDatabase2024';
-  $dbname   ='u166646431_ics_db';
