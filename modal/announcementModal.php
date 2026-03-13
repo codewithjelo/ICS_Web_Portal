@@ -1,3 +1,14 @@
+<?php
+// Ensure session is started before reading session variables
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
+
+$fullName = $_SESSION['full_name'] ?? 'User';
+$rank_name = $_SESSION['rank_name'] ?? '';
+$profilePicture = $_SESSION['profile_picture'] ?? '../img/default-profile.png';
+?>
+
 <link rel="stylesheet" href="../css/modal.css">
 
 <!-- Modal -->
@@ -5,7 +16,7 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" style="height: 700px !important;">
-            <div class="modal-header justify-content-center"
+            <div class="modal-header justify-content-center"        
                 style="border-bottom: none; height: 100px !important; padding: 0 !important;">
                 <h1 class="modal-title" id="staticBackdropLabel">ANNOUNCEMENT</h1>
                 <button type="button" class="btn-close position-absolute top-0 end-0"
@@ -54,7 +65,7 @@
                                 <div>
                                     <div id="imagePreview"
                                         class="upload-preview d-flex align-items-center justify-content-center border border-2 border-dashed rounded position-relative"
-                                        style="height: 400px; cursor: pointer; background-color: #fffff;">
+                                        style="height: 400px; cursor: pointer; background-color: white;">
                                         <!-- Placeholder State -->
                                         <div id="placeholder" class="text-center">
                                             <i class="bi bi-camera-fill text-muted" style="font-size: 2rem;"></i>
@@ -72,7 +83,7 @@
                             </div>
 
 
-                            <div class="position-absolute my-3 w-100" style="background-color white">
+                            <div class="position-absolute my-3 w-100" style="background-color: white">
                                 <button type="submit" class="btn btn-primary border-0"
                                     style="background-color: var(--maroon)">Upload</button>
                             </div>
