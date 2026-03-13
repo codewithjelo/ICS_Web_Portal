@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $fileType = $_FILES['student_certificate']['type'];
 
         
-        $uploadDirectory = '../student_certificate/';
+        $uploadDirectory = '../public/student_certificate/';
         $fileDestination = $uploadDirectory . basename($fileName);
 
         

@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $fileType = $_FILES['school_materials']['type'];
 
         
-        $uploadDirectory = '../school_materials/';
+        $uploadDirectory = '../public/school_materials/';
         $fileDestination = $uploadDirectory . basename($fileName);
 
        

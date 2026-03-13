@@ -5,7 +5,7 @@ include '../connectDb.php';
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['upload_input_grades'])) {
-    $uploadDir = '../uploaded_grades/';
+    $uploadDir = '../public/uploaded_grades/';
     $fileName = basename($_FILES['upload_input_grades']['name']);
     $uploadPath = $uploadDir . $fileName;
     $sectionId = $_POST['section_input_grades']; 
