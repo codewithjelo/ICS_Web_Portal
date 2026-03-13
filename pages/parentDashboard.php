@@ -104,7 +104,7 @@ if (isset($_SESSION['logged_in']) != True) {
                                                         echo '../img/avatar.jpg';
                                                     } else {
                                                         echo htmlspecialchars($row['student_profile']);
-                                                    } ?>" class="avatar m-4" alt="Profile" style="width: 100px; height: 100px;">
+                                                    } ?>" class="avatar m-4" alt="Profile" style="width: 100px; height: 100px; object-fit: cover; border: 4px solid var(--maroon);">
 
                                         <div class="user-info d-flex flex-column justify-content-center">
                                             <p class="info-bold text-start text-uppercase"><?php echo htmlspecialchars($row['parent_name']); ?></p>
